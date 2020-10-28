@@ -6,12 +6,14 @@ Code &amp; reference repository for EPC memory deduplication
 ### Memory pages analysis :
 
 | Application      | Total page number       | Unique page number      | Deduplication ratio  | 
-| --------- | --------------- | ---------- | ------------ | 
-| frpc | 2475    | 2440    | 1.41% | 
-| Docker host | 3777654    | 3568768    | 5.53% | 
-| snap |  84642   | 18661    | 77.95% | 
-| chrome | 274745    | 199111    | 27.53% | 
-| mongodb | 3606262    | 3489657    | 3.23% | 
+| ---------------- | ----------------------- | ----------------------- | -------------------- | 
+| frpc             | 2475                    | 2440                    | 1.41%                | 
+| Docker host      | 3777654                 | 3568768                 | 5.53%                | 
+| snap             | 84642                   | 18661                   | 77.95%               | 
+| chrome           | 274745                  | 199111                  | 27.53%               | 
+| mongodb          | 3606262                 | 3489657                 | 3.23%                | 
+| vscode           | 633605                  | 493202                  | 22.16%               | 
+| qv2ray           | 79422                   | 33257                   | 58.13%               | 
 
 
 ### New problems :
@@ -20,9 +22,14 @@ Code &amp; reference repository for EPC memory deduplication
 
 ## Base Linux SGX Driver
 
-* Version : 
+### Version : 
   * Release : 2.11 
   * commit ID : 75bf89f7d6dd4598b9f8148bd6374a407f37105c
+
+### Analysis
+
+
+
 
 ## Related Tools & Method
 
