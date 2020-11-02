@@ -131,7 +131,7 @@ struct sgx_pageinfo {
 	uint64_t secs;
 } __attribute__((aligned(32)));
 
-
+  
 #define SGX_SECINFO_PERMISSION_MASK	0x0000000000000007L
 #define SGX_SECINFO_PAGE_TYPE_MASK	0x000000000000FF00L
 #define SGX_SECINFO_RESERVED_MASK	0xFFFFFFFFFFFF00F8L
