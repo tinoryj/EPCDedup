@@ -82,6 +82,61 @@ To reload a previously evicted page, the system software needs four elements: th
 2. Create a mapping in the enclave context's mapping tables (page tables and EPT tables) to allow the application to access that page (OS: system page table; VMM: EPT).
 3. The ELDB/ELDU instruction marks the VA slot empty so that the page cannot be replayed at a later date.
 
+##### Page encryption / decryption
+
+* **Page encryption counter & key could change on asm level, but ewb functions set dedicated register to store memory encryption key**
+* Data structure to store those information: 
+
+```c++
+struct sgx_encl {
+	unsigned int flags;
+	uint64_t attributes;
+	uint64_t xfrm;
+	unsigned int secs_child_cnt;
+	struct mutex lock;
+	struct mm_struct *mm;
+	struct file *backing;
+	struct file *pcmd;
+	struct list_head load_list;
+	struct kref refcount; // the encryption counter for AES-GCM
+	unsigned long base;
+	unsigned long size;
+	unsigned long ssaframesize;
+	struct list_head va_pages;
+	struct radix_tree_root page_tree;
+	struct list_head add_page_reqs;
+	struct work_struct add_page_work;
+	struct sgx_encl_page secs;
+	struct sgx_tgid_ctx *tgid_ctx;
+	struct list_head encl_list;
+	struct mmu_notifier mmu_notifier;
+	unsigned int shadow_epoch;
+};
+```
+
+* Encryption: 
+
+```asm
+(* Decrypt and MAC page. AES_GCM_DEC has 2 outputs, {plain text, MAC} *)
+(* Parameters for AES_GCM_DEC {Key, Counter, ..} *)
+{DS:RCX, TMP_MAC} := AES_GCM_DEC(CR_BASE_PK, TMP_VER << 32, TMP_HEADER, 128, DS:RCX, 4096);
+```
+
+* Decryption:
+
+```asm
+(* Encrypt the page, DS:RCX could be encrypted in place. AES-GCM produces 2 values, {ciphertext, MAC}. *)
+(* AES-GCM input parameters: key, GCM Counter, MAC_HDR, MAC_HDR_SIZE, SRC, SRC_SIZE)*)
+{DS:TMP_SRCPGE, DS:TMP_PCMD.MAC} := AES_GCM_ENC(CR_BASE_PK), (TMP_VER << 32), TMP_HEADER, 128, DS:RCX, 4096);
+```
+
+
+##### Function call relationship for adding a new page
+
+
+
+
+
 
 
 <!-- | Functions family | Functions        | Description             | Define location         | Realization position | 
