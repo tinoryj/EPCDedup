@@ -136,10 +136,10 @@ struct sgx_encl {
 * Start with a new enclave:
   * Use `sgx_ioc_enclave_init()` in `sgx_ioctl.c` to create a new enclave with pre-allocated pages.
   * Use `alloc_page()` function to allocate one page from system memory manager.
-  * Use `kmap()` function to map the physical page with a free virtual address space (kmap use total 4MB space, containes 1024 pages).
+  * Use `kmap()` function to map the physical page with a free virtual address space (kmap use total 4MB space, contains 1024 pages).
   * Use `sgx_get_encl()` to get the enclave information `sgx_encl` handler for new page encrypion.
   * Use `sgx_encl_init()` to update encl handler for current enclave.
-* Add new page to exist enclave:
+* Add a new page to exist enclave:
   * Use `sgx_ioc_enclave_add_page()` in `sgx_ioctl.c` to creates a new enclave page and enqueues an [EADD](https://www.felixcloutier.com/x86/eadd) operation that will be processed by a worker thread later.
   * Use `sgx_get_encl()` to get the enclave information
   * Use `alloc_page()` and `kmap()` to generate a new page.
