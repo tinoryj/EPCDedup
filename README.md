@@ -127,15 +127,42 @@ struct sgx_encl {
 ```asm
 (* Encrypt the page, DS:RCX could be encrypted in place. AES-GCM produces 2 values, {ciphertext, MAC}. *)
 (* AES-GCM input parameters: key, GCM Counter, MAC_HDR, MAC_HDR_SIZE, SRC, SRC_SIZE)*)
-{DS:TMP_SRCPGE, DS:TMP_PCMD.MAC} := AES_GCM_ENC(CR_BASE_PK), (TMP_VER << 32), TMP_HEADER, 128, DS:RCX, 4096);
+{DS:TMP_SRCPGE, DS:TMP_PCMD.MAC} := AES_GCM_ENC(CR_BASE_PK, (TMP_VER << 32), TMP_HEADER, 128, DS:RCX, 4096);
 ```
 
 
 ##### Function call relationship for adding a new page
 
-
-
-
+* Start with a new enclave:
+  * Use `sgx_ioc_enclave_init()` in `sgx_ioctl.c` to create a new enclave with pre-allocated pages.
+  * Use `alloc_page()` function to allocate one page from system memory manager.
+  * Use `kmap()` function to map the physical page with a free virtual address space (kmap use total 4MB space, containes 1024 pages).
+  * Use `sgx_get_encl()` to get the enclave information `sgx_encl` handler for new page encrypion.
+  * Use `sgx_encl_init()` to update encl handler for current enclave.
+* Add new page to exist enclave:
+  * Use `sgx_ioc_enclave_add_page()` in `sgx_ioctl.c` to creates a new enclave page and enqueues an [EADD](https://www.felixcloutier.com/x86/eadd) operation that will be processed by a worker thread later.
+  * Use `sgx_get_encl()` to get the enclave information
+  * Use `alloc_page()` and `kmap()` to generate a new page.
+  * Use the `sgx_encl_add_page()` to final update the newly added page by calling method `__sgx_encl_add_page()`
+* Main encls function:
+```asm
+#define __encls_ret(rax, rbx, rcx, rdx)			\
+	({						\
+	int ret;					\
+	asm volatile(					\
+	"1: .byte 0x0f, 0x01, 0xcf;\n\t"		\
+	"2:\n"						\
+	".section .fixup,\"ax\"\n"			\
+	"3: mov $-14,"XAX"\n"				\
+	"   jmp 2b\n"					\
+	".previous\n"					\
+	_ASM_EXTABLE(1b, 3b)				\
+	: "=a"(ret)					\
+	: "a"(rax), "b"(rbx), "c"(rcx), "d"(rdx)	\
+	: "memory");					\
+	ret;						\
+	})
+```
 
 
 

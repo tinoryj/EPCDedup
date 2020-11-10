@@ -243,7 +243,7 @@ static long sgx_ioc_enclave_init(struct file *filep, unsigned int cmd,
 
 	ret = sgx_encl_init(encl, sigstruct, einittoken);
 
-	kref_put(&encl->refcount, sgx_encl_release);
+	kref_put(&encl->refcount, sgx_encl_release); // update reference count
 
 out:
 	kunmap(initp_page);
