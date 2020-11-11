@@ -180,4 +180,6 @@ struct sgx_encl {
 
 * Memory capture method: https://unix.stackexchange.com/questions/6301/how-do-i-read-from-proc-pid-mem-under-linux
 * Core file generate for any thread: gcore $PID
-
+* [SGX memory protection](https://insujang.github.io/2017-04-03/intel-sgx-protection-mechanism/)
+* [Linux kernel memory map](https://insujang.github.io/2017-04-07/linux-kernel-memory-map-operations/)
+* [Hook sgx encls function](https://insujang.github.io/2017-04-21/hooking-an-sgx-encls-leaf-function-call-from-kvm/)
