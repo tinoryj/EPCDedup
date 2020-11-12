@@ -198,7 +198,7 @@ extern bool sgx_has_sgx2;
 extern const struct vm_operations_struct sgx_vm_ops;
 
 #define sgx_pr_ratelimited(level, encl, fmt, ...)			  \
-	pr_ ## level ## _ratelimited("intel_sgx: [%d:0x%p] " fmt,	  \
+	pr_ ## level ## _ratelimited("intel_sgx: [%d:0x%p] " fmt, /* rate limited print to kernel*/	  \
 				     pid_nr((encl)->tgid_ctx->tgid),	  \
 				     (void *)(encl)->base, ##__VA_ARGS__)
 
