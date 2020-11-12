@@ -39,6 +39,43 @@ Code &amp; reference repository for EPC memory deduplication
 * [Intel SGX-1 Instruction](https://www.eit.lth.se/fileadmin/eit/courses/eitn50/Literature/hasp-2013-innovative-instructions-and-software-model-for-isolated-execution.pdf)
 * [Intel SGX-2 Instruction](https://caslab.csl.yale.edu/workshops/hasp2016/HASP16-16.pdf)
 
+### Build
+
+#### Prerequisites
+
+* Downlaod linux kernel header: `sudo apt-get install linux-headers-$(uname -r)`.
+
+#### Make and Install
+
+* Use makefile to make the kernel module `isgx`.
+* Install with :
+  
+```shell
+$ sudo mkdir -p "/lib/modules/"`uname -r`"/kernel/drivers/intel/sgx"    
+$ sudo cp isgx.ko "/lib/modules/"`uname -r`"/kernel/drivers/intel/sgx"    
+$ sudo sh -c "cat /etc/modules | grep -Fxq isgx || echo isgx >> /etc/modules"    
+$ sudo /sbin/depmod
+$ sudo /sbin/modprobe isgx
+```
+* Uninstall with:
+
+```shell
+$ sudo /sbin/modprobe -r isgx
+$ sudo rm -rf "/lib/modules/"`uname -r`"/kernel/drivers/intel/sgx"
+$ sudo /sbin/depmod
+$ sudo /bin/sed -i '/^isgx$/d' /etc/modules
+```
+
+* Note : 
+  * Need to restart the machine after each reinstallation to use the `isgx` device normally.
+  * [2020.11.12] Trying to build `isgx` with `dkms` to avoid system reboot for testing. 
+
+#### Signing SGX Driver (Run with secure boot enabled)
+
+* Self signing isgx by `sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n isgx)`.
+* After all done and enroll the MOK successfully, redo the installation.
+
+
 ### Analysis
 
 #### Pages
