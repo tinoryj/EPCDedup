@@ -25,6 +25,11 @@ Code &amp; reference repository for EPC memory deduplication
     * Use page hash as the counter to support deduplication between pages with the same content.
 * The pages after deduplication need to retain the support for permissions management (the same content but different permissions pages may appear).
   * Modify `sgx_pageinfo` data structure in `sgx_arch.h`, use some additional flags to record different permissions.
+* Capture content of each page in all enclaves?
+  * Capture the page content when pages are created, modified, or deleted.
+* Link Linux driver with OpenSSL?
+  * [Not possible to use OpenSSL or other userspace libraries in Linux driver application](https://stackoverflow.com/questions/50166948/is-it-possible-to-port-openssl-into-linux-driver)
+  * [Use linux kernel crypto API](https://www.kernel.org/doc/html/v5.4/crypto/index.html)
 
 
 ## Base Linux SGX Driver
@@ -221,3 +226,4 @@ struct sgx_encl {
 * [Linux kernel memory map](https://insujang.github.io/2017-04-07/linux-kernel-memory-map-operations/)
 * [Hook sgx encls function](https://insujang.github.io/2017-04-21/hooking-an-sgx-encls-leaf-function-call-from-kvm/)
 * [DKMS driver](https://docs.01.org/clearlinux/latest/guides/kernel/kernel-modules-dkms.html)
+* **[Linux Device Driver Development](https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os)**
