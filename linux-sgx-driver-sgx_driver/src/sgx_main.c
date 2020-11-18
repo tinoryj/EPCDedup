@@ -388,7 +388,7 @@ void cleanup_sgx_module(void)
 	platform_driver_unregister(&sgx_drv);
 }
 
-module_init(init_sgx_module);
-module_exit(cleanup_sgx_module);
+module_init(init_sgx_module); // driver load 
+module_exit(cleanup_sgx_module); // driver remove
 
 MODULE_LICENSE("Dual BSD/GPL");
