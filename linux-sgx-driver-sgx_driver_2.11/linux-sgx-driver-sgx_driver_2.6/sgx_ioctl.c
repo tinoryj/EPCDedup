@@ -177,7 +177,7 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 	}
 
 	data = kmap(data_page);
-	sgx_info(encl, "sgx: add new page, content = %s\n", (void __user *)addp->src);
+
 	ret = copy_from_user((void *)data, (void __user *)addp->src, PAGE_SIZE);
 	if (ret)
 		goto out;
@@ -242,9 +242,8 @@ static long sgx_ioc_enclave_init(struct file *filep, unsigned int cmd,
 		goto out;
 
 	ret = sgx_encl_init(encl, sigstruct, einittoken);
-	sgx_info(encl, "sgx: new enclave init with sigstruct, content = %s\n", sigstruct);
-	sgx_info(encl, "sgx: new enclave init with einittoken, content = %s\n", einittoken);
-	kref_put(&encl->refcount, sgx_encl_release); // update reference count
+
+	kref_put(&encl->refcount, sgx_encl_release);
 
 out:
 	kunmap(initp_page);
@@ -360,10 +359,6 @@ long sgx_ioc_page_remove(struct file *filep, unsigned int cmd,
 	}
 
 	ret = remove_page(encl, address, false);
-	sgx_info(encl, "sgx: remove page from epc, current page address = %d\n", address);
-	char removedPageBuffer[4096];
-	*removedPageBuffer = address;
-	sgx_info(encl, "sgx: remove page from epc, current page content = %s\n", removedPageBuffer);
 	if (ret) {
 		pr_warn("sgx: Failed to remove page, address=0x%lx ret=%d\n",
 			address, ret);

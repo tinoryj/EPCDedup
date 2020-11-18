@@ -123,10 +123,10 @@ static inline bool sgx_va_slots_empty(struct sgx_va_page *page)
 }
 
 enum sgx_encl_page_flags {
-	SGX_ENCL_PAGE_TCS		= BIT(0),
+	SGX_ENCL_PAGE_TCS	= BIT(0),
 	SGX_ENCL_PAGE_RESERVED	= BIT(1),
-	SGX_ENCL_PAGE_TRIM		= BIT(2),
-	SGX_ENCL_PAGE_ADDED		= BIT(3),
+	SGX_ENCL_PAGE_TRIM	= BIT(2),
+	SGX_ENCL_PAGE_ADDED	= BIT(3),
 };
 
 struct sgx_encl_page {
@@ -146,10 +146,10 @@ struct sgx_tgid_ctx {
 
 enum sgx_encl_flags {
 	SGX_ENCL_INITIALIZED	= BIT(0),
-	SGX_ENCL_DEBUG			= BIT(1),
+	SGX_ENCL_DEBUG		= BIT(1),
 	SGX_ENCL_SECS_EVICTED	= BIT(2),
-	SGX_ENCL_SUSPEND		= BIT(3),
-	SGX_ENCL_DEAD			= BIT(4),
+	SGX_ENCL_SUSPEND	= BIT(3),
+	SGX_ENCL_DEAD		= BIT(4),
 };
 
 struct sgx_encl {
@@ -198,7 +198,7 @@ extern bool sgx_has_sgx2;
 extern const struct vm_operations_struct sgx_vm_ops;
 
 #define sgx_pr_ratelimited(level, encl, fmt, ...)			  \
-	pr_ ## level ## _ratelimited("intel_sgx: [%d:0x%p] " fmt, /* rate limited print to kernel*/	  \
+	pr_ ## level ## _ratelimited("intel_sgx: [%d:0x%p] " fmt,	  \
 				     pid_nr((encl)->tgid_ctx->tgid),	  \
 				     (void *)(encl)->base, ##__VA_ARGS__)
 
@@ -275,5 +275,5 @@ int sgx_eldu(struct sgx_encl *encl, struct sgx_encl_page *encl_page,
 long modify_range(struct sgx_range *rg, unsigned long flags);
 int remove_page(struct sgx_encl *encl, unsigned long address, bool trim);
 int sgx_get_encl(unsigned long addr, struct sgx_encl **encl);
-int sgx_vm_insert_pfn(struct vm_area_struct *vma, unsigned long addr,  resource_size_t pa);
+
 #endif /* __ARCH_X86_INTEL_SGX_H__ */

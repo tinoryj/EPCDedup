@@ -30,13 +30,15 @@ Code &amp; reference repository for EPC memory deduplication
 * Link Linux driver with OpenSSL?
   * [Not possible to use OpenSSL or other userspace libraries in Linux driver application](https://stackoverflow.com/questions/50166948/is-it-possible-to-port-openssl-into-linux-driver)
   * [Use linux kernel crypto API](https://www.kernel.org/doc/html/v5.4/crypto/index.html)
-
+* **Installing the modified driver may cause the system to fail to start**: Some memory addresses are not allowed to be written directly in the kernel
+  * Disable SGX device in BIOS, then deleting the driver.
+  * SGX Driver 2.11 version may not correct on Ubuntu 18.04 LTS, changing to version 2.6.
 
 ## Base Linux SGX Driver
 
-### Version : 
-  * Release : 2.11 
-  * commit ID : 75bf89f7d6dd4598b9f8148bd6374a407f37105c
+### Version (Changing to version 2.6) : 
+  * Release : 2.6 
+  * commit ID : 51c4821b8a4fa0cba69f532474a13c298c5b4037
 
 ### Reference : 
 

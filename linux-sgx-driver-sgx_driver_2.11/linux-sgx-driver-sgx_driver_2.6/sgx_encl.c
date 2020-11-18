@@ -250,8 +250,13 @@ static bool sgx_process_add_page_req(struct sgx_add_page_req *req,
 		return false;
 	}
 
-        ret = sgx_vm_insert_pfn(vma, encl_page->addr, epc_page->pa);
-        if (ret != VM_FAULT_NOPAGE) {
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 20, 0))
+	ret = vmf_insert_pfn(vma, encl_page->addr, PFN_DOWN(epc_page->pa));
+	if (ret != VM_FAULT_NOPAGE) {
+#else
+	ret = vm_insert_pfn(vma, encl_page->addr, PFN_DOWN(epc_page->pa));
+	if (ret) {
+#endif
 		sgx_put_backing(backing, 0);
 		return false;
 	}
@@ -339,7 +344,7 @@ static u32 sgx_calc_ssaframesize(u32 miscselect, u64 xfrm)
 	int i;
 
 	for (i = 2; i < 64; i++) {
-		if (!((1UL << i) & xfrm))
+		if (!((1 << i) & xfrm))
 			continue;
 
 		size = SGX_SSA_GPRS_SIZE + sgx_xsave_size_tbl[i];
