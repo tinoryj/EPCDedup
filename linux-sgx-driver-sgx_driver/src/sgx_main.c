@@ -224,6 +224,7 @@ static int sgx_dev_init(struct device *parent)
 		pa = ((u64)(ebx & 0xfffff) << 32) + (u64)(eax & 0xfffff000);
 		size = ((u64)(edx & 0xfffff) << 32) + (u64)(ecx & 0xfffff000);
 
+		// get epc memory regoin, and output to kernel log (watch with `dmesg | grep sgx`)
 		dev_info(parent, "EPC bank 0x%lx-0x%lx\n", pa, pa + size);
 
 		sgx_epc_banks[i].pa = pa;
@@ -250,11 +251,17 @@ static int sgx_dev_init(struct device *parent)
 			goto out_iounmap;
 		}
 	}
-
+	// start the page cahce manager thread
 	ret = sgx_page_cache_init();
 	if (ret)
 		goto out_iounmap;
-
+	/*
+	Workqueue is a processing method for processing various work items 
+	encapsulated by the kernel thread. Since the processing objects are 
+	spliced one by one with a linked list, they are taken out for processing, 
+	and then deleted from the linked list, just like a queue is lined up in 
+	sequence. The processing is the same, so it is also called the work queue
+	*/
 	sgx_add_page_wq = alloc_workqueue("intel_sgx-add-page-wq",
 					  WQ_UNBOUND | WQ_FREEZABLE, 1);
 	if (!sgx_add_page_wq) {
@@ -289,12 +296,13 @@ static int sgx_drv_probe(struct platform_device *pdev)
 {
 	unsigned int eax, ebx, ecx, edx;
 	unsigned long fc;
+	// atomic_cmpxchg: http://www.wowotech.net/kernel_synchronization/atomic.html/comment-page-2
 	if (atomic_cmpxchg(&sgx_init_flag, 0, 1)) {
 		pr_warn("intel_sgx: second initialization call skipped\n");
 		return 0;
 	}
 
-
+	// verify Intel CPU & SGX feature
 	if (boot_cpu_data.x86_vendor != X86_VENDOR_INTEL)
 		return -ENODEV;
 
@@ -329,6 +337,7 @@ static int sgx_drv_probe(struct platform_device *pdev)
 
 	sgx_has_sgx2 = (eax & 2) != 0;
 
+	// init sgx device
 	return sgx_dev_init(&pdev->dev);
 }
 
@@ -342,12 +351,13 @@ static int sgx_drv_remove(struct platform_device *pdev)
 	}
 
 	misc_deregister(&sgx_dev);
-
+	// clean up workqueue created in sgx_dev_init
 	destroy_workqueue(sgx_add_page_wq);
 #ifdef CONFIG_X86_64
 	for (i = 0; i < sgx_nr_epc_banks; i++)
 		iounmap((void *)sgx_epc_banks[i].va);
 #endif
+	// stop page cache thread, clean up page cache
 	sgx_page_cache_teardown();
 
 	return 0;
@@ -362,8 +372,8 @@ MODULE_DEVICE_TABLE(acpi, sgx_device_ids);
 #endif
 
 static struct platform_driver sgx_drv = {
-	.probe = sgx_drv_probe,
-	.remove = sgx_drv_remove,
+	.probe = sgx_drv_probe, // init function detect target device, and call sgx_drv_probe
+	.remove = sgx_drv_remove, // remove function, cleanup resources
 	.driver = {
 		.name			= "intel_sgx",
 		.pm			= &sgx_drv_pm,
@@ -374,8 +384,8 @@ static struct platform_driver sgx_drv = {
 static struct platform_device *pdev;
 int init_sgx_module(void)
 {
-	platform_driver_register(&sgx_drv);
-	pdev = platform_device_register_simple("intel_sgx", 0, NULL, 0);
+	platform_driver_register(&sgx_drv); // bind driver with the device by scan device list
+	pdev = platform_device_register_simple("intel_sgx", 0, NULL, 0); // add a platform-level device and its resources
 	if (IS_ERR(pdev))
 		pr_err("platform_device_register_simple failed\n");
 	return 0;

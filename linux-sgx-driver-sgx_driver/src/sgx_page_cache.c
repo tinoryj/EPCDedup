@@ -380,20 +380,25 @@ out:
 	kref_put(&ctx->refcount, sgx_tgid_ctx_release);
 }
 
+// page cache worker thread (in kernel)
 static int ksgxswapd(void *p)
 {
+	// The device will hang when it does not respond within a certain period of time
 	set_freezable();
 
 	while (!kthread_should_stop()) {
 		if (try_to_freeze())
 			continue;
-
+		// when need to swap pages, weak up this thread
 		wait_event_freezable(ksgxswapd_waitq,
 				     kthread_should_stop() ||
 				     sgx_nr_free_pages < sgx_nr_high_pages);
 
-		if (sgx_nr_free_pages < sgx_nr_high_pages)
+		if (sgx_nr_free_pages < sgx_nr_high_pages){
+			// swap pages
 			sgx_swap_pages(SGX_NR_SWAP_CLUSTER_MAX);
+		}
+
 	}
 
 	pr_info("%s: done\n", __func__);
@@ -407,6 +412,7 @@ int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank)
 	struct list_head *parser, *temp;
 
 	for (i = 0; i < size; i += PAGE_SIZE) {
+		// alloc memory in kernel space (Physical memory mapping area, and physically continuous, they have only a fixed offset from the real physical address)
 		new_epc_page = kzalloc(sizeof(*new_epc_page), GFP_KERNEL);
 		if (!new_epc_page)
 			goto err_freelist;
@@ -436,7 +442,7 @@ int sgx_page_cache_init(void)
 	struct task_struct *tmp;
 
 	sgx_nr_high_pages = 2 * sgx_nr_low_pages;
-
+	// Create and start the kernel thread
 	tmp = kthread_run(ksgxswapd, NULL, "ksgxswapd");
 	if (!IS_ERR(tmp))
 		ksgxswapd_tsk = tmp;

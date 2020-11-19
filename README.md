@@ -229,3 +229,5 @@ struct sgx_encl {
 * [Hook sgx encls function](https://insujang.github.io/2017-04-21/hooking-an-sgx-encls-leaf-function-call-from-kvm/)
 * [DKMS driver](https://docs.01.org/clearlinux/latest/guides/kernel/kernel-modules-dkms.html)
 * **[Linux Device Driver Development](https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os)**
+* [Linux platform driver guide](https://www.cnblogs.com/xiaojiang1025/p/6367910.html)
+* [Linux kernel programming](https://www.cnblogs.com/sky-heaven/p/5279334.html)
