@@ -30,10 +30,11 @@ Code &amp; reference repository for EPC memory deduplication
   * **In function `sgx_ioc_enclave_add_page`, the same enclave always creates the same page (not in line with expectations)**
 * Link Linux driver with OpenSSL?
   * [Not possible to use OpenSSL or other userspace libraries in Linux driver application](https://stackoverflow.com/questions/50166948/is-it-possible-to-port-openssl-into-linux-driver)
-  * [Use linux kernel crypto API](https://www.kernel.org/doc/html/v5.4/crypto/index.html)
+  * [Use Linux kernel crypto API](https://www.kernel.org/doc/html/v5.4/crypto/index.html)
 * **Installing the modified driver may cause the system to fail to start**: Some memory addresses are not allowed to be written directly in the kernel
   * Disable SGX device in BIOS, then deleting the driver.
   * SGX Driver 2.11 version may not correct on Ubuntu 18.04 LTS, changing to version 2.6.
+  * Any system kernel update (e.g., kernel version change from 5.4.0-53 to 5.4.0-54), the driver needs to recompile & reinstall.
 
 ## Base Linux SGX Driver
 
