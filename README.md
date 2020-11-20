@@ -27,6 +27,7 @@ Code &amp; reference repository for EPC memory deduplication
   * Modify `sgx_pageinfo` data structure in `sgx_arch.h`, use some additional flags to record different permissions.
 * Capture content of each page in all enclaves?
   * Capture the page content when pages are created, modified, or deleted.
+  * **In function `sgx_ioc_enclave_add_page`, the same enclave always creates the same page (not in line with expectations)**
 * Link Linux driver with OpenSSL?
   * [Not possible to use OpenSSL or other userspace libraries in Linux driver application](https://stackoverflow.com/questions/50166948/is-it-possible-to-port-openssl-into-linux-driver)
   * [Use linux kernel crypto API](https://www.kernel.org/doc/html/v5.4/crypto/index.html)
@@ -84,6 +85,74 @@ $ sudo /bin/sed -i '/^isgx$/d' /etc/modules
 
 
 ### Analysis
+
+#### How SGX Driver works?
+
+> When the user process uses the device file to perform operations such as read/write, the system call finds the corresponding device driver through the major device number of the device file, then reads the corresponding function pointer of this data structure, and then transfers control to the Function, this is the basic principle of Linux device driver work.
+
+```c
+static const struct file_operations sgx_fops = {
+	.owner			= THIS_MODULE,
+	.unlocked_ioctl		= sgx_ioctl, // the ioctl function pointer, to do the device I/O control command
+#ifdef CONFIG_COMPAT
+	.compat_ioctl		= sgx_compat_ioctl,
+#endif
+	.mmap			= sgx_mmap, // request the device memory to be mapped to the process address space
+	.get_unmapped_area	= sgx_get_unmapped_area,
+};
+```
+
+##### `ioctl` functions:
+
+```c
+long sgx_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
+{
+	char data[256];
+	sgx_ioc_t handler = NULL;
+	long ret;
+
+	switch (cmd) {
+	case SGX_IOC_ENCLAVE_CREATE:
+		handler = sgx_ioc_enclave_create;
+		break;
+	case SGX_IOC_ENCLAVE_ADD_PAGE:
+		handler = sgx_ioc_enclave_add_page;
+		break;
+	case SGX_IOC_ENCLAVE_INIT:
+		handler = sgx_ioc_enclave_init;
+		break;
+	case SGX_IOC_ENCLAVE_EMODPR:
+		handler = sgx_ioc_page_modpr;
+		break;
+	case SGX_IOC_ENCLAVE_MKTCS:
+		handler = sgx_ioc_page_to_tcs;
+		break;
+	case SGX_IOC_ENCLAVE_TRIM:
+		handler = sgx_ioc_trim_page;
+		break;
+	case SGX_IOC_ENCLAVE_NOTIFY_ACCEPT:
+		handler = sgx_ioc_page_notify_accept;
+		break;
+	case SGX_IOC_ENCLAVE_PAGE_REMOVE:
+		handler = sgx_ioc_page_remove;
+		break;
+	default:
+		return -ENOIOCTLCMD;
+	}
+
+	if (copy_from_user(data, (void __user *)arg, _IOC_SIZE(cmd)))
+		return -EFAULT;
+
+	ret = handler(filep, cmd, (unsigned long)((void *)data));
+	if (!ret && (cmd & IOC_OUT)) {
+		if (copy_to_user((void __user *)arg, data, _IOC_SIZE(cmd)))
+			return -EFAULT;
+	}
+
+	return ret;
+}
+```
+
 
 #### Pages
 

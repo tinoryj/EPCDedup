@@ -72,6 +72,65 @@
 #include <linux/slab.h>
 #include <linux/hashtable.h>
 #include <linux/shmem_fs.h>
+#include <linux/module.h>
+#include <crypto/hash.h>
+
+struct sdesc {
+    struct shash_desc shash;
+    char ctx[];
+};
+
+static struct sdesc *init_sdesc(struct crypto_shash *alg)
+{
+    struct sdesc *sdesc;
+    int size;
+
+    size = sizeof(struct shash_desc) + crypto_shash_descsize(alg);
+    sdesc = kmalloc(size, GFP_KERNEL);
+    if (!sdesc)
+        return ERR_PTR(-ENOMEM);
+    sdesc->shash.tfm = alg;
+    return sdesc;
+}
+
+static int calc_hash(struct crypto_shash *alg,
+             const unsigned char *data, unsigned int datalen,
+             unsigned char *digest)
+{
+    struct sdesc *sdesc;
+    int ret;
+
+    sdesc = init_sdesc(alg);
+    if (IS_ERR(sdesc)) {
+        pr_info("can't alloc sdesc\n");
+        return PTR_ERR(sdesc);
+    }
+
+    ret = crypto_shash_digest(&sdesc->shash, data, datalen, digest);
+    kfree(sdesc);
+    return ret;
+}
+
+static int do_sha256(const unsigned char *data, unsigned int datalen, unsigned char *out_digest)
+{
+    struct crypto_shash *alg;
+    char *hash_alg_name = "sha256";
+    // unsigned int datalen = sizeof(data) - 1; // remove the null byte
+
+    alg = crypto_alloc_shash(hash_alg_name, 0, 0);
+    if(IS_ERR(alg)){
+        pr_info("sgx: can't alloc alg %s\n", hash_alg_name);
+        return PTR_ERR(alg);
+    }
+    calc_hash(alg, data, datalen, out_digest);
+
+    // Very dirty print of 8 first bytes for comparaison with sha256sum
+    printk(KERN_INFO "sgx: HASH %02x%02x%02x%02x%02x%02x%02x%02x\n",
+          out_digest[0], out_digest[1], out_digest[2], out_digest[3], out_digest[4], 
+          out_digest[5], out_digest[6], out_digest[7]);
+    crypto_free_shash(alg);
+    return 0;
+}
 
 int sgx_get_encl(unsigned long addr, struct sgx_encl **encl)
 {
@@ -128,6 +187,9 @@ static long sgx_ioc_enclave_create(struct file *filep, unsigned int cmd,
 		kfree(secs);
 		return ret;
 	}
+	printk(KERN_INFO"sgx: create enclave size = %lld\n", secs->size);
+	printk(KERN_INFO"sgx: create enclave ssaframesize = %d\n", secs->ssaframesize);
+	printk(KERN_INFO"sgx: create enclave isvsvn = %d\n", secs->isvsvn);
 
 	ret = sgx_encl_create(secs);
 
@@ -159,13 +221,13 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 	struct page *data_page;
 	void *data;
 	int ret;
-
+	unsigned char* hash = "00000000000000000000000000000000";
+	
 	ret = sgx_get_encl(addp->addr, &encl);
 	if (ret)
 		return ret;
 
-	if (copy_from_user(&secinfo, (void __user *)secinfop,
-			   sizeof(secinfo))) {
+	if (copy_from_user(&secinfo, (void __user *)secinfop, sizeof(secinfo))) {
 		kref_put(&encl->refcount, sgx_encl_release);
 		return -EFAULT;
 	}
@@ -178,10 +240,14 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 
 	data = kmap(data_page);
 	// sgx_info(encl, "sgx: add new page, content = %s\n", (void __user *)addp->src);
+	
 	ret = copy_from_user((void *)data, (void __user *)addp->src, PAGE_SIZE);
 	if (ret)
 		goto out;
-
+	printk(KERN_INFO"sgx: add new page to enclave, address = %p\n", data);
+	printk(KERN_INFO "sgx: HASH %02x%02x%02x%02x%02x%02x%02x%02x\n",
+          data, data+1,data+2,data+3,data+4,data+5,data+6,data+7);
+	// do_sha256((unsigned char*)data, PAGE_SIZE, hash);
 	ret = sgx_encl_add_page(encl, addp->addr, data, &secinfo, addp->mrmask);
 	if (ret)
 		goto out;
@@ -222,7 +288,7 @@ static long sgx_ioc_enclave_init(struct file *filep, unsigned int cmd,
 	initp_page = alloc_page(GFP_HIGHUSER);
 	if (!initp_page)
 		return -ENOMEM;
-
+	printk(KERN_INFO"sgx: alloc page for new enclave address = %ld\n", initp_page->flags);
 	sigstruct = kmap(initp_page);
 	einittoken = (struct sgx_einittoken *)
 		((unsigned long)sigstruct + PAGE_SIZE / 2);
@@ -332,6 +398,8 @@ long sgx_ioc_page_notify_accept(struct file *filep, unsigned int cmd,
 				 address, tmp_ret);
 			ret = tmp_ret;
 			continue;
+		}else{
+			printk(KERN_INFO"sgx: remove page address = %ld\n", address);
 		}
 	}
 
@@ -360,6 +428,7 @@ long sgx_ioc_page_remove(struct file *filep, unsigned int cmd,
 		return -EINVAL;
 	}
 	sgx_info(encl, "sgx: remove page from epc, current page address = %ld\n", address);
+	printk(KERN_INFO"sgx: remove page from epc, current page address = %ld\n", address);
 	// char removedPageBuffer[4096];
 	// *removedPageBuffer = address;
 	// sgx_info(encl, "sgx: remove page from epc, current page content = %s\n", address);

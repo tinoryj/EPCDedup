@@ -153,7 +153,7 @@ static int sgx_add_to_tgid_ctx(struct sgx_encl *encl)
 
 	ctx->tgid = tgid;
 	kref_init(&ctx->refcount);
-	INIT_LIST_HEAD(&ctx->encl_list);
+	INIT_LIST_HEAD(&ctx->encl_list); // init list head (with double side to read & write)
 
 	list_add(&ctx->list, &sgx_tgid_ctx_list);
 
