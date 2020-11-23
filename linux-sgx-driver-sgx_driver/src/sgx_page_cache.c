@@ -85,6 +85,8 @@ static unsigned int sgx_nr_low_pages = SGX_NR_LOW_EPC_PAGES_DEFAULT;
 static unsigned int sgx_nr_high_pages;
 static struct task_struct *ksgxswapd_tsk;
 static DECLARE_WAIT_QUEUE_HEAD(ksgxswapd_waitq);
+static struct task_struct *ksgxswapdMoniter_tsk;
+static DECLARE_WAIT_QUEUE_HEAD(ksgxswapdMoniter_waitq);
 
 static int sgx_test_and_clear_young_cb(pte_t *ptep,
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 3, 0))
@@ -407,6 +409,25 @@ static int ksgxswapd(void *p)
 	return 0;
 }
 
+int sgx_page_cache_moniter_init(void)
+{
+		// The device will hang when it does not respond within a certain period of time
+	set_freezable();
+
+	while (!kthread_should_stop()) {
+		pr_info("SGX_moniter: moniter thread weak up\n");
+		pr_info("SGX_moniter: current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
+		if (try_to_freeze())
+			continue;
+		// when need to swap pages, weak up this thread
+		wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop());
+	}
+
+	pr_info("%s: done\n", __func__);
+	return 0;
+
+}
+
 int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank)
 {
 	unsigned long i;
@@ -424,6 +445,7 @@ int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank)
 		list_add_tail(&new_epc_page->list, &sgx_free_list);
 		sgx_nr_total_epc_pages++;
 		sgx_nr_free_pages++;
+		wake_up(&ksgxswapdMoniter_waitq);
 		spin_unlock(&sgx_free_list_lock);
 	}
 
@@ -461,6 +483,11 @@ void sgx_page_cache_teardown(void)
 		ksgxswapd_tsk = NULL;
 	}
 
+	if (ksgxswapdMoniter_tsk) {
+		kthread_stop(ksgxswapdMoniter_tsk);
+		ksgxswapdMoniter_tsk = NULL;
+	}
+
 	spin_lock(&sgx_free_list_lock);
 	list_for_each_safe(parser, temp, &sgx_free_list) {
 		entry = list_entry(parser, struct sgx_epc_page, list);
@@ -481,6 +508,7 @@ static struct sgx_epc_page *sgx_alloc_page_fast(void)
 					 list);
 		list_del(&entry->list);
 		sgx_nr_free_pages--;
+		wake_up(&ksgxswapdMoniter_waitq);
 	}
 
 	spin_unlock(&sgx_free_list_lock);

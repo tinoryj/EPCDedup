@@ -255,6 +255,12 @@ static int sgx_dev_init(struct device *parent)
 	ret = sgx_page_cache_init();
 	if (ret)
 		goto out_iounmap;
+
+		// start the page cahce manager thread
+	ret = sgx_page_cache_moniter_init();
+	if (ret)
+		goto out_iounmap;
+
 	/*
 	Workqueue is a processing method for processing various work items 
 	encapsulated by the kernel thread. Since the processing objects are 

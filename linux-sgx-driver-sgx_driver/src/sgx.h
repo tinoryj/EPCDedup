@@ -259,6 +259,7 @@ extern atomic_t sgx_va_pages_cnt;
 
 int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank);
 int sgx_page_cache_init(void);
+int sgx_page_cache_moniter_init(void);
 void sgx_page_cache_teardown(void);
 struct sgx_epc_page *sgx_alloc_page(unsigned int flags);
 void sgx_free_page(struct sgx_epc_page *entry, struct sgx_encl *encl);

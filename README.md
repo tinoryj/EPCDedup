@@ -301,3 +301,4 @@ struct sgx_encl {
 * **[Linux Device Driver Development](https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os)**
 * [Linux platform driver guide](https://www.cnblogs.com/xiaojiang1025/p/6367910.html)
 * [Linux kernel programming](https://www.cnblogs.com/sky-heaven/p/5279334.html)
+* Kernel space thread need to be freezable [Linux kernel thread freezing](https://www.kernel.org/doc/Documentation/power/freezing-of-tasks.txt)
