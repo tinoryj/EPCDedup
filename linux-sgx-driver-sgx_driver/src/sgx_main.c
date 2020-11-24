@@ -256,7 +256,7 @@ static int sgx_dev_init(struct device *parent)
 	if (ret)
 		goto out_iounmap;
 
-		// start the page cahce manager thread
+	// start the page cahce moniter thread
 	ret = sgx_page_cache_moniter_init();
 	if (ret)
 		goto out_iounmap;

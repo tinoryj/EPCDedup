@@ -397,8 +397,9 @@ static int ksgxswapd(void *p)
 		wait_event_freezable(ksgxswapd_waitq,
 				     kthread_should_stop() ||
 				     sgx_nr_free_pages < sgx_nr_high_pages);
-
+		// swap page if remain free page less than 64 (high page number, low = 32)
 		if (sgx_nr_free_pages < sgx_nr_high_pages){
+			pr_info("sgx: [SGX_manager] swap page now, current free page number = %d\n",sgx_nr_free_pages);
 			// swap pages
 			sgx_swap_pages(SGX_NR_SWAP_CLUSTER_MAX);
 		}
@@ -411,22 +412,26 @@ static int ksgxswapd(void *p)
 
 static int ksgxswapdMoniter(void  *p)
 {
+	unsigned int counter = sgx_nr_free_pages;
 		// The device will hang when it does not respond within a certain period of time
 	set_freezable();
-
+	pr_info("sgx: [SGX_moniter] moniter thread weak up\n");
+	pr_info("sgx: [SGX_moniter] current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
 	while (!kthread_should_stop()) {
-		pr_info("SGX_moniter: moniter thread weak up\n");
+		pr_info("sgx: [SGX_moniter] moniter thread weak up\n");
 		// pr_info("SGX_moniter: current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
 		if (try_to_freeze())
 			continue;
 		// when need to swap pages, weak up this thread
-		wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop());
+		wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop() || counter != sgx_nr_free_pages);
+		pr_info("sgx: [SGX_moniter], allocate new page via fast approach, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
+		counter = sgx_nr_free_pages;
 	}
 
 	pr_info("%s: done\n", __func__);
 	return 0;
-
 }
+
 
 int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank)
 {
@@ -513,8 +518,7 @@ static struct sgx_epc_page *sgx_alloc_page_fast(void)
 	spin_lock(&sgx_free_list_lock);
 
 	if (!list_empty(&sgx_free_list)) {
-		entry = list_first_entry(&sgx_free_list, struct sgx_epc_page,
-					 list);
+		entry = list_first_entry(&sgx_free_list, struct sgx_epc_page, list);
 		list_del(&entry->list);
 		sgx_nr_free_pages--;
 		wake_up(&ksgxswapdMoniter_waitq);
