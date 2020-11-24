@@ -409,14 +409,14 @@ static int ksgxswapd(void *p)
 	return 0;
 }
 
-int sgx_page_cache_moniter_init(void)
+static int ksgxswapdMoniter(void  *p)
 {
 		// The device will hang when it does not respond within a certain period of time
 	set_freezable();
 
 	while (!kthread_should_stop()) {
 		pr_info("SGX_moniter: moniter thread weak up\n");
-		pr_info("SGX_moniter: current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
+		// pr_info("SGX_moniter: current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
 		if (try_to_freeze())
 			continue;
 		// when need to swap pages, weak up this thread
@@ -445,7 +445,6 @@ int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank)
 		list_add_tail(&new_epc_page->list, &sgx_free_list);
 		sgx_nr_total_epc_pages++;
 		sgx_nr_free_pages++;
-		wake_up(&ksgxswapdMoniter_waitq);
 		spin_unlock(&sgx_free_list_lock);
 	}
 
@@ -470,6 +469,16 @@ int sgx_page_cache_init(void)
 	tmp = kthread_run(ksgxswapd, NULL, "ksgxswapd");
 	if (!IS_ERR(tmp))
 		ksgxswapd_tsk = tmp;
+	return PTR_ERR_OR_ZERO(tmp);
+}
+
+int sgx_page_cache_moniter_init(void)
+{
+	struct task_struct *tmp;
+	// Create and start the kernel thread
+	tmp = kthread_run(ksgxswapdMoniter, NULL, "ksgxswapdMoniter");
+	if (!IS_ERR(tmp))
+		ksgxswapdMoniter_tsk = tmp;
 	return PTR_ERR_OR_ZERO(tmp);
 }
 
