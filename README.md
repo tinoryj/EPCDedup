@@ -289,6 +289,7 @@ struct sgx_encl {
 ## Related Tools & Method
 
 * Memory capture : `memoryCaptureTools/dumpMemory.sh`, read memory for some application.
+* Memory access pattern analysis: valgrind's memcheck
 
 ## Reference
 
@@ -302,3 +303,4 @@ struct sgx_encl {
 * [Linux platform driver guide](https://www.cnblogs.com/xiaojiang1025/p/6367910.html)
 * [Linux kernel programming](https://www.cnblogs.com/sky-heaven/p/5279334.html)
 * Kernel space thread need to be freezable [Linux kernel thread freezing](https://www.kernel.org/doc/Documentation/power/freezing-of-tasks.txt)
+* [c](https://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.monitor-commands)
