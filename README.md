@@ -78,6 +78,8 @@ $ sudo /bin/sed -i '/^isgx$/d' /etc/modules
 * Note : 
   * Need to restart the machine after each reinstallation to use the `isgx` device normally.
   * [2020.11.12] Trying to build `isgx` with `dkms` to avoid system reboot for testing. 
+  * System kernel needs rate-limiting the output.
+  * Kernel thread needs sleep when idle, or will lead to kernel suspend.
 
 #### Signing SGX Driver (Run with secure boot enabled)
 

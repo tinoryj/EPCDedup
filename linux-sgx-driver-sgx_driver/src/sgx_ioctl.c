@@ -247,7 +247,8 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 	printk(KERN_INFO"sgx: add new page to enclave, address = %p\n", data);
 	printk(KERN_INFO "sgx: HASH %02x%02x%02x%02x%02x%02x%02x%02x\n",
           data, data+1,data+2,data+3,data+4,data+5,data+6,data+7);
-	// do_sha256((unsigned char*)data, PAGE_SIZE, hash);
+	do_sha256((unsigned char*)data, PAGE_SIZE, hash);
+	printk(KERN_INFO"sgx: add new page to enclave, hash = %s\n", hash);
 	ret = sgx_encl_add_page(encl, addp->addr, data, &secinfo, addp->mrmask);
 	if (ret)
 		goto out;
