@@ -105,6 +105,12 @@ static const struct file_operations sgx_fops = {
 };
 ```
 
+##### Enclave create workflow:
+
+![Workflow of create new enclave](./Docs/img/SGX_create_enclave.jpg)
+
+![Workflow of initialize the new enclave](./Docs/img/sgx_enclave_create_psw.jpg)
+
 ##### `ioctl` functions:
 
 ```c
@@ -170,6 +176,41 @@ enum sgx_page_type {
   SGX_PAGE_TYPE_TRIM  = 0x04, // remove a page from the enclave and reclaim the linear address for future use
 };
 ```
+
+* EPC layout
+
+![EPC layout](./Docs/img/epc_layout.png)
+
+#### Data structures:
+
+* SGX Enclave Control Structure (SECS):
+	* Represents one enclave.
+	* Contains, for instance, Hash, ID, size etc.
+* Thread Control Structure (TCS):
+	* Each executing thread in the enclave is associated with a Thread Control Structure.
+	* Contains, for instance, Entry point, pointer to SSA.
+* State Save Area (SSA):
+	* When an AEX occurs while running in an enclave, the architectural state is saved in the thread’s SSA
+* Page Information (PAGEINFO):
+	* PAGEINFO is an architectural data structure that is used as a parameter to the EPC-management instructions
+		* Linear Address
+		* Effective address of the page (aka virtual address)
+		* SECINFO
+		* SECS
+* Security Information (SECINFO):
+	* The SECINFO data structure holds meta-data about an enclave page
+		* Read/Write/Execute
+		* Page type (SECS, TCS, normal page or VA)
+* Paging Crypto MetaData (PCMD):
+	* The PCMD structure is used to keep track of crypto meta-data associated with a paged-out page. Combined with PAGEINFO, it provides enough information for the processor to verify,  decrypt, and reload a paged-out EPC page.
+	* EWB writes out (the reserved field and) MAC values.
+	* ELDB/U reads the fields and checks the MAC.
+	* Contains Enclave ID, SECINFO and MAC
+* Version Array (VA):
+	* In order to securely store the versions of evicted EPC pages, SGX defines a special EPC page type called a Version Array (VA).
+		* Each VA page contains 512 slots, each of which can contain an 8-byte version number for a page evicted from the EPC.
+		* When an EPC page is evicted, software chooses an empty slot in a VA page; this slot receives the unique version number of the page being evicted: When the EPC page is reloaded, a VA slot must hold the version of the page. If the page is successfully reloaded, the version in the VA slot is cleared.
+		* VA pages can be evicted, just like any other EPC page: When evicting a VA page, a version slot in some other VA page must be used to receive the version for the VA being evicted.
 
 #### Pages management
 
@@ -306,3 +347,4 @@ struct sgx_encl {
 * [Linux kernel programming](https://www.cnblogs.com/sky-heaven/p/5279334.html)
 * Kernel space thread need to be freezable [Linux kernel thread freezing](https://www.kernel.org/doc/Documentation/power/freezing-of-tasks.txt)
 * [c](https://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.monitor-commands)
+* [Enclave initialization overview](https://blog.csdn.net/clh14281055/article/details/108567792?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control)
