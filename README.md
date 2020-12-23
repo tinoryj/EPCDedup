@@ -35,7 +35,7 @@ Code &amp; reference repository for EPC memory deduplication
   * Disable SGX device in BIOS, then deleting the driver.
   * SGX Driver 2.11 version may not correct on Ubuntu 18.04 LTS, changing to version 2.6.
   * Any system kernel update (e.g., kernel version change from 5.4.0-53 to 5.4.0-54), the driver needs to recompile & reinstall.
-
+* Low overhead page scan (slides/EPCDedup-12-19).
 ## Base Linux SGX Driver
 
 ### Version (Changing to version 2.6) : 
@@ -328,7 +328,14 @@ struct sgx_encl {
 | ENCLS ()         | encls            | Add a regular read/write accessible page of zeros to an already initialized enclave |                     |                |  -->
 
 
+## Datasets
 
+* Muhammad Naveed, Seny Kamara, and Charles V. Wright. 2015.**Inference Attacks on Property-preserving Encrypted Databases**. In Proceeding of 22nd ACM Conference on Computer and Communications Security (CCS’15). 644--655.
+  * [Hospital Discharge Data Public Use Data File](https://www.dshs.state.tx.us/THCIC/Hospitals/Download.shtm)
+  * [PUDF trace user manual](https://www.dshs.state.tx.us/thcic/hospitals/UserManual1Q2014.pdf)
+* Paul Grubbs, Kevin Sekniqi, Vincent Bindschaedler, Muhammad Naveed, and Thomas Ristenpart. 2017. **Leakage-Abuse Attacks against Order-Revealing Encryption**. In Proceeding of IEEE Symposium on Security and Privacy (SP’17). 655--672.
+  * Fraternal Order of Police (FOR) breach, not published
+  * Leak website: https://archive.is/8tuPP; Torrent Link : 
 ## Related Tools & Method
 
 * Memory capture : `memoryCaptureTools/dumpMemory.sh`, read memory for some application.
