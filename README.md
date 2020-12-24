@@ -335,7 +335,13 @@ struct sgx_encl {
   * [PUDF trace user manual](https://www.dshs.state.tx.us/thcic/hospitals/UserManual1Q2014.pdf)
 * Paul Grubbs, Kevin Sekniqi, Vincent Bindschaedler, Muhammad Naveed, and Thomas Ristenpart. 2017. **Leakage-Abuse Attacks against Order-Revealing Encryption**. In Proceeding of IEEE Symposium on Security and Privacy (SP’17). 655--672.
   * Fraternal Order of Police (FOR) breach, not published
-  * Leak website: https://archive.is/8tuPP; Torrent Link : 
+  * Leak website: https://archive.is/8tuPP;
+* David C. Uthus and David W. Aha. 2013. **The Ubuntu Chat Corpus for Multiparticipant Chat Analysis**. In Proceeding of AAAI Spring Symposium. 99--102.
+	* 2019. Ubuntu IRC Logs. http://irclogs.ubuntu.com.
+* Bryan Klimt and Yiming Yang. 2004. **The Enron Corpus: A New Dataset for Email Classification Research**. In Proceeding of European Conference on Machine Learning. 217--226.
+	* [Enron email dataset](http://www.cs.cmu.edu/~enron/)
+
+	
 ## Related Tools & Method
 
 * Memory capture : `memoryCaptureTools/dumpMemory.sh`, read memory for some application.
