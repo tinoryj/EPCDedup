@@ -95,13 +95,13 @@ $ sudo /bin/sed -i '/^isgx$/d' /etc/modules
 
 ```c
 static const struct file_operations sgx_fops = {
-	.owner			= THIS_MODULE,
-	.unlocked_ioctl		= sgx_ioctl, // the ioctl function pointer, to do the device I/O control command
+    .owner			= THIS_MODULE,
+    .unlocked_ioctl		= sgx_ioctl, // the ioctl function pointer, to do the device I/O control command
 #ifdef CONFIG_COMPAT
-	.compat_ioctl		= sgx_compat_ioctl,
+    .compat_ioctl		= sgx_compat_ioctl,
 #endif
-	.mmap			= sgx_mmap, // request the device memory to be mapped to the process address space
-	.get_unmapped_area	= sgx_get_unmapped_area,
+    .mmap			= sgx_mmap, // request the device memory to be mapped to the process address space
+    .get_unmapped_area	= sgx_get_unmapped_area,
 };
 ```
 
@@ -116,49 +116,49 @@ static const struct file_operations sgx_fops = {
 ```c
 long sgx_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
 {
-	char data[256];
-	sgx_ioc_t handler = NULL;
-	long ret;
+    char data[256];
+    sgx_ioc_t handler = NULL;
+    long ret;
 
-	switch (cmd) {
-	case SGX_IOC_ENCLAVE_CREATE:
-		handler = sgx_ioc_enclave_create;
-		break;
-	case SGX_IOC_ENCLAVE_ADD_PAGE:
-		handler = sgx_ioc_enclave_add_page;
-		break;
-	case SGX_IOC_ENCLAVE_INIT:
-		handler = sgx_ioc_enclave_init;
-		break;
-	case SGX_IOC_ENCLAVE_EMODPR:
-		handler = sgx_ioc_page_modpr;
-		break;
-	case SGX_IOC_ENCLAVE_MKTCS:
-		handler = sgx_ioc_page_to_tcs;
-		break;
-	case SGX_IOC_ENCLAVE_TRIM:
-		handler = sgx_ioc_trim_page;
-		break;
-	case SGX_IOC_ENCLAVE_NOTIFY_ACCEPT:
-		handler = sgx_ioc_page_notify_accept;
-		break;
-	case SGX_IOC_ENCLAVE_PAGE_REMOVE:
-		handler = sgx_ioc_page_remove;
-		break;
-	default:
-		return -ENOIOCTLCMD;
-	}
+    switch (cmd) {
+    case SGX_IOC_ENCLAVE_CREATE:
+        handler = sgx_ioc_enclave_create;
+        break;
+    case SGX_IOC_ENCLAVE_ADD_PAGE:
+        handler = sgx_ioc_enclave_add_page;
+        break;
+    case SGX_IOC_ENCLAVE_INIT:
+        handler = sgx_ioc_enclave_init;
+        break;
+    case SGX_IOC_ENCLAVE_EMODPR:
+        handler = sgx_ioc_page_modpr;
+        break;
+    case SGX_IOC_ENCLAVE_MKTCS:
+        handler = sgx_ioc_page_to_tcs;
+        break;
+    case SGX_IOC_ENCLAVE_TRIM:
+        handler = sgx_ioc_trim_page;
+        break;
+    case SGX_IOC_ENCLAVE_NOTIFY_ACCEPT:
+        handler = sgx_ioc_page_notify_accept;
+        break;
+    case SGX_IOC_ENCLAVE_PAGE_REMOVE:
+        handler = sgx_ioc_page_remove;
+        break;
+    default:
+        return -ENOIOCTLCMD;
+    }
 
-	if (copy_from_user(data, (void __user *)arg, _IOC_SIZE(cmd)))
-		return -EFAULT;
+    if (copy_from_user(data, (void __user *)arg, _IOC_SIZE(cmd)))
+        return -EFAULT;
 
-	ret = handler(filep, cmd, (unsigned long)((void *)data));
-	if (!ret && (cmd & IOC_OUT)) {
-		if (copy_to_user((void __user *)arg, data, _IOC_SIZE(cmd)))
-			return -EFAULT;
-	}
+    ret = handler(filep, cmd, (unsigned long)((void *)data));
+    if (!ret && (cmd & IOC_OUT)) {
+        if (copy_to_user((void __user *)arg, data, _IOC_SIZE(cmd)))
+            return -EFAULT;
+    }
 
-	return ret;
+    return ret;
 }
 ```
 
@@ -184,33 +184,33 @@ enum sgx_page_type {
 #### Data structures:
 
 * SGX Enclave Control Structure (SECS):
-	* Represents one enclave.
-	* Contains, for instance, Hash, ID, size etc.
+    * Represents one enclave.
+    * Contains, for instance, Hash, ID, size etc.
 * Thread Control Structure (TCS):
-	* Each executing thread in the enclave is associated with a Thread Control Structure.
-	* Contains, for instance, Entry point, pointer to SSA.
+    * Each executing thread in the enclave is associated with a Thread Control Structure.
+    * Contains, for instance, Entry point, pointer to SSA.
 * State Save Area (SSA):
-	* When an AEX occurs while running in an enclave, the architectural state is saved in the thread’s SSA
+    * When an AEX occurs while running in an enclave, the architectural state is saved in the thread’s SSA
 * Page Information (PAGEINFO):
-	* PAGEINFO is an architectural data structure that is used as a parameter to the EPC-management instructions
-		* Linear Address
-		* Effective address of the page (aka virtual address)
-		* SECINFO
-		* SECS
+    * PAGEINFO is an architectural data structure that is used as a parameter to the EPC-management instructions
+        * Linear Address
+        * Effective address of the page (aka virtual address)
+        * SECINFO
+        * SECS
 * Security Information (SECINFO):
-	* The SECINFO data structure holds meta-data about an enclave page
-		* Read/Write/Execute
-		* Page type (SECS, TCS, normal page or VA)
+    * The SECINFO data structure holds meta-data about an enclave page
+        * Read/Write/Execute
+        * Page type (SECS, TCS, normal page or VA)
 * Paging Crypto MetaData (PCMD):
-	* The PCMD structure is used to keep track of crypto meta-data associated with a paged-out page. Combined with PAGEINFO, it provides enough information for the processor to verify,  decrypt, and reload a paged-out EPC page.
-	* EWB writes out (the reserved field and) MAC values.
-	* ELDB/U reads the fields and checks the MAC.
-	* Contains Enclave ID, SECINFO and MAC
+    * The PCMD structure is used to keep track of crypto meta-data associated with a paged-out page. Combined with PAGEINFO, it provides enough information for the processor to verify,  decrypt, and reload a paged-out EPC page.
+    * EWB writes out (the reserved field and) MAC values.
+    * ELDB/U reads the fields and checks the MAC.
+    * Contains Enclave ID, SECINFO and MAC
 * Version Array (VA):
-	* In order to securely store the versions of evicted EPC pages, SGX defines a special EPC page type called a Version Array (VA).
-		* Each VA page contains 512 slots, each of which can contain an 8-byte version number for a page evicted from the EPC.
-		* When an EPC page is evicted, software chooses an empty slot in a VA page; this slot receives the unique version number of the page being evicted: When the EPC page is reloaded, a VA slot must hold the version of the page. If the page is successfully reloaded, the version in the VA slot is cleared.
-		* VA pages can be evicted, just like any other EPC page: When evicting a VA page, a version slot in some other VA page must be used to receive the version for the VA being evicted.
+    * In order to securely store the versions of evicted EPC pages, SGX defines a special EPC page type called a Version Array (VA).
+        * Each VA page contains 512 slots, each of which can contain an 8-byte version number for a page evicted from the EPC.
+        * When an EPC page is evicted, software chooses an empty slot in a VA page; this slot receives the unique version number of the page being evicted: When the EPC page is reloaded, a VA slot must hold the version of the page. If the page is successfully reloaded, the version in the VA slot is cleared.
+        * VA pages can be evicted, just like any other EPC page: When evicting a VA page, a version slot in some other VA page must be used to receive the version for the VA being evicted.
 
 #### Pages management
 
@@ -246,28 +246,28 @@ To reload a previously evicted page, the system software needs four elements: th
 
 ```c++
 struct sgx_encl {
-	unsigned int flags;
-	uint64_t attributes;
-	uint64_t xfrm;
-	unsigned int secs_child_cnt;
-	struct mutex lock;
-	struct mm_struct *mm;
-	struct file *backing;
-	struct file *pcmd;
-	struct list_head load_list;
-	struct kref refcount; // the encryption counter for AES-GCM
-	unsigned long base;
-	unsigned long size;
-	unsigned long ssaframesize;
-	struct list_head va_pages;
-	struct radix_tree_root page_tree;
-	struct list_head add_page_reqs;
-	struct work_struct add_page_work;
-	struct sgx_encl_page secs;
-	struct sgx_tgid_ctx *tgid_ctx;
-	struct list_head encl_list;
-	struct mmu_notifier mmu_notifier;
-	unsigned int shadow_epoch;
+    unsigned int flags;
+    uint64_t attributes;
+    uint64_t xfrm;
+    unsigned int secs_child_cnt;
+    struct mutex lock;
+    struct mm_struct *mm;
+    struct file *backing;
+    struct file *pcmd;
+    struct list_head load_list;
+    struct kref refcount; // the encryption counter for AES-GCM
+    unsigned long base;
+    unsigned long size;
+    unsigned long ssaframesize;
+    struct list_head va_pages;
+    struct radix_tree_root page_tree;
+    struct list_head add_page_reqs;
+    struct work_struct add_page_work;
+    struct sgx_encl_page secs;
+    struct sgx_tgid_ctx *tgid_ctx;
+    struct list_head encl_list;
+    struct mmu_notifier mmu_notifier;
+    unsigned int shadow_epoch;
 };
 ```
 
@@ -304,21 +304,21 @@ struct sgx_encl {
 * Main encls function:
 ```asm
 #define __encls_ret(rax, rbx, rcx, rdx)			\
-	({						\
-	int ret;					\
-	asm volatile(					\
-	"1: .byte 0x0f, 0x01, 0xcf;\n\t"		\
-	"2:\n"						\
-	".section .fixup,\"ax\"\n"			\
-	"3: mov $-14,"XAX"\n"				\
-	"   jmp 2b\n"					\
-	".previous\n"					\
-	_ASM_EXTABLE(1b, 3b)				\
-	: "=a"(ret)					\
-	: "a"(rax), "b"(rbx), "c"(rcx), "d"(rdx)	\
-	: "memory");					\
-	ret;						\
-	})
+    ({						\
+    int ret;					\
+    asm volatile(					\
+    "1: .byte 0x0f, 0x01, 0xcf;\n\t"		\
+    "2:\n"						\
+    ".section .fixup,\"ax\"\n"			\
+    "3: mov $-14,"XAX"\n"				\
+    "   jmp 2b\n"					\
+    ".previous\n"					\
+    _ASM_EXTABLE(1b, 3b)				\
+    : "=a"(ret)					\
+    : "a"(rax), "b"(rbx), "c"(rcx), "d"(rdx)	\
+    : "memory");					\
+    ret;						\
+    })
 ```
 
 
@@ -337,25 +337,30 @@ struct sgx_encl {
   * Fraternal Order of Police (FOR) breach, not published
   * Leak website: https://archive.is/8tuPP;
 * David C. Uthus and David W. Aha. 2013. **The Ubuntu Chat Corpus for Multiparticipant Chat Analysis**. In Proceeding of AAAI Spring Symposium. 99--102.
-	* 2019. Ubuntu IRC Logs. http://irclogs.ubuntu.com.
+    * 2019. Ubuntu IRC Logs. http://irclogs.ubuntu.com.
 * Bryan Klimt and Yiming Yang. 2004. **The Enron Corpus: A New Dataset for Email Classification Research**. In Proceeding of European Conference on Machine Learning. 217--226.
-	* [Enron email dataset](http://www.cs.cmu.edu/~enron/)
+    * [Enron email dataset](http://www.cs.cmu.edu/~enron/)
 
 ### Sqlite based test
 
 * Trace: Hospital Discharge Data Public Use Data File (PUDF_base1_1q2014, raw content size 661 MB)
 * Method:
-	* Change trace to `CSV` format: [Change TXT to CSV](https://support.microsoft.com/zh-cn/office/%E5%AF%BC%E5%85%A5%E6%88%96%E5%AF%BC%E5%87%BA%E6%96%87%E6%9C%AC%EF%BC%88-txt-%E6%88%96-csv%EF%BC%89%E6%96%87%E4%BB%B6-5250ac4c-663c-47ce-937b-339e391393ba)
-  	* Dump memory with only sqlite3 CLI running (baseline)
-  	* Dump memory for sqlite3 CLI after insert trace content (loaded-charges1q2014)
+    * Change trace to `CSV` format: [Change TXT to CSV](https://support.microsoft.com/zh-cn/office/%E5%AF%BC%E5%85%A5%E6%88%96%E5%AF%BC%E5%87%BA%E6%96%87%E6%9C%AC%EF%BC%88-txt-%E6%88%96-csv%EF%BC%89%E6%96%87%E4%BB%B6-5250ac4c-663c-47ce-937b-339e391393ba)
+    * Dump memory with only sqlite3 CLI running (baseline)
+    * Dump memory for sqlite3 CLI after insert trace content (loaded-charges1q2014)
 * Steps:
-	*  
+    * Use `Tab-delimited` trace as input, change file format to csv.
+    * Use Sqlite3 to store the trace via import csv (`sqlite3 xxx.db; .mode csv; .import xx.csv tab_xx`).
+    * Use `dumpMemory.sh` script to get page information. 
 * Result:
 
-| Test Type        		| Total page number       | Unique page number      | Deduplication ratio  |
+| Test Type             | Total page number       | Unique page number      | Deduplication ratio  |
 | --------------------- | ----------------------- | ----------------------- | -------------------- |
-| baseline         		| 272                     | 208                     | 23.53%               |
+| baseline              | 272                     | 208                     | 23.53%               |
 | loaded-charges1q2014  | 6337                    | 4268                    | 32.65%               |
+| loaded-charges2q2014  | 6352                    | 4282                    | 32.59%               |
+| loaded-charges3q2014  | 6317                    | 4250                    | 32.72%               |
+| loaded-charges4q2014  | 6247                    | 4180                    | 33.09%               |
 
 ## Related Tools & Method
 

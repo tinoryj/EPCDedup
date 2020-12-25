@@ -1,4 +1,5 @@
-*.mem.hash
+*.hash
 *.mem
 *.dump
 *.out
+memDedup
