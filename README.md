@@ -345,15 +345,17 @@ struct sgx_encl {
 
 * Trace: Hospital Discharge Data Public Use Data File (PUDF_base1_1q2014, raw content size 661 MB)
 * Method:
-  * Change trace to `CSV` format: [Change TXT to CSV](https://support.microsoft.com/zh-cn/office/%E5%AF%BC%E5%85%A5%E6%88%96%E5%AF%BC%E5%87%BA%E6%96%87%E6%9C%AC%EF%BC%88-txt-%E6%88%96-csv%EF%BC%89%E6%96%87%E4%BB%B6-5250ac4c-663c-47ce-937b-339e391393ba)
-  * Dump memory with only sqlite CLI running (baseline)
-  * Dump memory for sqlite CLI after insert trace content (loaded)
+	* Change trace to `CSV` format: [Change TXT to CSV](https://support.microsoft.com/zh-cn/office/%E5%AF%BC%E5%85%A5%E6%88%96%E5%AF%BC%E5%87%BA%E6%96%87%E6%9C%AC%EF%BC%88-txt-%E6%88%96-csv%EF%BC%89%E6%96%87%E4%BB%B6-5250ac4c-663c-47ce-937b-339e391393ba)
+  	* Dump memory with only sqlite3 CLI running (baseline)
+  	* Dump memory for sqlite3 CLI after insert trace content (loaded-charges1q2014)
+* Steps:
+	*  
 * Result:
 
-| Test Type        | Total page number       | Unique page number      | Deduplication ratio  |
-| ---------------- | ----------------------- | ----------------------- | -------------------- |
-| baseline         |                         |                         |                      |
-| loaded           |                         |                         |                      |
+| Test Type        		| Total page number       | Unique page number      | Deduplication ratio  |
+| --------------------- | ----------------------- | ----------------------- | -------------------- |
+| baseline         		| 272                     | 208                     | 23.53%               |
+| loaded-charges1q2014  | 6337                    | 4268                    | 32.65%               |
 
 ## Related Tools & Method
 
@@ -373,4 +375,4 @@ struct sgx_encl {
 * [Linux kernel programming](https://www.cnblogs.com/sky-heaven/p/5279334.html)
 * Kernel space thread need to be freezable [Linux kernel thread freezing](https://www.kernel.org/doc/Documentation/power/freezing-of-tasks.txt)
 * [c](https://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.monitor-commands)
-* [Enclave initialization overview](https://blog.csdn.net/clh14281055/article/details/108567792?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control)
+* [Enclave initialization overview](https://blog.csdn.net/clh14281055/article/details/108567792?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control
