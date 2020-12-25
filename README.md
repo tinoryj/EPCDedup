@@ -341,7 +341,20 @@ struct sgx_encl {
 * Bryan Klimt and Yiming Yang. 2004. **The Enron Corpus: A New Dataset for Email Classification Research**. In Proceeding of European Conference on Machine Learning. 217--226.
 	* [Enron email dataset](http://www.cs.cmu.edu/~enron/)
 
-	
+### Sqlite based test
+
+* Trace: Hospital Discharge Data Public Use Data File (PUDF_base1_1q2014, raw content size 661 MB)
+* Method:
+  * Change trace to `CSV` format: [Change TXT to CSV](https://support.microsoft.com/zh-cn/office/%E5%AF%BC%E5%85%A5%E6%88%96%E5%AF%BC%E5%87%BA%E6%96%87%E6%9C%AC%EF%BC%88-txt-%E6%88%96-csv%EF%BC%89%E6%96%87%E4%BB%B6-5250ac4c-663c-47ce-937b-339e391393ba)
+  * Dump memory with only sqlite CLI running (baseline)
+  * Dump memory for sqlite CLI after insert trace content (loaded)
+* Result:
+
+| Test Type        | Total page number       | Unique page number      | Deduplication ratio  |
+| ---------------- | ----------------------- | ----------------------- | -------------------- |
+| baseline         |                         |                         |                      |
+| loaded           |                         |                         |                      |
+
 ## Related Tools & Method
 
 * Memory capture : `memoryCaptureTools/dumpMemory.sh`, read memory for some application.
