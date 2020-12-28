@@ -36,11 +36,17 @@ Code &amp; reference repository for EPC memory deduplication
   * SGX Driver 2.11 version may not correct on Ubuntu 18.04 LTS, changing to version 2.6.
   * Any system kernel update (e.g., kernel version change from 5.4.0-53 to 5.4.0-54), the driver needs to recompile & reinstall.
 * Low overhead page scan (slides/EPCDedup-12-19).
-## Base Linux SGX Driver
 
-### Version (Changing to version 2.6) : 
+
+## Base Linux SGX Driver & SDK
+
+### Driver Version (Changing to version 2.6) : 
   * Release : 2.6 
   * commit ID : 51c4821b8a4fa0cba69f532474a13c298c5b4037
+
+### SDK Version : 
+  * Release : 2.7 
+  * commit ID : 504b28053f9526b43eedc9a75d858d2c750c3702
 
 ### Reference : 
 
