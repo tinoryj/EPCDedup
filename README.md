@@ -385,5 +385,6 @@ struct sgx_encl {
 * [Linux platform driver guide](https://www.cnblogs.com/xiaojiang1025/p/6367910.html)
 * [Linux kernel programming](https://www.cnblogs.com/sky-heaven/p/5279334.html)
 * Kernel space thread need to be freezable [Linux kernel thread freezing](https://www.kernel.org/doc/Documentation/power/freezing-of-tasks.txt)
-* [c](https://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.monitor-commands)
-* [Enclave initialization overview](https://blog.csdn.net/clh14281055/article/details/108567792?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control
+* [Valgrind memcheck](https://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.monitor-commands)
+* [Enclave initialization overview](https://blog.csdn.net/clh14281055/article/details/108567792?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control)
+* [Sqlite3 manual](https://sqlite.org/cli.html)
