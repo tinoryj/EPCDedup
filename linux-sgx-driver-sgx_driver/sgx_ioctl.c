@@ -187,6 +187,9 @@ static long sgx_ioc_enclave_create(struct file *filep, unsigned int cmd,
 		kfree(secs);
 		return ret;
 	}
+	printk(KERN_INFO"sgx: create enclave size = %lld\n", secs->size);
+	printk(KERN_INFO"sgx: create enclave ssaframesize = %d\n", secs->ssaframesize);
+	printk(KERN_INFO"sgx: create enclave isvsvn = %d\n", secs->isvsvn);
 
 	ret = sgx_encl_create(secs);
 
@@ -218,7 +221,8 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 	struct page *data_page;
 	void *data;
 	int ret;
-
+	unsigned char* hash = "00000000000000000000000000000000";
+	
 	ret = sgx_get_encl(addp->addr, &encl);
 	if (ret)
 		return ret;
@@ -236,11 +240,17 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 	}
 
 	data = kmap(data_page);
-
+	// sgx_info(encl, "sgx: add new page, content = %s\n", (void __user *)addp->src);
+	
 	ret = copy_from_user((void *)data, (void __user *)addp->src, PAGE_SIZE);
 	if (ret)
 		goto out;
-
+	printk(KERN_INFO"sgx: add new page to enclave, address = %p\n", data);
+	printk(KERN_INFO "sgx: HASH %02x%02x%02x%02x%02x%02x%02x%02x\n",
+          data, data+1,data+2,data+3,data+4,data+5,data+6,data+7);
+	do_sha256((unsigned char*)data, PAGE_SIZE, hash);
+	printk(KERN_INFO"sgx: add new page to enclave, hash = %s\n",hash);
+	
 	ret = sgx_encl_add_page(encl, addp->addr, data, &secinfo, addp->mrmask);
 	if (ret)
 		goto out;
@@ -281,6 +291,8 @@ static long sgx_ioc_enclave_init(struct file *filep, unsigned int cmd,
 	initp_page = alloc_page(GFP_HIGHUSER);
 	if (!initp_page)
 		return -ENOMEM;
+	
+	printk(KERN_INFO"sgx: alloc page for new enclave address = %ld\n", initp_page->flags);
 
 	sigstruct = kmap(initp_page);
 	einittoken = (struct sgx_einittoken *)
@@ -303,6 +315,8 @@ static long sgx_ioc_enclave_init(struct file *filep, unsigned int cmd,
 	ret = sgx_encl_init(encl, sigstruct, einittoken);
 
 	kref_put(&encl->refcount, sgx_encl_release);
+	// sgx_info(encl, "sgx: new enclave init with sigstruct, content = %s\n", sigstruct);
+	// sgx_info(encl, "sgx: new enclave init with einittoken, content = %s\n", einittoken);
 
 out:
 	kunmap(initp_page);
@@ -389,6 +403,8 @@ long sgx_ioc_page_notify_accept(struct file *filep, unsigned int cmd,
 				 address, tmp_ret);
 			ret = tmp_ret;
 			continue;
+		}else{
+			printk(KERN_INFO"sgx: remove page address = %ld\n", address);
 		}
 	}
 
@@ -416,7 +432,12 @@ long sgx_ioc_page_remove(struct file *filep, unsigned int cmd,
 			address);
 		return -EINVAL;
 	}
-
+	sgx_info(encl, "sgx: remove page from epc, current page address = %ld\n", address);
+	printk(KERN_INFO"sgx: remove page from epc, current page address = %ld\n", address);
+	// char removedPageBuffer[4096];
+	// *removedPageBuffer = address;
+	// sgx_info(encl, "sgx: remove page from epc, current page content = %s\n", address);
+	
 	ret = remove_page(encl, address, false);
 	if (ret) {
 		pr_warn("sgx: Failed to remove page, address=0x%lx ret=%d\n",
