@@ -5,16 +5,15 @@ Code &amp; reference repository for EPC memory deduplication
 
 ### Memory pages analysis :
 
-| Application      | Total page number       | Unique page number      | Deduplication ratio  | 
-| ---------------- | ----------------------- | ----------------------- | -------------------- | 
-| frpc             | 2475                    | 2440                    | 1.41%                | 
-| Docker host      | 3777654                 | 3568768                 | 5.53%                | 
-| snap             | 84642                   | 18661                   | 77.95%               | 
-| chrome           | 274745                  | 199111                  | 27.53%               | 
-| mongodb          | 3606262                 | 3489657                 | 3.23%                | 
-| vscode           | 633605                  | 493202                  | 22.16%               | 
-| qv2ray           | 79422                   | 33257                   | 58.13%               | 
-
+| Application      | Total page number       | Unique page number      | Deduplication ratio  |
+| ---------------- | ----------------------- | ----------------------- | -------------------- |
+| frpc             | 2475                    | 2440                    | 1.41%                |
+| Docker host      | 3777654                 | 3568768                 | 5.53%                |
+| snap             | 84642                   | 18661                   | 77.95%               |
+| chrome           | 274745                  | 199111                  | 27.53%               |
+| mongodb          | 3606262                 | 3489657                 | 3.23%                |
+| vscode           | 633605                  | 493202                  | 22.16%               |
+| qv2ray           | 79422                   | 33257                   | 58.13%               |
 
 ### New problems & Solutions:
 
@@ -36,7 +35,9 @@ Code &amp; reference repository for EPC memory deduplication
   * SGX Driver 2.11 version may not correct on Ubuntu 18.04 LTS, changing to version 2.6.
   * Any system kernel update (e.g., kernel version change from 5.4.0-53 to 5.4.0-54), the driver needs to recompile & reinstall.
 * Low overhead page scan (slides/EPCDedup-12-19).
-
+* Build paper 
+  * Expose problem: application to motivate problem, analysis to introduce page types (access, deduplication ratio)
+  * Applications: 
 
 ## Base Linux SGX Driver & SDK
 
@@ -72,6 +73,7 @@ $ sudo sh -c "cat /etc/modules | grep -Fxq isgx || echo isgx >> /etc/modules"
 $ sudo /sbin/depmod
 $ sudo /sbin/modprobe isgx
 ```
+
 * Uninstall with:
 
 ```shell
