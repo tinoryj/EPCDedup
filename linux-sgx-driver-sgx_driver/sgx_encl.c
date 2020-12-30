@@ -153,7 +153,7 @@ static int sgx_add_to_tgid_ctx(struct sgx_encl *encl)
 
 	ctx->tgid = tgid;
 	kref_init(&ctx->refcount);
-	INIT_LIST_HEAD(&ctx->encl_list); // init list head (with double side to read & write)
+	INIT_LIST_HEAD(&ctx->encl_list);
 
 	list_add(&ctx->list, &sgx_tgid_ctx_list);
 
@@ -250,13 +250,8 @@ static bool sgx_process_add_page_req(struct sgx_add_page_req *req,
 		return false;
 	}
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(4, 20, 0))
-	ret = vmf_insert_pfn(vma, encl_page->addr, PFN_DOWN(epc_page->pa));
-	if (ret != VM_FAULT_NOPAGE) {
-#else
-	ret = vm_insert_pfn(vma, encl_page->addr, PFN_DOWN(epc_page->pa));
-	if (ret) {
-#endif
+        ret = sgx_vm_insert_pfn(vma, encl_page->addr, epc_page->pa);
+        if (ret != VM_FAULT_NOPAGE) {
 		sgx_put_backing(backing, 0);
 		return false;
 	}
@@ -344,7 +339,7 @@ static u32 sgx_calc_ssaframesize(u32 miscselect, u64 xfrm)
 	int i;
 
 	for (i = 2; i < 64; i++) {
-		if (!((1 << i) & xfrm))
+		if (!((1UL << i) & xfrm))
 			continue;
 
 		size = SGX_SSA_GPRS_SIZE + sgx_xsave_size_tbl[i];

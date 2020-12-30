@@ -90,7 +90,13 @@ static DECLARE_WAIT_QUEUE_HEAD(ksgxswapdMoniter_waitq);
 
 static int sgx_test_and_clear_young_cb(pte_t *ptep,
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 3, 0))
-		pgtable_t token,
+    #if( defined(RHEL_RELEASE_VERSION) && defined(RHEL_RELEASE_CODE))
+        #if (RHEL_RELEASE_CODE <= RHEL_RELEASE_VERSION(8, 1))
+                                       pgtable_t token,
+        #endif
+    #else
+                                       pgtable_t token,
+    #endif
 #endif
 		unsigned long addr, void *data)
 {
@@ -137,7 +143,7 @@ static struct sgx_tgid_ctx *sgx_isolate_tgid_ctx(unsigned long nr_to_scan)
 	int i;
 
 	mutex_lock(&sgx_tgid_ctx_mutex);
-	// verify page list is not empty
+
 	if (list_empty(&sgx_tgid_ctx_list)) {
 		mutex_unlock(&sgx_tgid_ctx_mutex);
 		return NULL;
@@ -145,7 +151,9 @@ static struct sgx_tgid_ctx *sgx_isolate_tgid_ctx(unsigned long nr_to_scan)
 
 	for (i = 0; i < nr_to_scan; i++) {
 		/* Peek TGID context from the head. */
-		ctx = list_first_entry(&sgx_tgid_ctx_list, struct sgx_tgid_ctx, list);
+		ctx = list_first_entry(&sgx_tgid_ctx_list,
+				       struct sgx_tgid_ctx,
+				       list);
 
 		/* Move to the tail so that we do not encounter it in the
 		 * next iteration.
@@ -153,14 +161,9 @@ static struct sgx_tgid_ctx *sgx_isolate_tgid_ctx(unsigned long nr_to_scan)
 		list_move_tail(&ctx->list, &sgx_tgid_ctx_list);
 
 		/* Non-empty TGID context? */
-		if (!list_empty(&ctx->encl_list) && kref_get_unless_zero(&ctx->refcount)){
-			/*
-			Perform the operation of adding 1 to the reference count value unless it is already 0. 
-			If the count value is successfully increased by 1, it returns non-zero, otherwise it returns 0
-			*/
+		if (!list_empty(&ctx->encl_list) &&
+		    kref_get_unless_zero(&ctx->refcount))
 			break;
-			// break when ctx reference count add 1 success, while ctx's encl_list is not empty
-		}
 
 		ctx = NULL;
 	}
@@ -170,7 +173,6 @@ static struct sgx_tgid_ctx *sgx_isolate_tgid_ctx(unsigned long nr_to_scan)
 	return ctx;
 }
 
-// do the same work with sgx_isolate_tgid_ctx, return the first non empty context?
 static struct sgx_encl *sgx_isolate_encl(struct sgx_tgid_ctx *ctx,
 					       unsigned long nr_to_scan)
 {
@@ -195,7 +197,8 @@ static struct sgx_encl *sgx_isolate_encl(struct sgx_tgid_ctx *ctx,
 		list_move_tail(&encl->encl_list, &ctx->encl_list);
 
 		/* Enclave with faulted pages?  */
-		if (!list_empty(&encl->load_list) && kref_get_unless_zero(&encl->refcount))
+		if (!list_empty(&encl->load_list) &&
+		    kref_get_unless_zero(&encl->refcount))
 			break;
 
 		encl = NULL;
@@ -226,7 +229,8 @@ static void sgx_isolate_pages(struct sgx_encl *encl,
 					 struct sgx_epc_page,
 					 list);
 
-		if (!sgx_test_and_clear_young(entry->encl_page, encl) && !(entry->encl_page->flags & SGX_ENCL_PAGE_RESERVED)) {
+		if (!sgx_test_and_clear_young(entry->encl_page, encl) &&
+		    !(entry->encl_page->flags & SGX_ENCL_PAGE_RESERVED)) {
 			entry->encl_page->flags |= SGX_ENCL_PAGE_RESERVED;
 			list_move_tail(&entry->list, dst);
 		} else {
@@ -364,7 +368,7 @@ static void sgx_swap_pages(unsigned long nr_to_scan)
 {
 	struct sgx_tgid_ctx *ctx;
 	struct sgx_encl *encl;
-	LIST_HEAD(cluster); // new list entry node
+	LIST_HEAD(cluster);
 
 	ctx = sgx_isolate_tgid_ctx(nr_to_scan);
 	if (!ctx)
@@ -378,32 +382,26 @@ static void sgx_swap_pages(unsigned long nr_to_scan)
 	sgx_isolate_pages(encl, &cluster, nr_to_scan);
 	sgx_write_pages(encl, &cluster);
 	up_read(&encl->mm->mmap_sem);
- 
+
 	kref_put(&encl->refcount, sgx_encl_release);
 out:
 	kref_put(&ctx->refcount, sgx_tgid_ctx_release);
 }
 
-// page cache worker thread (in kernel)
 static int ksgxswapd(void *p)
 {
-	// The device will hang when it does not respond within a certain period of time
 	set_freezable();
 
 	while (!kthread_should_stop()) {
 		if (try_to_freeze())
 			continue;
-		// when need to swap pages, weak up this thread
+
 		wait_event_freezable(ksgxswapd_waitq,
 				     kthread_should_stop() ||
 				     sgx_nr_free_pages < sgx_nr_high_pages);
-		// swap page if remain free page less than 64 (high page number, low = 32)
-		if (sgx_nr_free_pages < sgx_nr_high_pages){
-			pr_info("sgx: [SGX_manager] swap page now, current free page number = %d\n",sgx_nr_free_pages);
-			// swap pages
-			sgx_swap_pages(SGX_NR_SWAP_CLUSTER_MAX);
-		}
 
+		if (sgx_nr_free_pages < sgx_nr_high_pages)
+			sgx_swap_pages(SGX_NR_SWAP_CLUSTER_MAX);
 	}
 
 	pr_info("%s: done\n", __func__);
@@ -432,7 +430,6 @@ static int ksgxswapdMoniter(void  *p)
 	return 0;
 }
 
-
 int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank)
 {
 	unsigned long i;
@@ -440,7 +437,6 @@ int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank)
 	struct list_head *parser, *temp;
 
 	for (i = 0; i < size; i += PAGE_SIZE) {
-		// alloc memory in kernel space (Physical memory mapping area, and physically continuous, they have only a fixed offset from the real physical address)
 		new_epc_page = kzalloc(sizeof(*new_epc_page), GFP_KERNEL);
 		if (!new_epc_page)
 			goto err_freelist;
@@ -470,7 +466,7 @@ int sgx_page_cache_init(void)
 	struct task_struct *tmp;
 
 	sgx_nr_high_pages = 2 * sgx_nr_low_pages;
-	// Create and start the kernel thread
+
 	tmp = kthread_run(ksgxswapd, NULL, "ksgxswapd");
 	if (!IS_ERR(tmp))
 		ksgxswapd_tsk = tmp;
@@ -518,7 +514,8 @@ static struct sgx_epc_page *sgx_alloc_page_fast(void)
 	spin_lock(&sgx_free_list_lock);
 
 	if (!list_empty(&sgx_free_list)) {
-		entry = list_first_entry(&sgx_free_list, struct sgx_epc_page, list);
+		entry = list_first_entry(&sgx_free_list, struct sgx_epc_page,
+					 list);
 		list_del(&entry->list);
 		sgx_nr_free_pages--;
 		wake_up(&ksgxswapdMoniter_waitq);

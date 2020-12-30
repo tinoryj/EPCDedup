@@ -197,7 +197,10 @@ extern bool sgx_has_sgx2;
 
 extern const struct vm_operations_struct sgx_vm_ops;
 
-#define sgx_pr_ratelimited(level, encl, fmt, ...) pr_ ## level ## _ratelimited("intel_sgx: [%d:0x%p] " fmt, pid_nr((encl)->tgid_ctx->tgid), (void *)(encl)->base, ##__VA_ARGS__)
+#define sgx_pr_ratelimited(level, encl, fmt, ...)			  \
+	pr_ ## level ## _ratelimited("intel_sgx: [%d:0x%p] " fmt,	  \
+				     pid_nr((encl)->tgid_ctx->tgid),	  \
+				     (void *)(encl)->base, ##__VA_ARGS__)
 
 #define sgx_dbg(encl, fmt, ...) \
 	sgx_pr_ratelimited(debug, encl, fmt, ##__VA_ARGS__)
@@ -273,5 +276,5 @@ int sgx_eldu(struct sgx_encl *encl, struct sgx_encl_page *encl_page,
 long modify_range(struct sgx_range *rg, unsigned long flags);
 int remove_page(struct sgx_encl *encl, unsigned long address, bool trim);
 int sgx_get_encl(unsigned long addr, struct sgx_encl **encl);
-
+int sgx_vm_insert_pfn(struct vm_area_struct *vma, unsigned long addr,  resource_size_t pa);
 #endif /* __ARCH_X86_INTEL_SGX_H__ */

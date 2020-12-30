@@ -72,7 +72,15 @@
 #include <linux/platform_device.h>
 
 #define DRV_DESCRIPTION "Intel SGX Driver"
-#define DRV_VERSION "2.6.0"
+#define DRV_VERSION "2.11.0"
+
+#ifndef MSR_IA32_FEAT_CTL
+#define MSR_IA32_FEAT_CTL MSR_IA32_FEATURE_CONTROL
+#endif
+
+#ifndef FEAT_CTL_LOCKED
+#define FEAT_CTL_LOCKED FEATURE_CONTROL_LOCKED
+#endif
 
 MODULE_DESCRIPTION(DRV_DESCRIPTION);
 MODULE_AUTHOR("Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>");
@@ -80,9 +88,9 @@ MODULE_VERSION(DRV_VERSION);
 #ifndef X86_FEATURE_SGX
 	#define X86_FEATURE_SGX (9 * 32 + 2)
 #endif
-
-#define FEATURE_CONTROL_SGX_ENABLE                      (1<<18)
-
+#ifndef FEAT_CTL_SGX_ENABLED
+#define FEAT_CTL_SGX_ENABLED                      (1<<18)
+#endif
 /*
  * Global data.
  */
@@ -97,13 +105,6 @@ u64 sgx_xfrm_mask = 0x3;
 u32 sgx_misc_reserved;
 u32 sgx_xsave_size_tbl[64];
 bool sgx_has_sgx2;
-
-#ifdef CONFIG_COMPAT
-long sgx_compat_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
-{
-	return sgx_ioctl(filep, cmd, arg);
-}
-#endif
 
 static int sgx_mmap(struct file *file, struct vm_area_struct *vma)
 {
@@ -154,7 +155,7 @@ static const struct file_operations sgx_fops = {
 	.owner			= THIS_MODULE,
 	.unlocked_ioctl		= sgx_ioctl,
 #ifdef CONFIG_COMPAT
-	.compat_ioctl		= sgx_compat_ioctl,
+	.compat_ioctl		= sgx_ioctl,
 #endif
 	.mmap			= sgx_mmap,
 	.get_unmapped_area	= sgx_get_unmapped_area,
@@ -224,7 +225,6 @@ static int sgx_dev_init(struct device *parent)
 		pa = ((u64)(ebx & 0xfffff) << 32) + (u64)(eax & 0xfffff000);
 		size = ((u64)(edx & 0xfffff) << 32) + (u64)(ecx & 0xfffff000);
 
-		// get epc memory regoin, and output to kernel log (watch with `dmesg | grep sgx`)
 		dev_info(parent, "EPC bank 0x%lx-0x%lx\n", pa, pa + size);
 
 		sgx_epc_banks[i].pa = pa;
@@ -251,6 +251,7 @@ static int sgx_dev_init(struct device *parent)
 			goto out_iounmap;
 		}
 	}
+
 	// start the page cahce manager thread
 	ret = sgx_page_cache_init();
 	if (ret)
@@ -261,19 +262,12 @@ static int sgx_dev_init(struct device *parent)
 	if (ret)
 		goto out_iounmap;
 
-	/*
-	Workqueue is a processing method for processing various work items 
-	encapsulated by the kernel thread. Since the processing objects are 
-	spliced one by one with a linked list, they are taken out for processing, 
-	and then deleted from the linked list, just like a queue is lined up in 
-	sequence. The processing is the same, so it is also called the work queue
-	*/
 	sgx_add_page_wq = alloc_workqueue("intel_sgx-add-page-wq",
 					  WQ_UNBOUND | WQ_FREEZABLE, 1);
 	if (!sgx_add_page_wq) {
 		pr_err("intel_sgx: alloc_workqueue() failed\n");
 		ret = -ENOMEM;
-		goto out_iounmap;
+		goto out_page_cache;
 	}
 
 	sgx_dev.parent = parent;
@@ -283,12 +277,11 @@ static int sgx_dev_init(struct device *parent)
 		goto out_workqueue;
 	}
 
-	if (ret)
-		goto out_workqueue;
-
 	return 0;
 out_workqueue:
 	destroy_workqueue(sgx_add_page_wq);
+out_page_cache:
+	sgx_page_cache_teardown();
 out_iounmap:
 #ifdef CONFIG_X86_64
 	for (i = 0; i < sgx_nr_epc_banks; i++)
@@ -302,13 +295,12 @@ static int sgx_drv_probe(struct platform_device *pdev)
 {
 	unsigned int eax, ebx, ecx, edx;
 	unsigned long fc;
-	// atomic_cmpxchg: http://www.wowotech.net/kernel_synchronization/atomic.html/comment-page-2
 	if (atomic_cmpxchg(&sgx_init_flag, 0, 1)) {
 		pr_warn("intel_sgx: second initialization call skipped\n");
 		return 0;
 	}
 
-	// verify Intel CPU & SGX feature
+
 	if (boot_cpu_data.x86_vendor != X86_VENDOR_INTEL)
 		return -ENODEV;
 
@@ -317,14 +309,14 @@ static int sgx_drv_probe(struct platform_device *pdev)
 		return -ENODEV;
 	}
 
-	rdmsrl(MSR_IA32_FEATURE_CONTROL, fc);
+	rdmsrl(MSR_IA32_FEAT_CTL, fc);
 
-	if (!(fc & FEATURE_CONTROL_LOCKED)) {
+	if (!(fc & FEAT_CTL_LOCKED)) {
 		pr_err("intel_sgx: the feature control MSR is not locked\n");
 		return -ENODEV;
 	}
 
-	if (!(fc & FEATURE_CONTROL_SGX_ENABLE)) {
+	if (!(fc & FEAT_CTL_SGX_ENABLED)) {
 		pr_err("intel_sgx: SGX is not enabled\n");
 		return -ENODEV;
 	}
@@ -343,7 +335,6 @@ static int sgx_drv_probe(struct platform_device *pdev)
 
 	sgx_has_sgx2 = (eax & 2) != 0;
 
-	// init sgx device
 	return sgx_dev_init(&pdev->dev);
 }
 
@@ -357,13 +348,12 @@ static int sgx_drv_remove(struct platform_device *pdev)
 	}
 
 	misc_deregister(&sgx_dev);
-	// clean up workqueue created in sgx_dev_init
+
 	destroy_workqueue(sgx_add_page_wq);
 #ifdef CONFIG_X86_64
 	for (i = 0; i < sgx_nr_epc_banks; i++)
 		iounmap((void *)sgx_epc_banks[i].va);
 #endif
-	// stop page cache thread, clean up page cache
 	sgx_page_cache_teardown();
 
 	return 0;
@@ -378,8 +368,8 @@ MODULE_DEVICE_TABLE(acpi, sgx_device_ids);
 #endif
 
 static struct platform_driver sgx_drv = {
-	.probe = sgx_drv_probe, // init function detect target device, and call sgx_drv_probe
-	.remove = sgx_drv_remove, // remove function, cleanup resources
+	.probe = sgx_drv_probe,
+	.remove = sgx_drv_remove,
 	.driver = {
 		.name			= "intel_sgx",
 		.pm			= &sgx_drv_pm,
@@ -390,8 +380,8 @@ static struct platform_driver sgx_drv = {
 static struct platform_device *pdev;
 int init_sgx_module(void)
 {
-	platform_driver_register(&sgx_drv); // bind driver with the device by scan device list
-	pdev = platform_device_register_simple("intel_sgx", 0, NULL, 0); // add a platform-level device and its resources
+	platform_driver_register(&sgx_drv);
+	pdev = platform_device_register_simple("intel_sgx", 0, NULL, 0);
 	if (IS_ERR(pdev))
 		pr_err("platform_device_register_simple failed\n");
 	return 0;
@@ -404,7 +394,7 @@ void cleanup_sgx_module(void)
 	platform_driver_unregister(&sgx_drv);
 }
 
-module_init(init_sgx_module); // driver load 
-module_exit(cleanup_sgx_module); // driver remove
+module_init(init_sgx_module);
+module_exit(cleanup_sgx_module);
 
 MODULE_LICENSE("Dual BSD/GPL");
