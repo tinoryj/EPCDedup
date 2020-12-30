@@ -42,8 +42,8 @@ Code &amp; reference repository for EPC memory deduplication
 ## Base Linux SGX Driver & SDK
 
 ### Driver Version (Changing to version 2.6) : 
-  * Release : 2.6 
-  * commit ID : 51c4821b8a4fa0cba69f532474a13c298c5b4037
+  * Release : 2.11 
+  * commit ID : 75bf89f7d6dd4598b9f8148bd6374a407f37105c
 
 ### SDK Version : 
   * Release : 2.7 
