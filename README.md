@@ -37,7 +37,7 @@ Code &amp; reference repository for EPC memory deduplication
 * Low overhead page scan (slides/EPCDedup-12-19).
 * Build paper 
   * Expose problem: application to motivate problem, analysis to introduce page types (access, deduplication ratio)
-  * Applications: 
+  * Applications: memcached, sqlite3
 
 ## Base Linux SGX Driver & SDK
 
