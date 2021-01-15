@@ -3,7 +3,38 @@ Code &amp; reference repository for EPC memory deduplication
 
 ## Update Logs
 
-### Memory pages analysis :
+### Working Plan
+
+1. Implement baseline system (Only EPC page deduplication, without any optimizations).
+2. Design experiments, verify problems and insights and find other insights to motivate design.
+3. Improve the design and realize EPCDedup.
+4. Develop several applications based on EPCDedup and verify the effect.
+
+### Paper Structure 
+
+* Problem Statement: Practical application shows that frequent swapping in and out of the EPC page leads to a significant drop in SGX performance
+  * Experimental design: TODO
+* Analysis:
+  * Insight I: EPC page deduplication ratio 10%~30% -> opportunities of applying page-content-based deduplication in EPC.
+    * Experimental design: TODO
+  * Insight II: Classification of EPC pages and dynamic characteristics of different types of pages.
+    * Experimental design: TODO
+* Design: based on insights, design EPCDedup
+  * Overview: scanning -> deduplication -> address copy-on-write
+  * Scanning: For different types of EPC pages, use different scanning cycles.
+    * Scanning when enclave creates: TCB, SEC, Code, Data pages.
+    * Long-term scanning: Heaps.
+    * Short-term scanning: Stacks.
+    * Non-scanning/deduplication: SSA, VA
+  * Deduplication: 
+    * Create deduplication info page to record page index and duplicate pages' metadata.
+    * Dynamic adjust the scanning intervals based on old read/write patterns and deduplication ratio.
+    * Deal with copy-on-write.
+* Applications: Realize safe and efficient application based on EPCDedup
+  * SQLite3: PUDF dataset.
+  * Memcached: Ubuntu IRC logs and Enron email datasets.
+
+### Memory pages analysis
 
 | Application      | Total page number       | Unique page number      | Deduplication ratio  |
 | ---------------- | ----------------------- | ----------------------- | -------------------- |
@@ -40,7 +71,6 @@ Code &amp; reference repository for EPC memory deduplication
   * Applications: memcached, sqlite3
 
 ## Base Linux SGX Driver & SDK
-
 ### Driver Version (Changing to version 2.6) : 
   * Release : 2.11 
   * commit ID : 75bf89f7d6dd4598b9f8148bd6374a407f37105c

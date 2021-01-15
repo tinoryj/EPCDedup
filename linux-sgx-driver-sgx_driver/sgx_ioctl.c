@@ -101,7 +101,7 @@ static int calc_hash(struct crypto_shash *alg,
 
     sdesc = init_sdesc(alg);
     if (IS_ERR(sdesc)) {
-        pr_info("sgx: can't alloc sdesc\n");
+        pr_info("can't alloc sdesc\n");
         return PTR_ERR(sdesc);
     }
 
@@ -110,27 +110,40 @@ static int calc_hash(struct crypto_shash *alg,
     return ret;
 }
 
-static int do_sha256(const unsigned char *data, unsigned int datalen, unsigned char *out_digest)
+static int do_sha256(const unsigned char *data, unsigned char *out_digest)
 {
     struct crypto_shash *alg;
     char *hash_alg_name = "sha256";
-    // unsigned int datalen = sizeof(data) - 1; // remove the null byte
+    unsigned int datalen = sizeof(data) - 1; // remove the null byte
 
     alg = crypto_alloc_shash(hash_alg_name, 0, 0);
     if(IS_ERR(alg)){
-        pr_info("sgx: can't alloc alg %s\n", hash_alg_name);
+        pr_info("can't alloc alg %s\n", hash_alg_name);
         return PTR_ERR(alg);
     }
     calc_hash(alg, data, datalen, out_digest);
 
     // Very dirty print of 8 first bytes for comparaison with sha256sum
-    printk(KERN_INFO "sgx: HASH %02x%02x%02x%02x%02x%02x%02x%02x\n",
-          out_digest[0], out_digest[1], out_digest[2], out_digest[3], out_digest[4], 
+    printk(KERN_INFO "HASH(%s, %i): %02x%02x%02x%02x%02x%02x%02x%02x\n",
+          data, datalen, out_digest[0], out_digest[1], out_digest[2], out_digest[3], out_digest[4], 
           out_digest[5], out_digest[6], out_digest[7]);
+
     crypto_free_shash(alg);
     return 0;
 }
 
+// static int __init module_start(void)
+// {
+//     unsigned char *digest;
+//     digest = kmalloc(256, GFP_KERNEL);
+//     if(digest < 0)
+//         return -ENOMEM;
+
+//     do_sha256("Test string", digest);
+//     return -EPERM;
+
+//     return 0;
+// }
 
 int sgx_get_encl(unsigned long addr, struct sgx_encl **encl)
 {
@@ -405,6 +418,7 @@ long sgx_ioc_page_notify_accept(struct file *filep, unsigned int cmd,
 			continue;
 		}else{
 			printk(KERN_INFO"sgx: remove page address = %ld\n", address);
+			printk(KERN_INFO"sgx: remove page content = %p\n", address);
 		}
 	}
 
@@ -434,9 +448,9 @@ long sgx_ioc_page_remove(struct file *filep, unsigned int cmd,
 	}
 	sgx_info(encl, "sgx: remove page from epc, current page address = %ld\n", address);
 	printk(KERN_INFO"sgx: remove page from epc, current page address = %ld\n", address);
-	// char removedPageBuffer[4096];
-	// *removedPageBuffer = address;
-	// sgx_info(encl, "sgx: remove page from epc, current page content = %s\n", address);
+	char removedPageBuffer[4096];
+	*removedPageBuffer = address;
+	sgx_info(encl, "sgx: remove page from epc, current page content = %s\n", address);
 	
 	ret = remove_page(encl, address, false);
 	if (ret) {
@@ -460,27 +474,35 @@ long sgx_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
 	switch (cmd) {
 	case SGX_IOC_ENCLAVE_CREATE:
 		handler = sgx_ioc_enclave_create;
+		printk(KERN_INFO"sgx_ioct: create new enclave\n");
 		break;
 	case SGX_IOC_ENCLAVE_ADD_PAGE:
 		handler = sgx_ioc_enclave_add_page;
+		printk(KERN_INFO"sgx_ioct: add new page to exist enclave\n");
 		break;
 	case SGX_IOC_ENCLAVE_INIT:
 		handler = sgx_ioc_enclave_init;
+		printk(KERN_INFO"sgx_ioct: init new enclave\n");
 		break;
 	case SGX_IOC_ENCLAVE_EMODPR:
 		handler = sgx_ioc_page_modpr;
+		printk(KERN_INFO"sgx_ioct: change page type\n");
 		break;
 	case SGX_IOC_ENCLAVE_MKTCS:
 		handler = sgx_ioc_page_to_tcs;
+		printk(KERN_INFO"sgx_ioct: change page type to TCS\n");
 		break;
 	case SGX_IOC_ENCLAVE_TRIM:
 		handler = sgx_ioc_trim_page;
+		printk(KERN_INFO"sgx_ioct: trim pages, could free now\n");
 		break;
 	case SGX_IOC_ENCLAVE_NOTIFY_ACCEPT:
 		handler = sgx_ioc_page_notify_accept;
+		printk(KERN_INFO"sgx_ioct: accept new page modify notify from system controller\n");
 		break;
 	case SGX_IOC_ENCLAVE_PAGE_REMOVE:
 		handler = sgx_ioc_page_remove;
+		printk(KERN_INFO"sgx_ioct: remove new pages\n");
 		break;
 	default:
 		return -ENOIOCTLCMD;
