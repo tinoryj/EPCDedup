@@ -400,6 +400,20 @@ struct sgx_encl {
 | loaded-charges3q2014  | 6317                    | 4250                    | 32.72%               |
 | loaded-charges4q2014  | 6247                    | 4180                    | 33.09%               |
 
+### Memcached based test
+
+* Trace: Enron email dataset (http://www.cs.cmu.edu/~enron/enron_mail_20150507.tar.gz, raw content size 1.7 GB)
+* Method:
+    * Dump memory with only memcached CLI running (baseline, preset size 2GB).
+    * Dump memory for memcached CLI after insert trace content.
+* Result:
+ 
+| Test Type             | Total page number       | Unique page number      | Deduplication ratio  |
+| --------------------- | ----------------------- | ----------------------- | -------------------- |
+| baseline-128MB        | 21140                   | 205                     | 99.03%               |
+| baseline-2GB          | 21131                   | 186                     | 99.12%               |
+| enron_mail_20150507   |                     |                     |                |
+
 ## Related Tools & Method
 
 * Memory capture : `memoryCaptureTools/dumpMemory.sh`, read memory for some application.
@@ -407,16 +421,18 @@ struct sgx_encl {
 
 ## Reference
 
-* Memory capture method: https://unix.stackexchange.com/questions/6301/how-do-i-read-from-proc-pid-mem-under-linux
+* **[Linux Device Driver Development](https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os)**
+* [Memory capture method](https://unix.stackexchange.com/questions/6301/how-do-i-read-from-proc-pid-mem-under-linux)
 * Core file generate for any thread: gcore $PID
 * [SGX memory protection](https://insujang.github.io/2017-04-03/intel-sgx-protection-mechanism/)
 * [Linux kernel memory map](https://insujang.github.io/2017-04-07/linux-kernel-memory-map-operations/)
 * [Hook sgx encls function](https://insujang.github.io/2017-04-21/hooking-an-sgx-encls-leaf-function-call-from-kvm/)
 * [DKMS driver](https://docs.01.org/clearlinux/latest/guides/kernel/kernel-modules-dkms.html)
-* **[Linux Device Driver Development](https://www.apriorit.com/dev-blog/195-simple-driver-for-linux-os)**
 * [Linux platform driver guide](https://www.cnblogs.com/xiaojiang1025/p/6367910.html)
 * [Linux kernel programming](https://www.cnblogs.com/sky-heaven/p/5279334.html)
 * Kernel space thread need to be freezable [Linux kernel thread freezing](https://www.kernel.org/doc/Documentation/power/freezing-of-tasks.txt)
 * [Valgrind memcheck](https://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.monitor-commands)
 * [Enclave initialization overview](https://blog.csdn.net/clh14281055/article/details/108567792?utm_medium=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-5.control)
 * [Sqlite3 manual](https://sqlite.org/cli.html)
+* [Memcached wiki](https://github.com/memcached/memcached/wiki)
+* [Linux Crypto Code Sample](https://github.com/torvalds/linux/blob/master/Documentation/crypto/api-samples.rst)

@@ -136,6 +136,7 @@ static int do_sha256(const unsigned char *data, unsigned char *out_digest)
 // {
 //     unsigned char *digest;
 //     digest = kmalloc(256, GFP_KERNEL);
+//     devm_kzalloc(digest, 256, GFP_KERNEL); // auto free memory after use.
 //     if(digest < 0)
 //         return -ENOMEM;
 
