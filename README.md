@@ -436,3 +436,17 @@ struct sgx_encl {
 * [Sqlite3 manual](https://sqlite.org/cli.html)
 * [Memcached wiki](https://github.com/memcached/memcached/wiki)
 * [Linux Crypto Code Sample](https://github.com/torvalds/linux/blob/master/Documentation/crypto/api-samples.rst)
+
+
+## Notes for kernel programming
+
+### Use kernel modules
+
+```shell
+# load kernel module
+sudo insmod xxx.ko
+# Verify output
+dmesg
+# load kernel module
+sudo rmmod xxx.ko
+```

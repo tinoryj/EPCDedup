@@ -72,7 +72,7 @@
 #include <linux/slab.h>
 #include <linux/hashtable.h>
 #include <linux/shmem_fs.h>
-// ahs256 hash functions for extracted page content 
+// SHA256 hash functions for extracted page content 
 #include <crypto/hash.h>
 struct sdesc {
     struct shash_desc shash;
