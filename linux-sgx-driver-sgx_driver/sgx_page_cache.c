@@ -401,11 +401,44 @@ static int ksgxswapd(void *p)
 				     sgx_nr_free_pages < sgx_nr_high_pages);
 
 		if (sgx_nr_free_pages < sgx_nr_high_pages)
-			sgx_swap_pages(SGX_NR_SWAP_CLUSTER_MAX);
+			sgx_swap_pages(SGX_NR_SWAP_CLUSTER_MAX); // swap 16 pages once.
 	}
 
 	pr_info("%s: done\n", __func__);
 	return 0;
+}
+
+static void user_sgx_get_pages(unsigned long nr_to_scan)
+{
+	struct sgx_tgid_ctx *ctx;
+	struct sgx_encl *encl;
+	ctx = sgx_isolate_tgid_ctx(nr_to_scan);
+	if (!ctx)
+		return;
+
+	encl = sgx_isolate_encl(ctx, nr_to_scan);
+	if (!encl)
+		return;
+
+	struct sgx_epc_page *entry;
+	struct sgx_epc_page *tmp;
+	struct vm_area_struct *vma;
+	LIST_HEAD(cluster);
+	int ret;
+
+	if (list_empty(&cluster))
+		return;
+
+	entry = list_first_entry(&cluster, struct sgx_epc_page, list);
+	pr_info("sgx: [SGX_moniter] find page list head, current page address = %p\n", entry->encl_page->addr);
+	pr_info("sgx: [SGX_moniter] find page list head, current page hash = \n");
+	unsigned char *hash;
+    hash = kmalloc(256, GFP_KERNEL);
+	do_sha256((unsigned char*)entry->encl_page->addr, PAGE_SIZE, hash);
+	kfree(hash);
+	mutex_lock(&encl->lock);
+
+	mutex_unlock(&encl->lock);
 }
 
 static int ksgxswapdMoniter(void  *p)
@@ -423,6 +456,7 @@ static int ksgxswapdMoniter(void  *p)
 		// when need to swap pages, weak up this thread
 		wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop() || counter != sgx_nr_free_pages);
 		pr_info("sgx: [SGX_moniter], allocate new page via fast approach, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
+		user_sgx_get_pages(1);
 		counter = sgx_nr_free_pages;
 	}
 
@@ -592,7 +626,7 @@ void sgx_free_page(struct sgx_epc_page *entry, struct sgx_encl *encl)
 	sgx_put_page(epc);
 
 	if (ret)
-		sgx_crit(encl, "EREMOVE returned %d\n", ret);
+		sgx_crit(encl, "sgx: EREMOVE returned %d\n", ret);
 
 	spin_lock(&sgx_free_list_lock);
 	list_add(&entry->list, &sgx_free_list);
