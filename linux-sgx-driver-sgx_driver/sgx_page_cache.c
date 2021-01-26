@@ -424,11 +424,8 @@ static void user_sgx_get_pages(unsigned long nr_to_scan)
 	struct sgx_epc_page *tmp;
 	struct vm_area_struct *vma;
 	LIST_HEAD(cluster);
-	int ret;
-
 	if (list_empty(&cluster))
 		return;
-
 	entry = list_first_entry(&cluster, struct sgx_epc_page, list);
 	pr_info("sgx: [SGX_moniter] find page list head, current page address = %p\n", entry->encl_page->addr);
 	pr_info("sgx: [SGX_moniter] find page list head, current page hash = \n");
@@ -437,7 +434,11 @@ static void user_sgx_get_pages(unsigned long nr_to_scan)
 	do_sha256((unsigned char*)entry->encl_page->addr, PAGE_SIZE, hash);
 	kfree(hash);
 	mutex_lock(&encl->lock);
-
+	// pr_info("sgx: [SGX_moniter] page list size = %ld, listing all page hash now:\n", nr_to_scan);
+	// int index = 0;
+	// for (index = 0; index < nr_to_scan; index++){
+	// 	entry = list_next(&cluster, struct sgx_epc_page, list);
+	// }
 	mutex_unlock(&encl->lock);
 }
 
@@ -446,7 +447,7 @@ static int ksgxswapdMoniter(void  *p)
 	unsigned int counter = sgx_nr_free_pages;
 		// The device will hang when it does not respond within a certain period of time
 	set_freezable();
-	pr_info("sgx: [SGX_moniter] moniter thread weak up\n");
+	pr_info("sgx: [SGX_moniter] moniter thread init\n");
 	pr_info("sgx: [SGX_moniter] current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
 	while (!kthread_should_stop()) {
 		pr_info("sgx: [SGX_moniter] moniter thread weak up\n");
@@ -455,8 +456,8 @@ static int ksgxswapdMoniter(void  *p)
 			continue;
 		// when need to swap pages, weak up this thread
 		wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop() || counter != sgx_nr_free_pages);
-		pr_info("sgx: [SGX_moniter], allocate new page via fast approach, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
-		user_sgx_get_pages(1);
+		pr_info("sgx: [SGX_moniter] In loop, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
+		user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
 		counter = sgx_nr_free_pages;
 	}
 

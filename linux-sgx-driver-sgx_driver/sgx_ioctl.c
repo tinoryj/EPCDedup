@@ -128,9 +128,9 @@ static long sgx_ioc_enclave_create(struct file *filep, unsigned int cmd,
 		kfree(secs);
 		return ret;
 	}
-	printk(KERN_INFO"sgx: create enclave size = %lld\n", secs->size);
-	printk(KERN_INFO"sgx: create enclave ssaframesize = %d\n", secs->ssaframesize);
-	printk(KERN_INFO"sgx: create enclave isvsvn = %d\n", secs->isvsvn);
+	pr_info("sgx: create enclave size = %lld\n", secs->size);
+	pr_info("sgx: create enclave ssaframesize = %d\n", secs->ssaframesize);
+	pr_info("sgx: create enclave isvsvn = %d\n", secs->isvsvn);
 
 	ret = sgx_encl_create(secs);
 
@@ -185,8 +185,8 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 	ret = copy_from_user((void *)data, (void __user *)addp->src, PAGE_SIZE);
 	if (ret)
 		goto out;
-	printk(KERN_INFO"sgx: add new page to enclave, address = %p\n", data);	
-	printk(KERN_INFO"sgx: add new page to enclave, hash = \n");
+	pr_info("sgx: add new page to enclave, address = %p\n", data);	
+	pr_info("sgx: add new page to enclave, hash = \n");
 	unsigned char *hash;
     hash = kmalloc(256, GFP_KERNEL);
 	do_sha256((unsigned char*)data, PAGE_SIZE, hash);
@@ -233,7 +233,7 @@ static long sgx_ioc_enclave_init(struct file *filep, unsigned int cmd,
 	if (!initp_page)
 		return -ENOMEM;
 	
-	printk(KERN_INFO"sgx: alloc page for new enclave address = %ld\n", initp_page->flags);
+	pr_info("sgx: alloc page for new enclave address = %ld\n", initp_page->flags);
 
 	sigstruct = kmap(initp_page);
 	einittoken = (struct sgx_einittoken *)
@@ -344,8 +344,8 @@ long sgx_ioc_page_notify_accept(struct file *filep, unsigned int cmd, unsigned l
 			ret = tmp_ret;
 			continue;
 		}else{
-			printk(KERN_INFO"sgx: remove page address = %ld\n", address);
-			printk(KERN_INFO"sgx: remove page hash = %p\n", address);
+			pr_info("sgx: remove page address = %ld\n", address);
+			pr_info("sgx: remove page hash = %p\n", address);
 			unsigned char *hash;
     		hash = kmalloc(256, GFP_KERNEL);
 			do_sha256((unsigned char*)address, PAGE_SIZE, hash);
@@ -378,7 +378,7 @@ long sgx_ioc_page_remove(struct file *filep, unsigned int cmd,
 		return -EINVAL;
 	}
 	sgx_info(encl, "sgx: remove page from epc, current page address = %ld\n", address);
-	printk(KERN_INFO"sgx: remove page from epc, current page address = %ld\n", address);
+	pr_info("sgx: remove page from epc, current page address = %ld\n", address);
 	char removedPageBuffer[4096];
 	*removedPageBuffer = address;
 	sgx_info(encl, "sgx: remove page from epc, current page content = %s\n", address);
@@ -405,35 +405,35 @@ long sgx_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
 	switch (cmd) {
 	case SGX_IOC_ENCLAVE_CREATE:
 		handler = sgx_ioc_enclave_create;
-		printk(KERN_INFO"sgx_ioct: create new enclave\n");
+		pr_info("sgx_ioct: create new enclave\n");
 		break;
 	case SGX_IOC_ENCLAVE_ADD_PAGE:
 		handler = sgx_ioc_enclave_add_page;
-		printk(KERN_INFO"sgx_ioct: add new page to exist enclave\n");
+		pr_info("sgx_ioct: add new page to exist enclave\n");
 		break;
 	case SGX_IOC_ENCLAVE_INIT:
 		handler = sgx_ioc_enclave_init;
-		printk(KERN_INFO"sgx_ioct: init new enclave\n");
+		pr_info("sgx_ioct: init new enclave\n");
 		break;
 	case SGX_IOC_ENCLAVE_EMODPR:
 		handler = sgx_ioc_page_modpr;
-		printk(KERN_INFO"sgx_ioct: change page type\n");
+		pr_info("sgx_ioct: change page type\n");
 		break;
 	case SGX_IOC_ENCLAVE_MKTCS:
 		handler = sgx_ioc_page_to_tcs;
-		printk(KERN_INFO"sgx_ioct: change page type to TCS\n");
+		pr_info("sgx_ioct: change page type to TCS\n");
 		break;
 	case SGX_IOC_ENCLAVE_TRIM:
 		handler = sgx_ioc_trim_page;
-		printk(KERN_INFO"sgx_ioct: trim pages, could free now\n");
+		pr_info("sgx_ioct: trim pages, could free now\n");
 		break;
 	case SGX_IOC_ENCLAVE_NOTIFY_ACCEPT:
 		handler = sgx_ioc_page_notify_accept;
-		printk(KERN_INFO"sgx_ioct: accept new page modify notify from system controller\n");
+		pr_info("sgx_ioct: accept new page modify notify from system controller\n");
 		break;
 	case SGX_IOC_ENCLAVE_PAGE_REMOVE:
 		handler = sgx_ioc_page_remove;
-		printk(KERN_INFO"sgx_ioct: remove new pages\n");
+		pr_info("sgx_ioct: remove new pages\n");
 		break;
 	default:
 		return -ENOIOCTLCMD;
