@@ -410,36 +410,39 @@ static int ksgxswapd(void *p)
 
 static void user_sgx_get_pages(unsigned long nr_to_scan)
 {
+	pr_info("sgx: [SGX_moniter] start listing all pages\n");
 	struct sgx_tgid_ctx *ctx;
 	struct sgx_encl *encl;
 	ctx = sgx_isolate_tgid_ctx(nr_to_scan);
 	if (!ctx)
 		return;
-
+	pr_info("sgx: [SGX_moniter] listing all pages, isolate tgid done\n");
 	encl = sgx_isolate_encl(ctx, nr_to_scan);
 	if (!encl)
 		return;
-
+	pr_info("sgx: [SGX_moniter] listing all pages, isolate encl done\n");
 	struct sgx_epc_page *entry;
 	struct sgx_epc_page *tmp;
-	struct vm_area_struct *vma;
 	LIST_HEAD(cluster);
+	sgx_isolate_pages(encl, &cluster, nr_to_scan);
 	if (list_empty(&cluster))
 		return;
+	pr_info("sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty\n");
 	entry = list_first_entry(&cluster, struct sgx_epc_page, list);
-	pr_info("sgx: [SGX_moniter] find page list head, current page address = %p\n", entry->encl_page->addr);
-	pr_info("sgx: [SGX_moniter] find page list head, current page hash = \n");
 	unsigned char *hash;
     hash = kmalloc(256, GFP_KERNEL);
-	do_sha256((unsigned char*)entry->encl_page->addr, PAGE_SIZE, hash);
-	kfree(hash);
+	// pr_info("sgx: [SGX_moniter] find page list head, current page address = %p\n", entry->encl_page->addr);
+	// pr_info("sgx: [SGX_moniter] find page list head, current page hash = \n");
+	// do_sha256((unsigned char*)entry->encl_page->addr, PAGE_SIZE, hash);
 	mutex_lock(&encl->lock);
-	// pr_info("sgx: [SGX_moniter] page list size = %ld, listing all page hash now:\n", nr_to_scan);
-	// int index = 0;
-	// for (index = 0; index < nr_to_scan; index++){
-	// 	entry = list_next(&cluster, struct sgx_epc_page, list);
-	// }
+	pr_info("sgx: [SGX_moniter] page list size = %ld, listing all page hash now:\n", nr_to_scan);
+	list_for_each_entry_safe(entry, tmp, &cluster, list) {
+		pr_info("sgx: [SGX_moniter] find new page, current page address = %p, va offset = %d\n", entry->encl_page->addr, entry->encl_page->va_offset);
+		do_sha256((unsigned char*)entry->encl_page->addr, PAGE_SIZE, hash);
+	}
 	mutex_unlock(&encl->lock);
+	kfree(hash);
+	pr_info("sgx: [SGX_moniter] listing all pages done, clean up info\n");
 }
 
 static int ksgxswapdMoniter(void  *p)
@@ -459,6 +462,7 @@ static int ksgxswapdMoniter(void  *p)
 		pr_info("sgx: [SGX_moniter] In loop, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
 		user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
 		counter = sgx_nr_free_pages;
+		pr_info("sgx: [SGX_moniter] In loop, current counter = %d,\n", counter);
 	}
 
 	pr_info("%s: done\n", __func__);

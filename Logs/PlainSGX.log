@@ -1,0 +1,659 @@
+[    2.407765] sgx: [SGX_moniter] moniter thread init
+[    2.407766] sgx: [SGX_moniter] current free page number = 23936, total page number = 23936
+[    2.407766] sgx: [SGX_moniter] moniter thread weak up
+[    3.751769] sgx: [SGX_moniter] In loop, current free page number = 23934, total page number = 23936
+[    3.751769] sgx: [SGX_moniter] start listing all pages
+[    3.751770] sgx: [SGX_moniter] In loop, current counter = 23934,
+[    3.751771] sgx: [SGX_moniter] moniter thread weak up
+[    3.756080] sgx: [SGX_moniter] In loop, current free page number = 23885, total page number = 23936
+[    3.756081] sgx: [SGX_moniter] start listing all pages
+[    3.756082] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.756082] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.756105] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.756106] sgx: [SGX_moniter] find page list head, current page address = 0000000079eabb88
+[    3.756106] sgx: [SGX_moniter] page list size = 51, listing all page hash now:
+[    3.756107] sgx: [SGX_moniter] find new page, current page address = 0000000079eabb88, va offset = 8
+[    3.756108] sgx: [SGX_moniter] find new page, current page address = 000000002a4e1627, va offset = 16
+[    3.756108] sgx: [SGX_moniter] find new page, current page address = 00000000b7f83a8d, va offset = 24
+[    3.756333] sgx: [SGX_moniter] find new page, current page address = 00000000b5d292de, va offset = 32
+[    3.756334] sgx: [SGX_moniter] find new page, current page address = 000000007a9c72b4, va offset = 40
+[    3.756334] sgx: [SGX_moniter] find new page, current page address = 00000000263d5f89, va offset = 48
+[    3.756335] sgx: [SGX_moniter] find new page, current page address = 00000000c12c36f8, va offset = 56
+[    3.756336] sgx: [SGX_moniter] find new page, current page address = 000000006fb8428b, va offset = 64
+[    3.756336] sgx: [SGX_moniter] find new page, current page address = 00000000be0eab46, va offset = 72
+[    3.756336] sgx: [SGX_moniter] find new page, current page address = 00000000e691806b, va offset = 80
+[    3.756337] sgx: [SGX_moniter] find new page, current page address = 00000000dfa19c24, va offset = 88
+[    3.756338] sgx: [SGX_moniter] find new page, current page address = 000000001cd2be23, va offset = 96
+[    3.756339] sgx: [SGX_moniter] find new page, current page address = 00000000b325c071, va offset = 104
+[    3.756339] sgx: [SGX_moniter] find new page, current page address = 0000000087fe0732, va offset = 112
+[    3.756340] sgx: [SGX_moniter] find new page, current page address = 0000000025673598, va offset = 120
+[    3.756340] sgx: [SGX_moniter] find new page, current page address = 000000003f134c84, va offset = 128
+[    3.756340] sgx: [SGX_moniter] find new page, current page address = 00000000f6cabb6a, va offset = 136
+[    3.756341] sgx: [SGX_moniter] find new page, current page address = 0000000093335dce, va offset = 144
+[    3.756341] sgx: [SGX_moniter] find new page, current page address = 000000002048b07e, va offset = 152
+[    3.756342] sgx: [SGX_moniter] find new page, current page address = 000000007a80d8e7, va offset = 160
+[    3.756342] sgx: [SGX_moniter] find new page, current page address = 0000000016ed0237, va offset = 168
+[    3.756343] sgx: [SGX_moniter] find new page, current page address = 00000000bb83c818, va offset = 176
+[    3.756343] sgx: [SGX_moniter] find new page, current page address = 00000000cf34d8ff, va offset = 184
+[    3.756344] sgx: [SGX_moniter] find new page, current page address = 0000000033de99dd, va offset = 192
+[    3.756344] sgx: [SGX_moniter] find new page, current page address = 00000000376d99c1, va offset = 200
+[    3.756345] sgx: [SGX_moniter] find new page, current page address = 0000000064e8b264, va offset = 208
+[    3.756345] sgx: [SGX_moniter] find new page, current page address = 00000000ef2cc152, va offset = 216
+[    3.756346] sgx: [SGX_moniter] find new page, current page address = 00000000681bad1c, va offset = 224
+[    3.756346] sgx: [SGX_moniter] find new page, current page address = 00000000b4c3910c, va offset = 232
+[    3.756347] sgx: [SGX_moniter] find new page, current page address = 000000001f259370, va offset = 240
+[    3.756347] sgx: [SGX_moniter] find new page, current page address = 00000000c212e56f, va offset = 248
+[    3.756348] sgx: [SGX_moniter] find new page, current page address = 00000000581a63cd, va offset = 256
+[    3.756349] sgx: [SGX_moniter] find new page, current page address = 000000001d30f6c6, va offset = 264
+[    3.756349] sgx: [SGX_moniter] find new page, current page address = 00000000320adf0c, va offset = 272
+[    3.756350] sgx: [SGX_moniter] find new page, current page address = 0000000026e386b4, va offset = 280
+[    3.756350] sgx: [SGX_moniter] find new page, current page address = 00000000bdc0611e, va offset = 288
+[    3.756351] sgx: [SGX_moniter] find new page, current page address = 00000000095dc93f, va offset = 296
+[    3.756351] sgx: [SGX_moniter] find new page, current page address = 000000000e65ecf6, va offset = 304
+[    3.756352] sgx: [SGX_moniter] find new page, current page address = 00000000a673938e, va offset = 312
+[    3.756352] sgx: [SGX_moniter] find new page, current page address = 00000000bb3aaadc, va offset = 320
+[    3.756353] sgx: [SGX_moniter] find new page, current page address = 00000000612d74c7, va offset = 328
+[    3.756353] sgx: [SGX_moniter] find new page, current page address = 00000000a06ad3a6, va offset = 336
+[    3.756354] sgx: [SGX_moniter] find new page, current page address = 00000000bea7f6af, va offset = 344
+[    3.756354] sgx: [SGX_moniter] find new page, current page address = 000000009b7d719a, va offset = 352
+[    3.756355] sgx: [SGX_moniter] find new page, current page address = 0000000092f2b6a4, va offset = 360
+[    3.756355] sgx: [SGX_moniter] find new page, current page address = 00000000091c2390, va offset = 368
+[    3.756356] sgx: [SGX_moniter] find new page, current page address = 000000004db35817, va offset = 376
+[    3.756356] sgx: [SGX_moniter] find new page, current page address = 000000008453f43c, va offset = 384
+[    3.756357] sgx: [SGX_moniter] find new page, current page address = 00000000e81b567f, va offset = 392
+[    3.756357] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.756358] sgx: [SGX_moniter] In loop, current counter = 23884,
+[    3.756358] sgx: [SGX_moniter] moniter thread weak up
+[    3.756385] sgx: [SGX_moniter] In loop, current free page number = 23883, total page number = 23936
+[    3.756386] sgx: [SGX_moniter] start listing all pages
+[    3.756386] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.756386] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.756432] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.756433] sgx: [SGX_moniter] find page list head, current page address = 0000000067a10ad3
+[    3.756433] sgx: [SGX_moniter] page list size = 53, listing all page hash now:
+[    3.756434] sgx: [SGX_moniter] find new page, current page address = 0000000067a10ad3, va offset = 400
+[    3.756434] sgx: [SGX_moniter] find new page, current page address = 00000000defd1761, va offset = 408
+[    3.756435] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.756435] sgx: [SGX_moniter] In loop, current counter = 23882,
+[    3.756436] sgx: [SGX_moniter] moniter thread weak up
+[    3.756487] sgx: [SGX_moniter] In loop, current free page number = 23881, total page number = 23936
+[    3.756487] sgx: [SGX_moniter] start listing all pages
+[    3.756488] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.756488] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.756534] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.756535] sgx: [SGX_moniter] find page list head, current page address = 000000001041f3fe
+[    3.756536] sgx: [SGX_moniter] page list size = 55, listing all page hash now:
+[    3.756536] sgx: [SGX_moniter] find new page, current page address = 000000001041f3fe, va offset = 416
+[    3.756536] sgx: [SGX_moniter] find new page, current page address = 000000005bca1d3a, va offset = 424
+[    3.756537] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.756538] sgx: [SGX_moniter] In loop, current counter = 23880,
+[    3.756538] sgx: [SGX_moniter] moniter thread weak up
+[    3.756591] sgx: [SGX_moniter] In loop, current free page number = 23879, total page number = 23936
+[    3.756592] sgx: [SGX_moniter] start listing all pages
+[    3.756592] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.756593] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.756855] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.756856] sgx: [SGX_moniter] find page list head, current page address = 00000000b7f8d88e
+[    3.756857] sgx: [SGX_moniter] page list size = 57, listing all page hash now:
+[    3.756857] sgx: [SGX_moniter] find new page, current page address = 00000000b7f8d88e, va offset = 432
+[    3.756857] sgx: [SGX_moniter] find new page, current page address = 0000000078208e5b, va offset = 440
+[    3.756858] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.756858] sgx: [SGX_moniter] In loop, current counter = 23878,
+[    3.756859] sgx: [SGX_moniter] moniter thread weak up
+[    3.757129] sgx: [SGX_moniter] In loop, current free page number = 23877, total page number = 23936
+[    3.757129] sgx: [SGX_moniter] start listing all pages
+[    3.757130] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.757130] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.757173] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.757174] sgx: [SGX_moniter] find page list head, current page address = 000000000ff88689
+[    3.757174] sgx: [SGX_moniter] page list size = 59, listing all page hash now:
+[    3.757175] sgx: [SGX_moniter] find new page, current page address = 000000000ff88689, va offset = 448
+[    3.757176] sgx: [SGX_moniter] find new page, current page address = 0000000088e4be88, va offset = 456
+[    3.757177] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.757177] sgx: [SGX_moniter] In loop, current counter = 23876,
+[    3.757179] sgx: [SGX_moniter] moniter thread weak up
+[    3.757448] sgx: [SGX_moniter] In loop, current free page number = 23875, total page number = 23936
+[    3.757449] sgx: [SGX_moniter] start listing all pages
+[    3.757449] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.757449] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.757495] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.757496] sgx: [SGX_moniter] find page list head, current page address = 00000000d2311a36
+[    3.757497] sgx: [SGX_moniter] page list size = 61, listing all page hash now:
+[    3.757497] sgx: [SGX_moniter] find new page, current page address = 00000000d2311a36, va offset = 464
+[    3.757498] sgx: [SGX_moniter] find new page, current page address = 000000007de48f2b, va offset = 472
+[    3.757498] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.757499] sgx: [SGX_moniter] In loop, current counter = 23874,
+[    3.757499] sgx: [SGX_moniter] moniter thread weak up
+[    3.757590] sgx: [SGX_moniter] In loop, current free page number = 23873, total page number = 23936
+[    3.757590] sgx: [SGX_moniter] start listing all pages
+[    3.757591] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.757591] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.757601] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.757604] sgx: [SGX_moniter] find page list head, current page address = 000000003b41bc9a
+[    3.757604] sgx: [SGX_moniter] page list size = 63, listing all page hash now:
+[    3.757605] sgx: [SGX_moniter] find new page, current page address = 000000003b41bc9a, va offset = 480
+[    3.757605] sgx: [SGX_moniter] find new page, current page address = 0000000095aedcdb, va offset = 488
+[    3.757606] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.757606] sgx: [SGX_moniter] In loop, current counter = 23872,
+[    3.757606] sgx: [SGX_moniter] moniter thread weak up
+[    3.757656] sgx: [SGX_moniter] In loop, current free page number = 23871, total page number = 23936
+[    3.757656] sgx: [SGX_moniter] start listing all pages
+[    3.757657] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.757657] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.757701] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.757702] sgx: [SGX_moniter] find page list head, current page address = 0000000084d030b2
+[    3.757703] sgx: [SGX_moniter] page list size = 65, listing all page hash now:
+[    3.757703] sgx: [SGX_moniter] find new page, current page address = 0000000084d030b2, va offset = 496
+[    3.757704] sgx: [SGX_moniter] find new page, current page address = 00000000b7bd196a, va offset = 504
+[    3.757704] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.757705] sgx: [SGX_moniter] In loop, current counter = 23870,
+[    3.757706] sgx: [SGX_moniter] moniter thread weak up
+[    3.757756] sgx: [SGX_moniter] In loop, current free page number = 23869, total page number = 23936
+[    3.757757] sgx: [SGX_moniter] start listing all pages
+[    3.757757] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.757758] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.757802] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.757803] sgx: [SGX_moniter] find page list head, current page address = 000000001ffd7dbb
+[    3.757804] sgx: [SGX_moniter] page list size = 67, listing all page hash now:
+[    3.757804] sgx: [SGX_moniter] find new page, current page address = 000000001ffd7dbb, va offset = 512
+[    3.757805] sgx: [SGX_moniter] find new page, current page address = 0000000046366c25, va offset = 520
+[    3.757805] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.757807] sgx: [SGX_moniter] In loop, current counter = 23868,
+[    3.757807] sgx: [SGX_moniter] moniter thread weak up
+[    3.757855] sgx: [SGX_moniter] In loop, current free page number = 23867, total page number = 23936
+[    3.757856] sgx: [SGX_moniter] start listing all pages
+[    3.757856] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.757856] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.757901] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.757902] sgx: [SGX_moniter] find page list head, current page address = 00000000e4976441
+[    3.757903] sgx: [SGX_moniter] page list size = 69, listing all page hash now:
+[    3.757903] sgx: [SGX_moniter] find new page, current page address = 00000000e4976441, va offset = 528
+[    3.757905] sgx: [SGX_moniter] find new page, current page address = 000000002978cc1f, va offset = 536
+[    3.757906] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.757907] sgx: [SGX_moniter] In loop, current counter = 23866,
+[    3.757907] sgx: [SGX_moniter] moniter thread weak up
+[    3.757955] sgx: [SGX_moniter] In loop, current free page number = 23865, total page number = 23936
+[    3.757956] sgx: [SGX_moniter] start listing all pages
+[    3.757956] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.757956] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.758024] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.758025] sgx: [SGX_moniter] find page list head, current page address = 00000000bce3c6d6
+[    3.758025] sgx: [SGX_moniter] page list size = 71, listing all page hash now:
+[    3.758026] sgx: [SGX_moniter] find new page, current page address = 00000000bce3c6d6, va offset = 544
+[    3.758027] sgx: [SGX_moniter] find new page, current page address = 00000000ea4ef3a0, va offset = 552
+[    3.758028] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.758028] sgx: [SGX_moniter] In loop, current counter = 23865,
+[    3.758028] sgx: [SGX_moniter] moniter thread weak up
+[    3.759413] sgx: [SGX_moniter] In loop, current free page number = 23843, total page number = 23936
+[    3.759414] sgx: [SGX_moniter] start listing all pages
+[    3.759414] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.759415] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.759418] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.759419] sgx: [SGX_moniter] find page list head, current page address = 000000000c75b2df
+[    3.759419] sgx: [SGX_moniter] page list size = 93, listing all page hash now:
+[    3.759420] sgx: [SGX_moniter] find new page, current page address = 000000000c75b2df, va offset = 560
+[    3.759420] sgx: [SGX_moniter] find new page, current page address = 00000000317a7187, va offset = 568
+[    3.759421] sgx: [SGX_moniter] find new page, current page address = 0000000058c46113, va offset = 576
+[    3.759421] sgx: [SGX_moniter] find new page, current page address = 00000000071a7ff1, va offset = 584
+[    3.759422] sgx: [SGX_moniter] find new page, current page address = 00000000026c2e3e, va offset = 592
+[    3.759422] sgx: [SGX_moniter] find new page, current page address = 000000005311684d, va offset = 600
+[    3.759423] sgx: [SGX_moniter] find new page, current page address = 00000000a30e45a0, va offset = 608
+[    3.759423] sgx: [SGX_moniter] find new page, current page address = 00000000c0defb10, va offset = 616
+[    3.759424] sgx: [SGX_moniter] find new page, current page address = 000000002963012d, va offset = 624
+[    3.759425] sgx: [SGX_moniter] find new page, current page address = 00000000c2942cf1, va offset = 632
+[    3.759425] sgx: [SGX_moniter] find new page, current page address = 00000000173b13db, va offset = 640
+[    3.759425] sgx: [SGX_moniter] find new page, current page address = 00000000f4666f6f, va offset = 648
+[    3.759427] sgx: [SGX_moniter] find new page, current page address = 00000000fddf0700, va offset = 656
+[    3.759427] sgx: [SGX_moniter] find new page, current page address = 00000000e0583bb4, va offset = 664
+[    3.759429] sgx: [SGX_moniter] find new page, current page address = 0000000014c07aa7, va offset = 672
+[    3.759429] sgx: [SGX_moniter] find new page, current page address = 0000000094ff808a, va offset = 680
+[    3.759430] sgx: [SGX_moniter] find new page, current page address = 00000000a738698f, va offset = 688
+[    3.759430] sgx: [SGX_moniter] find new page, current page address = 00000000c168f482, va offset = 696
+[    3.759431] sgx: [SGX_moniter] find new page, current page address = 00000000d90a315d, va offset = 704
+[    3.759431] sgx: [SGX_moniter] find new page, current page address = 000000004a67520f, va offset = 712
+[    3.759432] sgx: [SGX_moniter] find new page, current page address = 0000000043a3ed49, va offset = 720
+[    3.759432] sgx: [SGX_moniter] find new page, current page address = 00000000cad96ce4, va offset = 728
+[    3.759433] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.759433] sgx: [SGX_moniter] In loop, current counter = 23843,
+[    3.759435] sgx: [SGX_moniter] moniter thread weak up
+[    3.763669] sgx: [SGX_moniter] In loop, current free page number = 23821, total page number = 23936
+[    3.763669] sgx: [SGX_moniter] start listing all pages
+[    3.763670] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.763670] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.763673] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.763674] sgx: [SGX_moniter] find page list head, current page address = 0000000063cf7e6d
+[    3.763675] sgx: [SGX_moniter] page list size = 115, listing all page hash now:
+[    3.763675] sgx: [SGX_moniter] find new page, current page address = 0000000063cf7e6d, va offset = 736
+[    3.763676] sgx: [SGX_moniter] find new page, current page address = 000000003faf4563, va offset = 744
+[    3.763676] sgx: [SGX_moniter] find new page, current page address = 0000000066df0223, va offset = 752
+[    3.763677] sgx: [SGX_moniter] find new page, current page address = 00000000a85b6fa7, va offset = 760
+[    3.763677] sgx: [SGX_moniter] find new page, current page address = 00000000547e080b, va offset = 768
+[    3.763678] sgx: [SGX_moniter] find new page, current page address = 00000000b03884af, va offset = 776
+[    3.763678] sgx: [SGX_moniter] find new page, current page address = 00000000f7f43055, va offset = 784
+[    3.763679] sgx: [SGX_moniter] find new page, current page address = 0000000098891d53, va offset = 792
+[    3.763679] sgx: [SGX_moniter] find new page, current page address = 00000000b507e562, va offset = 800
+[    3.763680] sgx: [SGX_moniter] find new page, current page address = 00000000a93ca408, va offset = 808
+[    3.763680] sgx: [SGX_moniter] find new page, current page address = 00000000e08c2636, va offset = 816
+[    3.763681] sgx: [SGX_moniter] find new page, current page address = 000000001120fb93, va offset = 824
+[    3.763682] sgx: [SGX_moniter] find new page, current page address = 00000000ad43e5c1, va offset = 832
+[    3.763682] sgx: [SGX_moniter] find new page, current page address = 00000000084222a6, va offset = 840
+[    3.763684] sgx: [SGX_moniter] find new page, current page address = 0000000012b4e078, va offset = 848
+[    3.763684] sgx: [SGX_moniter] find new page, current page address = 000000007de4c881, va offset = 856
+[    3.763685] sgx: [SGX_moniter] find new page, current page address = 000000003de883e7, va offset = 864
+[    3.763686] sgx: [SGX_moniter] find new page, current page address = 00000000ac35ed4d, va offset = 872
+[    3.763687] sgx: [SGX_moniter] find new page, current page address = 000000001e7cd2fa, va offset = 880
+[    3.763689] sgx: [SGX_moniter] find new page, current page address = 00000000551e7d04, va offset = 888
+[    3.763689] sgx: [SGX_moniter] find new page, current page address = 00000000ed676f31, va offset = 896
+[    3.763690] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.763690] sgx: [SGX_moniter] In loop, current counter = 23821,
+[    3.763691] sgx: [SGX_moniter] moniter thread weak up
+[    3.766134] sgx: [SGX_moniter] In loop, current free page number = 23820, total page number = 23936
+[    3.766135] sgx: [SGX_moniter] start listing all pages
+[    3.766135] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766136] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766180] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766181] sgx: [SGX_moniter] find page list head, current page address = 0000000075e56db5
+[    3.766181] sgx: [SGX_moniter] page list size = 116, listing all page hash now:
+[    3.766182] sgx: [SGX_moniter] find new page, current page address = 0000000075e56db5, va offset = 904
+[    3.766182] sgx: [SGX_moniter] find new page, current page address = 00000000237fc4f9, va offset = 912
+[    3.766183] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766183] sgx: [SGX_moniter] In loop, current counter = 23819,
+[    3.766184] sgx: [SGX_moniter] moniter thread weak up
+[    3.766233] sgx: [SGX_moniter] In loop, current free page number = 23818, total page number = 23936
+[    3.766234] sgx: [SGX_moniter] start listing all pages
+[    3.766234] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766235] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766284] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766284] sgx: [SGX_moniter] find page list head, current page address = 00000000ed769733
+[    3.766285] sgx: [SGX_moniter] page list size = 118, listing all page hash now:
+[    3.766285] sgx: [SGX_moniter] find new page, current page address = 00000000ed769733, va offset = 920
+[    3.766286] sgx: [SGX_moniter] find new page, current page address = 000000005aec6894, va offset = 928
+[    3.766286] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766287] sgx: [SGX_moniter] In loop, current counter = 23817,
+[    3.766287] sgx: [SGX_moniter] moniter thread weak up
+[    3.766336] sgx: [SGX_moniter] In loop, current free page number = 23816, total page number = 23936
+[    3.766337] sgx: [SGX_moniter] start listing all pages
+[    3.766337] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766338] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766387] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766388] sgx: [SGX_moniter] find page list head, current page address = 000000002550fe00
+[    3.766388] sgx: [SGX_moniter] page list size = 120, listing all page hash now:
+[    3.766389] sgx: [SGX_moniter] find new page, current page address = 000000002550fe00, va offset = 936
+[    3.766389] sgx: [SGX_moniter] find new page, current page address = 000000006ab715fe, va offset = 944
+[    3.766390] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766390] sgx: [SGX_moniter] In loop, current counter = 23815,
+[    3.766391] sgx: [SGX_moniter] moniter thread weak up
+[    3.766440] sgx: [SGX_moniter] In loop, current free page number = 23814, total page number = 23936
+[    3.766441] sgx: [SGX_moniter] start listing all pages
+[    3.766441] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766441] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766485] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766486] sgx: [SGX_moniter] find page list head, current page address = 0000000047db6dc2
+[    3.766486] sgx: [SGX_moniter] page list size = 122, listing all page hash now:
+[    3.766487] sgx: [SGX_moniter] find new page, current page address = 0000000047db6dc2, va offset = 952
+[    3.766488] sgx: [SGX_moniter] find new page, current page address = 0000000038a2f3d1, va offset = 960
+[    3.766488] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766488] sgx: [SGX_moniter] In loop, current counter = 23813,
+[    3.766489] sgx: [SGX_moniter] moniter thread weak up
+[    3.766535] sgx: [SGX_moniter] In loop, current free page number = 23812, total page number = 23936
+[    3.766536] sgx: [SGX_moniter] start listing all pages
+[    3.766536] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766536] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766582] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766582] sgx: [SGX_moniter] find page list head, current page address = 00000000683277bd
+[    3.766583] sgx: [SGX_moniter] page list size = 124, listing all page hash now:
+[    3.766583] sgx: [SGX_moniter] find new page, current page address = 00000000683277bd, va offset = 968
+[    3.766584] sgx: [SGX_moniter] find new page, current page address = 00000000a9622c57, va offset = 976
+[    3.766584] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766585] sgx: [SGX_moniter] In loop, current counter = 23811,
+[    3.766585] sgx: [SGX_moniter] moniter thread weak up
+[    3.766633] sgx: [SGX_moniter] In loop, current free page number = 23810, total page number = 23936
+[    3.766633] sgx: [SGX_moniter] start listing all pages
+[    3.766634] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766634] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766679] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766680] sgx: [SGX_moniter] find page list head, current page address = 0000000049c4a8a0
+[    3.766680] sgx: [SGX_moniter] page list size = 126, listing all page hash now:
+[    3.766681] sgx: [SGX_moniter] find new page, current page address = 0000000049c4a8a0, va offset = 984
+[    3.766681] sgx: [SGX_moniter] find new page, current page address = 000000002a3e142f, va offset = 992
+[    3.766682] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766682] sgx: [SGX_moniter] In loop, current counter = 23809,
+[    3.766682] sgx: [SGX_moniter] moniter thread weak up
+[    3.766730] sgx: [SGX_moniter] In loop, current free page number = 23808, total page number = 23936
+[    3.766731] sgx: [SGX_moniter] start listing all pages
+[    3.766731] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766731] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766777] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766778] sgx: [SGX_moniter] find page list head, current page address = 000000007d521412
+[    3.766778] sgx: [SGX_moniter] page list size = 128, listing all page hash now:
+[    3.766779] sgx: [SGX_moniter] find new page, current page address = 000000007d521412, va offset = 1000
+[    3.766779] sgx: [SGX_moniter] find new page, current page address = 00000000d489024d, va offset = 1008
+[    3.766780] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766780] sgx: [SGX_moniter] In loop, current counter = 23808,
+[    3.766781] sgx: [SGX_moniter] moniter thread weak up
+[    3.766781] sgx: [SGX_moniter] In loop, current free page number = 23807, total page number = 23936
+[    3.766781] sgx: [SGX_moniter] start listing all pages
+[    3.766782] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766783] sgx: [SGX_moniter] In loop, current counter = 23807,
+[    3.766783] sgx: [SGX_moniter] moniter thread weak up
+[    3.766835] sgx: [SGX_moniter] In loop, current free page number = 23806, total page number = 23936
+[    3.766835] sgx: [SGX_moniter] start listing all pages
+[    3.766836] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766836] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766883] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766884] sgx: [SGX_moniter] find page list head, current page address = 00000000963c6372
+[    3.766884] sgx: [SGX_moniter] page list size = 130, listing all page hash now:
+[    3.766885] sgx: [SGX_moniter] find new page, current page address = 00000000963c6372, va offset = 1016
+[    3.766885] sgx: [SGX_moniter] find new page, current page address = 000000009724b328, va offset = 1024
+[    3.766886] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766886] sgx: [SGX_moniter] In loop, current counter = 23805,
+[    3.766886] sgx: [SGX_moniter] moniter thread weak up
+[    3.766939] sgx: [SGX_moniter] In loop, current free page number = 23804, total page number = 23936
+[    3.766940] sgx: [SGX_moniter] start listing all pages
+[    3.766941] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.766941] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.766988] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.766989] sgx: [SGX_moniter] find page list head, current page address = 00000000b934498c
+[    3.766989] sgx: [SGX_moniter] page list size = 132, listing all page hash now:
+[    3.766990] sgx: [SGX_moniter] find new page, current page address = 00000000b934498c, va offset = 1032
+[    3.766991] sgx: [SGX_moniter] find new page, current page address = 00000000c5029f90, va offset = 1040
+[    3.766991] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.766992] sgx: [SGX_moniter] In loop, current counter = 23803,
+[    3.766992] sgx: [SGX_moniter] moniter thread weak up
+[    3.767042] sgx: [SGX_moniter] In loop, current free page number = 23802, total page number = 23936
+[    3.767043] sgx: [SGX_moniter] start listing all pages
+[    3.767044] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.767044] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.767091] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.767092] sgx: [SGX_moniter] find page list head, current page address = 00000000ea91fbb4
+[    3.767092] sgx: [SGX_moniter] page list size = 134, listing all page hash now:
+[    3.767093] sgx: [SGX_moniter] find new page, current page address = 00000000ea91fbb4, va offset = 1048
+[    3.767093] sgx: [SGX_moniter] find new page, current page address = 00000000d47e1328, va offset = 1056
+[    3.767093] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.767094] sgx: [SGX_moniter] In loop, current counter = 23801,
+[    3.767094] sgx: [SGX_moniter] moniter thread weak up
+[    3.767145] sgx: [SGX_moniter] In loop, current free page number = 23800, total page number = 23936
+[    3.767146] sgx: [SGX_moniter] start listing all pages
+[    3.767146] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.767147] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.767148] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.767149] sgx: [SGX_moniter] find page list head, current page address = 0000000088442089
+[    3.767149] sgx: [SGX_moniter] page list size = 136, listing all page hash now:
+[    3.767150] sgx: [SGX_moniter] find new page, current page address = 0000000088442089, va offset = 1064
+[    3.767150] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.767150] sgx: [SGX_moniter] In loop, current counter = 23800,
+[    3.767151] sgx: [SGX_moniter] moniter thread weak up
+[    3.768227] sgx: [SGX_moniter] In loop, current free page number = 23799, total page number = 23936
+[    3.768228] sgx: [SGX_moniter] start listing all pages
+[    3.768228] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.768229] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.768230] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.768231] sgx: [SGX_moniter] find page list head, current page address = 000000005dabfc93
+[    3.768231] sgx: [SGX_moniter] page list size = 137, listing all page hash now:
+[    3.768232] sgx: [SGX_moniter] find new page, current page address = 000000005dabfc93, va offset = 1072
+[    3.768232] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.768233] sgx: [SGX_moniter] In loop, current counter = 23799,
+[    3.768233] sgx: [SGX_moniter] moniter thread weak up
+[    3.768798] sgx: [SGX_moniter] In loop, current free page number = 23798, total page number = 23936
+[    3.768798] sgx: [SGX_moniter] start listing all pages
+[    3.768799] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.768799] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.768844] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.768845] sgx: [SGX_moniter] find page list head, current page address = 0000000060995f54
+[    3.768845] sgx: [SGX_moniter] page list size = 138, listing all page hash now:
+[    3.768846] sgx: [SGX_moniter] find new page, current page address = 0000000060995f54, va offset = 1080
+[    3.768846] sgx: [SGX_moniter] find new page, current page address = 000000002387eb2a, va offset = 1088
+[    3.768847] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.768848] sgx: [SGX_moniter] In loop, current counter = 23797,
+[    3.768848] sgx: [SGX_moniter] moniter thread weak up
+[    3.768907] sgx: [SGX_moniter] In loop, current free page number = 23796, total page number = 23936
+[    3.768908] sgx: [SGX_moniter] start listing all pages
+[    3.768908] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.768908] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.768948] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.768951] sgx: [SGX_moniter] find page list head, current page address = 000000003a07a06f
+[    3.768951] sgx: [SGX_moniter] page list size = 140, listing all page hash now:
+[    3.768952] sgx: [SGX_moniter] find new page, current page address = 000000003a07a06f, va offset = 1096
+[    3.768953] sgx: [SGX_moniter] find new page, current page address = 00000000eea1407c, va offset = 1104
+[    3.768953] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.768953] sgx: [SGX_moniter] In loop, current counter = 23795,
+[    3.768954] sgx: [SGX_moniter] moniter thread weak up
+[    3.768999] sgx: [SGX_moniter] In loop, current free page number = 23794, total page number = 23936
+[    3.769000] sgx: [SGX_moniter] start listing all pages
+[    3.769000] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.769001] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.769044] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.769045] sgx: [SGX_moniter] find page list head, current page address = 00000000258b52ad
+[    3.769046] sgx: [SGX_moniter] page list size = 142, listing all page hash now:
+[    3.769046] sgx: [SGX_moniter] find new page, current page address = 00000000258b52ad, va offset = 1112
+[    3.769047] sgx: [SGX_moniter] find new page, current page address = 00000000113d4e1e, va offset = 1120
+[    3.769047] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.769048] sgx: [SGX_moniter] In loop, current counter = 23793,
+[    3.769048] sgx: [SGX_moniter] moniter thread weak up
+[    3.769095] sgx: [SGX_moniter] In loop, current free page number = 23792, total page number = 23936
+[    3.769095] sgx: [SGX_moniter] start listing all pages
+[    3.769096] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.769096] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.769140] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.769141] sgx: [SGX_moniter] find page list head, current page address = 000000003603ea61
+[    3.769142] sgx: [SGX_moniter] page list size = 144, listing all page hash now:
+[    3.769142] sgx: [SGX_moniter] find new page, current page address = 000000003603ea61, va offset = 1128
+[    3.769143] sgx: [SGX_moniter] find new page, current page address = 000000006c977ec5, va offset = 1136
+[    3.769143] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.769143] sgx: [SGX_moniter] In loop, current counter = 23791,
+[    3.769144] sgx: [SGX_moniter] moniter thread weak up
+[    3.769191] sgx: [SGX_moniter] In loop, current free page number = 23790, total page number = 23936
+[    3.769192] sgx: [SGX_moniter] start listing all pages
+[    3.769192] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.769193] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.769237] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.769237] sgx: [SGX_moniter] find page list head, current page address = 00000000b0db4ef2
+[    3.769238] sgx: [SGX_moniter] page list size = 146, listing all page hash now:
+[    3.769238] sgx: [SGX_moniter] find new page, current page address = 00000000b0db4ef2, va offset = 1144
+[    3.769239] sgx: [SGX_moniter] find new page, current page address = 000000009e17d396, va offset = 1152
+[    3.769239] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.769239] sgx: [SGX_moniter] In loop, current counter = 23789,
+[    3.769240] sgx: [SGX_moniter] moniter thread weak up
+[    3.769287] sgx: [SGX_moniter] In loop, current free page number = 23788, total page number = 23936
+[    3.769288] sgx: [SGX_moniter] start listing all pages
+[    3.769288] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.769289] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.769332] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.769333] sgx: [SGX_moniter] find page list head, current page address = 00000000e6a7450e
+[    3.769333] sgx: [SGX_moniter] page list size = 148, listing all page hash now:
+[    3.769334] sgx: [SGX_moniter] find new page, current page address = 00000000e6a7450e, va offset = 1160
+[    3.769334] sgx: [SGX_moniter] find new page, current page address = 00000000acab951f, va offset = 1168
+[    3.769335] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.769335] sgx: [SGX_moniter] In loop, current counter = 23787,
+[    3.769335] sgx: [SGX_moniter] moniter thread weak up
+[    3.769388] sgx: [SGX_moniter] In loop, current free page number = 23786, total page number = 23936
+[    3.769389] sgx: [SGX_moniter] start listing all pages
+[    3.769389] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.769390] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.769391] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.769391] sgx: [SGX_moniter] find page list head, current page address = 0000000083386a42
+[    3.769392] sgx: [SGX_moniter] page list size = 150, listing all page hash now:
+[    3.769393] sgx: [SGX_moniter] find new page, current page address = 0000000083386a42, va offset = 1176
+[    3.769393] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.769393] sgx: [SGX_moniter] In loop, current counter = 23786,
+[    3.769394] sgx: [SGX_moniter] moniter thread weak up
+[    3.771856] sgx: [SGX_moniter] In loop, current free page number = 23785, total page number = 23936
+[    3.771857] sgx: [SGX_moniter] start listing all pages
+[    3.771857] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.771858] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.771859] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.771860] sgx: [SGX_moniter] find page list head, current page address = 000000003e1d9729
+[    3.771861] sgx: [SGX_moniter] page list size = 151, listing all page hash now:
+[    3.771861] sgx: [SGX_moniter] find new page, current page address = 000000003e1d9729, va offset = 1184
+[    3.771861] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.771862] sgx: [SGX_moniter] In loop, current counter = 23785,
+[    3.771862] sgx: [SGX_moniter] moniter thread weak up
+[    3.773218] sgx: [SGX_moniter] In loop, current free page number = 23784, total page number = 23936
+[    3.773218] sgx: [SGX_moniter] start listing all pages
+[    3.773219] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.773219] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.773220] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.773221] sgx: [SGX_moniter] find page list head, current page address = 00000000b4d1a562
+[    3.773222] sgx: [SGX_moniter] page list size = 152, listing all page hash now:
+[    3.773222] sgx: [SGX_moniter] find new page, current page address = 00000000b4d1a562, va offset = 1192
+[    3.773223] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.773223] sgx: [SGX_moniter] In loop, current counter = 23784,
+[    3.773224] sgx: [SGX_moniter] moniter thread weak up
+[    3.775831] sgx: [SGX_moniter] In loop, current free page number = 23783, total page number = 23936
+[    3.775832] sgx: [SGX_moniter] start listing all pages
+[    3.775833] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.775833] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.775834] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.775836] sgx: [SGX_moniter] find page list head, current page address = 00000000d032adc9
+[    3.775836] sgx: [SGX_moniter] page list size = 153, listing all page hash now:
+[    3.775837] sgx: [SGX_moniter] find new page, current page address = 00000000d032adc9, va offset = 1200
+[    3.775838] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.775838] sgx: [SGX_moniter] In loop, current counter = 23783,
+[    3.775838] sgx: [SGX_moniter] moniter thread weak up
+[    3.776429] sgx: [SGX_moniter] In loop, current free page number = 23782, total page number = 23936
+[    3.776429] sgx: [SGX_moniter] start listing all pages
+[    3.776430] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.776430] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.776431] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.776432] sgx: [SGX_moniter] find page list head, current page address = 000000008180e29a
+[    3.776433] sgx: [SGX_moniter] page list size = 154, listing all page hash now:
+[    3.776433] sgx: [SGX_moniter] find new page, current page address = 000000008180e29a, va offset = 1208
+[    3.776433] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.776434] sgx: [SGX_moniter] In loop, current counter = 23782,
+[    3.776434] sgx: [SGX_moniter] moniter thread weak up
+[    3.777749] sgx: [SGX_moniter] In loop, current free page number = 23781, total page number = 23936
+[    3.777750] sgx: [SGX_moniter] start listing all pages
+[    3.777750] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.777751] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.777752] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.777753] sgx: [SGX_moniter] find page list head, current page address = 000000000ce1ac56
+[    3.777753] sgx: [SGX_moniter] page list size = 155, listing all page hash now:
+[    3.777754] sgx: [SGX_moniter] find new page, current page address = 000000000ce1ac56, va offset = 1216
+[    3.777754] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.777755] sgx: [SGX_moniter] In loop, current counter = 23781,
+[    3.777755] sgx: [SGX_moniter] moniter thread weak up
+[    3.778657] sgx: [SGX_moniter] In loop, current free page number = 23780, total page number = 23936
+[    3.778658] sgx: [SGX_moniter] start listing all pages
+[    3.778658] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.778659] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.778703] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.778704] sgx: [SGX_moniter] find page list head, current page address = 00000000ced94cc6
+[    3.778704] sgx: [SGX_moniter] page list size = 156, listing all page hash now:
+[    3.778705] sgx: [SGX_moniter] find new page, current page address = 00000000ced94cc6, va offset = 1224
+[    3.778706] sgx: [SGX_moniter] find new page, current page address = 00000000e93b5225, va offset = 1232
+[    3.778706] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.778707] sgx: [SGX_moniter] In loop, current counter = 23779,
+[    3.778707] sgx: [SGX_moniter] moniter thread weak up
+[    3.778754] sgx: [SGX_moniter] In loop, current free page number = 23778, total page number = 23936
+[    3.778755] sgx: [SGX_moniter] start listing all pages
+[    3.778755] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.778756] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.778801] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.778802] sgx: [SGX_moniter] find page list head, current page address = 0000000016fe623d
+[    3.778803] sgx: [SGX_moniter] page list size = 158, listing all page hash now:
+[    3.778803] sgx: [SGX_moniter] find new page, current page address = 0000000016fe623d, va offset = 1240
+[    3.778804] sgx: [SGX_moniter] find new page, current page address = 0000000088264cda, va offset = 1248
+[    3.778804] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.778804] sgx: [SGX_moniter] In loop, current counter = 23777,
+[    3.778805] sgx: [SGX_moniter] moniter thread weak up
+[    3.778854] sgx: [SGX_moniter] In loop, current free page number = 23776, total page number = 23936
+[    3.778854] sgx: [SGX_moniter] start listing all pages
+[    3.778854] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.778855] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.778900] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.778901] sgx: [SGX_moniter] find page list head, current page address = 00000000829bd67a
+[    3.778902] sgx: [SGX_moniter] page list size = 160, listing all page hash now:
+[    3.778902] sgx: [SGX_moniter] find new page, current page address = 00000000829bd67a, va offset = 1256
+[    3.778903] sgx: [SGX_moniter] find new page, current page address = 00000000e2a5ad0f, va offset = 1264
+[    3.778903] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.778904] sgx: [SGX_moniter] In loop, current counter = 23775,
+[    3.778904] sgx: [SGX_moniter] moniter thread weak up
+[    3.778953] sgx: [SGX_moniter] In loop, current free page number = 23774, total page number = 23936
+[    3.778954] sgx: [SGX_moniter] start listing all pages
+[    3.778954] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.778955] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.779001] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.779002] sgx: [SGX_moniter] find page list head, current page address = 00000000c61477bc
+[    3.779002] sgx: [SGX_moniter] page list size = 162, listing all page hash now:
+[    3.779003] sgx: [SGX_moniter] find new page, current page address = 00000000c61477bc, va offset = 1272
+[    3.779003] sgx: [SGX_moniter] find new page, current page address = 00000000682fc0b2, va offset = 1280
+[    3.779004] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.779004] sgx: [SGX_moniter] In loop, current counter = 23773,
+[    3.779005] sgx: [SGX_moniter] moniter thread weak up
+[    3.779054] sgx: [SGX_moniter] In loop, current free page number = 23772, total page number = 23936
+[    3.779054] sgx: [SGX_moniter] start listing all pages
+[    3.779055] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.779055] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.779100] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.779101] sgx: [SGX_moniter] find page list head, current page address = 000000006080f448
+[    3.779101] sgx: [SGX_moniter] page list size = 164, listing all page hash now:
+[    3.779102] sgx: [SGX_moniter] find new page, current page address = 000000006080f448, va offset = 1288
+[    3.779102] sgx: [SGX_moniter] find new page, current page address = 0000000033a613eb, va offset = 1296
+[    3.779103] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.779103] sgx: [SGX_moniter] In loop, current counter = 23771,
+[    3.779103] sgx: [SGX_moniter] moniter thread weak up
+[    3.779154] sgx: [SGX_moniter] In loop, current free page number = 23770, total page number = 23936
+[    3.779154] sgx: [SGX_moniter] start listing all pages
+[    3.779155] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.779155] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.779200] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.779201] sgx: [SGX_moniter] find page list head, current page address = 00000000e33ba987
+[    3.779201] sgx: [SGX_moniter] page list size = 166, listing all page hash now:
+[    3.779201] sgx: [SGX_moniter] find new page, current page address = 00000000e33ba987, va offset = 1304
+[    3.779202] sgx: [SGX_moniter] find new page, current page address = 00000000355338b4, va offset = 1312
+[    3.779202] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.779202] sgx: [SGX_moniter] In loop, current counter = 23769,
+[    3.779203] sgx: [SGX_moniter] moniter thread weak up
+[    3.779252] sgx: [SGX_moniter] In loop, current free page number = 23768, total page number = 23936
+[    3.779252] sgx: [SGX_moniter] start listing all pages
+[    3.779253] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.779253] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.779299] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.779299] sgx: [SGX_moniter] find page list head, current page address = 00000000ac848135
+[    3.779300] sgx: [SGX_moniter] page list size = 168, listing all page hash now:
+[    3.779300] sgx: [SGX_moniter] find new page, current page address = 00000000ac848135, va offset = 1320
+[    3.779301] sgx: [SGX_moniter] find new page, current page address = 000000008973b989, va offset = 1328
+[    3.779301] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.779301] sgx: [SGX_moniter] In loop, current counter = 23767,
+[    3.779301] sgx: [SGX_moniter] moniter thread weak up
+[    3.779351] sgx: [SGX_moniter] In loop, current free page number = 23766, total page number = 23936
+[    3.779351] sgx: [SGX_moniter] start listing all pages
+[    3.779351] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.779351] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.779397] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.779397] sgx: [SGX_moniter] find page list head, current page address = 00000000bb9067f9
+[    3.779397] sgx: [SGX_moniter] page list size = 170, listing all page hash now:
+[    3.779398] sgx: [SGX_moniter] find new page, current page address = 00000000bb9067f9, va offset = 1336
+[    3.779398] sgx: [SGX_moniter] find new page, current page address = 0000000053132b31, va offset = 1344
+[    3.779398] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.779399] sgx: [SGX_moniter] In loop, current counter = 23765,
+[    3.779399] sgx: [SGX_moniter] moniter thread weak up
+[    3.779450] sgx: [SGX_moniter] In loop, current free page number = 23764, total page number = 23936
+[    3.779450] sgx: [SGX_moniter] start listing all pages
+[    3.779450] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.779451] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.779499] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.779500] sgx: [SGX_moniter] find page list head, current page address = 00000000bd9ac4cf
+[    3.779500] sgx: [SGX_moniter] page list size = 172, listing all page hash now:
+[    3.779501] sgx: [SGX_moniter] find new page, current page address = 00000000bd9ac4cf, va offset = 1352
+[    3.779501] sgx: [SGX_moniter] find new page, current page address = 000000009d6496fa, va offset = 1360
+[    3.779502] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.779502] sgx: [SGX_moniter] In loop, current counter = 23763,
+[    3.779502] sgx: [SGX_moniter] moniter thread weak up
+[    3.779554] sgx: [SGX_moniter] In loop, current free page number = 23762, total page number = 23936
+[    3.779555] sgx: [SGX_moniter] start listing all pages
+[    3.779555] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.779555] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.779556] sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty
+[    3.779556] sgx: [SGX_moniter] find page list head, current page address = 000000003f5b0b5f
+[    3.779557] sgx: [SGX_moniter] page list size = 174, listing all page hash now:
+[    3.779557] sgx: [SGX_moniter] find new page, current page address = 000000003f5b0b5f, va offset = 1368
+[    3.779558] sgx: [SGX_moniter] listing all pages done, clean up info
+[    3.779558] sgx: [SGX_moniter] In loop, current counter = 23762,
+[    3.779558] sgx: [SGX_moniter] moniter thread weak up
+[    3.782272] sgx: [SGX_moniter] In loop, current free page number = 23760, total page number = 23936
+[    3.782273] sgx: [SGX_moniter] start listing all pages
+[    3.782274] sgx: [SGX_moniter] listing all pages, isolate tgid done
+[    3.782274] sgx: [SGX_moniter] listing all pages, isolate encl done
+[    3.782274] sgx: [SGX_moniter] In loop, current counter = 23760,
+[    3.782274] sgx: [SGX_moniter] moniter thread weak up
