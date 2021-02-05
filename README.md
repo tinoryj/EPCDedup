@@ -69,7 +69,7 @@ Code &amp; reference repository for EPC memory deduplication
 * Build paper 
   * Expose problem: application to motivate problem, analysis to introduce page types (access, deduplication ratio)
   * Applications: memcached, sqlite3
-
+* [2021.2.5]Page permissions issue, direct access leads to errors, need to change EPCM or design a dedicated enclave to manage all pages?
 ## Base Linux SGX Driver & SDK
 ### Driver Version (Changing to version 2.6) : 
   * Release : 2.11 
