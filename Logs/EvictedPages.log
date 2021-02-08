@@ -1,0 +1,1292 @@
+[    6.325707] isgx: loading out-of-tree module taints kernel.
+[    6.325731] isgx: module verification failed: signature and/or required key missing - tainting kernel
+[    6.325926] intel_sgx: Intel SGX Driver v2.11.0
+[    6.325941] intel_sgx INT0E0C:00: EPC bank 0x50200000-0x55f80000
+[    6.327352] sgx: [SGX_moniter] moniter thread init
+[    6.327352] sgx: [SGX_moniter] current free page number = 23936, total page number = 23936
+[    6.327353] sgx: [SGX_moniter] moniter thread weak up
+[    6.327477] intel_sgx: second initialization call skipped
+[   11.221131] sgx_ioct: create new enclave
+[   11.221133] sgx: create enclave size = 2097152
+[   11.221133] sgx: create enclave ssaframesize = 1
+[   11.221134] sgx: create enclave isvsvn = 0
+[   11.221147] sgx: [SGX_moniter] In loop, current free page number = 23934, total page number = 23936
+[   11.221148] sgx: [SGX_moniter] In loop, current counter = 23934,
+[   11.221148] sgx: [SGX_moniter] moniter thread weak up
+[   11.221193] sgx_ioct: add new page to exist enclave
+[   11.221199] sgx_ioct: add new page to exist enclave
+[   11.221202] sgx_ioct: add new page to exist enclave
+[   11.221205] sgx_ioct: add new page to exist enclave
+[   11.221206] sgx: [SGX_moniter] In loop, current free page number = 23933, total page number = 23936
+[   11.221207] sgx: [SGX_moniter] In loop, current counter = 23933,
+[   11.221207] sgx: [SGX_moniter] moniter thread weak up
+[   11.221266] sgx_ioct: add new page to exist enclave
+[   11.221268] sgx: [SGX_moniter] In loop, current free page number = 23932, total page number = 23936
+[   11.221339] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000f70dd3f5, va = 00000000b656694f
+[   11.221386] sgx: SGX-HASH(address: 00000000f70dd3f5, size: 4096): f47a8ec3e9aff231
+[   11.221392] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000007deb2a51
+[   11.221432] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.221433] sgx: [SGX_moniter] In loop, current counter = 23934,
+[   11.221434] sgx: [SGX_moniter] moniter thread weak up
+[   11.221438] sgx_ioct: add new page to exist enclave
+[   11.221445] sgx: [SGX_moniter] In loop, current free page number = 23933, total page number = 23936
+[   11.221446] sgx: [SGX_moniter] In loop, current counter = 23933,
+[   11.221446] sgx: [SGX_moniter] moniter thread weak up
+[   11.221495] sgx_ioct: add new page to exist enclave
+[   11.221497] sgx: [SGX_moniter] In loop, current free page number = 23932, total page number = 23936
+[   11.221546] sgx_ioct: add new page to exist enclave
+[   11.221562] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000044beb484
+[   11.221621] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.221628] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000f70dd3f5, va = 000000001120d1a0
+[   11.221685] sgx: SGX-HASH(address: 00000000f70dd3f5, size: 4096): f47a8ec3e9aff231
+[   11.221688] sgx: [SGX_moniter] In loop, current counter = 23934,
+[   11.221688] sgx: [SGX_moniter] moniter thread weak up
+[   11.221688] sgx: [SGX_moniter] In loop, current free page number = 23933, total page number = 23936
+[   11.221689] sgx: [SGX_moniter] In loop, current counter = 23933,
+[   11.221689] sgx: [SGX_moniter] moniter thread weak up
+[   11.221690] sgx_ioct: add new page to exist enclave
+[   11.221740] sgx_ioct: add new page to exist enclave
+[   11.221744] sgx: [SGX_moniter] In loop, current free page number = 23932, total page number = 23936
+[   11.221794] sgx_ioct: add new page to exist enclave
+[   11.221810] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000f70dd3f5, va = 00000000e6007e3c
+[   11.221868] sgx: SGX-HASH(address: 00000000f70dd3f5, size: 4096): f47a8ec3e9aff231
+[   11.221876] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000d090fcae
+[   11.221933] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.221935] sgx: [SGX_moniter] In loop, current counter = 23934,
+[   11.221936] sgx: [SGX_moniter] moniter thread weak up
+[   11.221936] sgx: [SGX_moniter] In loop, current free page number = 23933, total page number = 23936
+[   11.221937] sgx: [SGX_moniter] In loop, current counter = 23933,
+[   11.221938] sgx: [SGX_moniter] moniter thread weak up
+[   11.221938] sgx_ioct: add new page to exist enclave
+[   11.222096] sgx_ioct: create new enclave
+[   11.222097] sgx: create enclave size = 2097152
+[   11.222098] sgx: create enclave ssaframesize = 1
+[   11.222098] sgx: create enclave isvsvn = 0
+[   11.222112] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.222115] sgx_ioct: add new page to exist enclave
+[   11.222126] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000006f895727
+[   11.222168] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.222173] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.222174] sgx_ioct: add new page to exist enclave
+[   11.222174] sgx: [SGX_moniter] moniter thread weak up
+[   11.222241] sgx_ioct: add new page to exist enclave
+[   11.222250] sgx_ioct: add new page to exist enclave
+[   11.222254] sgx_ioct: add new page to exist enclave
+[   11.222257] sgx_ioct: add new page to exist enclave
+[   11.222259] sgx_ioct: add new page to exist enclave
+[   11.222263] sgx_ioct: add new page to exist enclave
+[   11.222266] sgx_ioct: add new page to exist enclave
+[   11.222269] sgx_ioct: add new page to exist enclave
+[   11.222272] sgx_ioct: add new page to exist enclave
+[   11.222275] sgx_ioct: add new page to exist enclave
+[   11.222277] sgx_ioct: add new page to exist enclave
+[   11.222278] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.222279] sgx_ioct: add new page to exist enclave
+[   11.222282] sgx_ioct: add new page to exist enclave
+[   11.222285] sgx_ioct: add new page to exist enclave
+[   11.222289] sgx_ioct: add new page to exist enclave
+[   11.222292] sgx_ioct: add new page to exist enclave
+[   11.222295] sgx_ioct: add new page to exist enclave
+[   11.222299] sgx_ioct: add new page to exist enclave
+[   11.222304] sgx_ioct: add new page to exist enclave
+[   11.222307] sgx_ioct: add new page to exist enclave
+[   11.222309] sgx_ioct: add new page to exist enclave
+[   11.222312] sgx_ioct: add new page to exist enclave
+[   11.222315] sgx_ioct: add new page to exist enclave
+[   11.222317] sgx_ioct: add new page to exist enclave
+[   11.222320] sgx_ioct: add new page to exist enclave
+[   11.222323] sgx_ioct: add new page to exist enclave
+[   11.222328] sgx_ioct: add new page to exist enclave
+[   11.222343] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000012e0138e
+[   11.222367] sgx_ioct: add new page to exist enclave
+[   11.222371] sgx_ioct: add new page to exist enclave
+[   11.222374] sgx_ioct: add new page to exist enclave
+[   11.222377] sgx_ioct: add new page to exist enclave
+[   11.222379] sgx_ioct: add new page to exist enclave
+[   11.222382] sgx_ioct: add new page to exist enclave
+[   11.222386] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.222387] sgx_ioct: add new page to exist enclave
+[   11.222389] sgx_ioct: add new page to exist enclave
+[   11.222404] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000f3a05ec1
+[   11.222446] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.222450] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.222451] sgx: [SGX_moniter] moniter thread weak up
+[   11.222456] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.222456] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.222457] sgx: [SGX_moniter] moniter thread weak up
+[   11.222508] sgx_ioct: add new page to exist enclave
+[   11.222508] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.222585] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000394267fb
+[   11.222634] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.222639] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000057db064f
+[   11.222677] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.222680] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.222681] sgx: [SGX_moniter] moniter thread weak up
+[   11.222681] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.222682] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.222682] sgx: [SGX_moniter] moniter thread weak up
+[   11.222688] sgx_ioct: add new page to exist enclave
+[   11.222692] sgx_ioct: add new page to exist enclave
+[   11.222695] sgx_ioct: add new page to exist enclave
+[   11.222697] sgx_ioct: add new page to exist enclave
+[   11.222700] sgx_ioct: add new page to exist enclave
+[   11.222703] sgx_ioct: add new page to exist enclave
+[   11.222707] sgx_ioct: add new page to exist enclave
+[   11.222710] sgx_ioct: add new page to exist enclave
+[   11.222713] sgx_ioct: add new page to exist enclave
+[   11.222715] sgx_ioct: add new page to exist enclave
+[   11.222718] sgx_ioct: add new page to exist enclave
+[   11.222720] sgx_ioct: add new page to exist enclave
+[   11.222725] sgx_ioct: add new page to exist enclave
+[   11.222728] sgx_ioct: add new page to exist enclave
+[   11.222733] sgx_ioct: add new page to exist enclave
+[   11.222735] sgx_ioct: add new page to exist enclave
+[   11.222736] sgx_ioct: add new page to exist enclave
+[   11.222737] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.222738] sgx_ioct: add new page to exist enclave
+[   11.222740] sgx_ioct: add new page to exist enclave
+[   11.222744] sgx_ioct: add new page to exist enclave
+[   11.222746] sgx_ioct: add new page to exist enclave
+[   11.222749] sgx_ioct: add new page to exist enclave
+[   11.222752] sgx_ioct: add new page to exist enclave
+[   11.222755] sgx_ioct: add new page to exist enclave
+[   11.222758] sgx_ioct: add new page to exist enclave
+[   11.222760] sgx_ioct: add new page to exist enclave
+[   11.222763] sgx_ioct: add new page to exist enclave
+[   11.222765] sgx_ioct: add new page to exist enclave
+[   11.222768] sgx_ioct: add new page to exist enclave
+[   11.222771] sgx_ioct: add new page to exist enclave
+[   11.222774] sgx_ioct: add new page to exist enclave
+[   11.222778] sgx_ioct: add new page to exist enclave
+[   11.222780] sgx_ioct: add new page to exist enclave
+[   11.222796] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000a0a9794a
+[   11.222824] sgx_ioct: add new page to exist enclave
+[   11.222827] sgx_ioct: add new page to exist enclave
+[   11.222832] sgx_ioct: add new page to exist enclave
+[   11.222834] sgx_ioct: add new page to exist enclave
+[   11.222838] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.222838] sgx_ioct: add new page to exist enclave
+[   11.222841] sgx_ioct: add new page to exist enclave
+[   11.222844] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000e12f2d0c
+[   11.222844] sgx_ioct: add new page to exist enclave
+[   11.222846] sgx_ioct: add new page to exist enclave
+[   11.222849] sgx_ioct: add new page to exist enclave
+[   11.222851] sgx_ioct: add new page to exist enclave
+[   11.222854] sgx_ioct: add new page to exist enclave
+[   11.222858] sgx_ioct: add new page to exist enclave
+[   11.222861] sgx_ioct: add new page to exist enclave
+[   11.222864] sgx_ioct: add new page to exist enclave
+[   11.222869] sgx_ioct: add new page to exist enclave
+[   11.222872] sgx_ioct: add new page to exist enclave
+[   11.222875] sgx_ioct: add new page to exist enclave
+[   11.222879] sgx_ioct: add new page to exist enclave
+[   11.222881] sgx_ioct: add new page to exist enclave
+[   11.222884] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.222884] sgx_ioct: add new page to exist enclave
+[   11.222887] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.222887] sgx_ioct: add new page to exist enclave
+[   11.222889] sgx: [SGX_moniter] moniter thread weak up
+[   11.222890] sgx_ioct: add new page to exist enclave
+[   11.222892] sgx_ioct: add new page to exist enclave
+[   11.222893] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.222894] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.222896] sgx: [SGX_moniter] moniter thread weak up
+[   11.222898] sgx_ioct: add new page to exist enclave
+[   11.222902] sgx_ioct: add new page to exist enclave
+[   11.222906] sgx_ioct: add new page to exist enclave
+[   11.222910] sgx_ioct: add new page to exist enclave
+[   11.222913] sgx_ioct: add new page to exist enclave
+[   11.222916] sgx_ioct: add new page to exist enclave
+[   11.222919] sgx_ioct: add new page to exist enclave
+[   11.222922] sgx_ioct: add new page to exist enclave
+[   11.222926] sgx_ioct: add new page to exist enclave
+[   11.222928] sgx_ioct: add new page to exist enclave
+[   11.222942] sgx_ioct: add new page to exist enclave
+[   11.222944] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.222996] sgx_ioct: add new page to exist enclave
+[   11.223007] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000ea422fec
+[   11.223047] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.223052] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000e9b4901e
+[   11.223093] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.223095] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.223095] sgx: [SGX_moniter] moniter thread weak up
+[   11.223095] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.223096] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.223096] sgx: [SGX_moniter] moniter thread weak up
+[   11.223135] sgx_ioct: add new page to exist enclave
+[   11.223136] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.223172] sgx_ioct: add new page to exist enclave
+[   11.223183] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000009370d6da
+[   11.223225] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.223231] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000004c83ac4
+[   11.223270] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.223272] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.223272] sgx: [SGX_moniter] moniter thread weak up
+[   11.223273] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.223273] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.223274] sgx: [SGX_moniter] moniter thread weak up
+[   11.223277] sgx_ioct: add new page to exist enclave
+[   11.223318] sgx_ioct: add new page to exist enclave
+[   11.223320] sgx_ioct: add new page to exist enclave
+[   11.223322] sgx_ioct: add new page to exist enclave
+[   11.223324] sgx_ioct: add new page to exist enclave
+[   11.223326] sgx_ioct: add new page to exist enclave
+[   11.223329] sgx_ioct: add new page to exist enclave
+[   11.223330] sgx_ioct: add new page to exist enclave
+[   11.223332] sgx_ioct: add new page to exist enclave
+[   11.223334] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.223335] sgx_ioct: add new page to exist enclave
+[   11.223339] sgx_ioct: add new page to exist enclave
+[   11.223343] sgx_ioct: add new page to exist enclave
+[   11.223346] sgx_ioct: add new page to exist enclave
+[   11.223349] sgx_ioct: add new page to exist enclave
+[   11.223352] sgx_ioct: add new page to exist enclave
+[   11.223354] sgx_ioct: add new page to exist enclave
+[   11.223361] sgx_ioct: add new page to exist enclave
+[   11.223363] sgx_ioct: add new page to exist enclave
+[   11.223366] sgx_ioct: add new page to exist enclave
+[   11.223370] sgx_ioct: add new page to exist enclave
+[   11.223372] sgx_ioct: add new page to exist enclave
+[   11.223375] sgx_ioct: add new page to exist enclave
+[   11.223382] sgx_ioct: add new page to exist enclave
+[   11.223385] sgx_ioct: add new page to exist enclave
+[   11.223389] sgx_ioct: add new page to exist enclave
+[   11.223390] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 000000003c10f6be
+[   11.223393] sgx_ioct: add new page to exist enclave
+[   11.223396] sgx_ioct: add new page to exist enclave
+[   11.223400] sgx_ioct: add new page to exist enclave
+[   11.223403] sgx_ioct: add new page to exist enclave
+[   11.223405] sgx_ioct: add new page to exist enclave
+[   11.223407] sgx_ioct: add new page to exist enclave
+[   11.223410] sgx_ioct: add new page to exist enclave
+[   11.223414] sgx_ioct: add new page to exist enclave
+[   11.223416] sgx_ioct: add new page to exist enclave
+[   11.223445] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.223450] sgx_ioct: add new page to exist enclave
+[   11.223452] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000006b89c746
+[   11.223453] sgx_ioct: add new page to exist enclave
+[   11.223455] sgx_ioct: add new page to exist enclave
+[   11.223457] sgx_ioct: add new page to exist enclave
+[   11.223460] sgx_ioct: add new page to exist enclave
+[   11.223463] sgx_ioct: add new page to exist enclave
+[   11.223465] sgx_ioct: add new page to exist enclave
+[   11.223468] sgx_ioct: add new page to exist enclave
+[   11.223471] sgx_ioct: add new page to exist enclave
+[   11.223473] sgx_ioct: add new page to exist enclave
+[   11.223477] sgx_ioct: add new page to exist enclave
+[   11.223479] sgx_ioct: add new page to exist enclave
+[   11.223481] sgx_ioct: add new page to exist enclave
+[   11.223483] sgx_ioct: add new page to exist enclave
+[   11.223487] sgx_ioct: add new page to exist enclave
+[   11.223489] sgx_ioct: add new page to exist enclave
+[   11.223491] sgx_ioct: add new page to exist enclave
+[   11.223494] sgx_ioct: add new page to exist enclave
+[   11.223496] sgx_ioct: add new page to exist enclave
+[   11.223499] sgx_ioct: add new page to exist enclave
+[   11.223501] sgx_ioct: add new page to exist enclave
+[   11.223503] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.223503] sgx_ioct: add new page to exist enclave
+[   11.223506] sgx_ioct: add new page to exist enclave
+[   11.223506] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.223506] sgx: [SGX_moniter] moniter thread weak up
+[   11.223509] sgx_ioct: add new page to exist enclave
+[   11.223509] sgx_ioct: add new page to exist enclave
+[   11.223510] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.223511] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.223511] sgx: [SGX_moniter] moniter thread weak up
+[   11.223511] sgx_ioct: add new page to exist enclave
+[   11.223515] sgx_ioct: add new page to exist enclave
+[   11.223517] sgx_ioct: add new page to exist enclave
+[   11.223519] sgx_ioct: add new page to exist enclave
+[   11.223521] sgx_ioct: add new page to exist enclave
+[   11.223524] sgx_ioct: add new page to exist enclave
+[   11.223527] sgx_ioct: add new page to exist enclave
+[   11.223529] sgx_ioct: add new page to exist enclave
+[   11.223548] sgx_ioct: add new page to exist enclave
+[   11.223550] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.223586] sgx_ioct: add new page to exist enclave
+[   11.223600] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000b944c353
+[   11.223655] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.223661] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000071d3ef28
+[   11.223714] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.223717] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.223717] sgx: [SGX_moniter] moniter thread weak up
+[   11.223718] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.223718] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.223719] sgx: [SGX_moniter] moniter thread weak up
+[   11.223756] sgx_ioct: add new page to exist enclave
+[   11.223758] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.223794] sgx_ioct: add new page to exist enclave
+[   11.223808] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000a53c175a
+[   11.223869] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.223880] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000df182d3c
+[   11.223952] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.223956] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.223956] sgx: [SGX_moniter] moniter thread weak up
+[   11.223957] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.223957] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.223957] sgx: [SGX_moniter] moniter thread weak up
+[   11.223961] sgx_ioct: add new page to exist enclave
+[   11.224019] sgx_ioct: add new page to exist enclave
+[   11.224023] sgx_ioct: add new page to exist enclave
+[   11.224027] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.224089] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000004bf2af2b
+[   11.224155] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.224165] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000aea8efe7
+[   11.224230] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.224232] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.224233] sgx: [SGX_moniter] moniter thread weak up
+[   11.224237] sgx_ioct: add new page to exist enclave
+[   11.224240] sgx_ioct: add new page to exist enclave
+[   11.224242] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.224243] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.224243] sgx: [SGX_moniter] moniter thread weak up
+[   11.224296] sgx_ioct: add new page to exist enclave
+[   11.224301] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.224353] sgx_ioct: add new page to exist enclave
+[   11.224370] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 000000000c1f84e2
+[   11.224438] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.224449] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000005f471738
+[   11.224516] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.224520] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.224520] sgx: [SGX_moniter] moniter thread weak up
+[   11.224521] sgx_ioct: add new page to exist enclave
+[   11.224525] sgx_ioct: add new page to exist enclave
+[   11.224587] sgx_ioct: add new page to exist enclave
+[   11.224590] sgx_ioct: add new page to exist enclave
+[   11.224645] sgx_ioct: add new page to exist enclave
+[   11.224672] sgx: [SGX_moniter] In loop, current free page number = 23929, total page number = 23936
+[   11.224697] sgx_ioct: add new page to exist enclave
+[   11.224714] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000007ec99c9
+[   11.224767] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.224774] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000085403136
+[   11.224830] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.224837] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000072270ece
+[   11.224893] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.224896] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.224896] sgx: [SGX_moniter] moniter thread weak up
+[   11.224897] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.224897] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.224898] sgx: [SGX_moniter] moniter thread weak up
+[   11.224901] sgx_ioct: add new page to exist enclave
+[   11.224953] sgx_ioct: add new page to exist enclave
+[   11.224959] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.225008] sgx_ioct: add new page to exist enclave
+[   11.225022] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000c01acc9e
+[   11.225077] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.225084] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000c00eeb83
+[   11.225137] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.225139] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.225139] sgx: [SGX_moniter] moniter thread weak up
+[   11.225140] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.225140] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.225141] sgx: [SGX_moniter] moniter thread weak up
+[   11.225143] sgx_ioct: add new page to exist enclave
+[   11.225196] sgx_ioct: add new page to exist enclave
+[   11.225200] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.225249] sgx_ioct: add new page to exist enclave
+[   11.225265] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 000000009d5e620b
+[   11.225321] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.225327] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000037f534fa
+[   11.225379] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.225384] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.225385] sgx: [SGX_moniter] moniter thread weak up
+[   11.225385] sgx_ioct: add new page to exist enclave
+[   11.225389] sgx_ioct: add new page to exist enclave
+[   11.225446] sgx_ioct: add new page to exist enclave
+[   11.225502] sgx_ioct: add new page to exist enclave
+[   11.225515] sgx: [SGX_moniter] In loop, current free page number = 23929, total page number = 23936
+[   11.225557] sgx_ioct: add new page to exist enclave
+[   11.225573] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000b767bae6
+[   11.225628] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.225634] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 000000009c5a132d
+[   11.225685] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.225692] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000f24fb065
+[   11.225746] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.225748] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.225749] sgx: [SGX_moniter] moniter thread weak up
+[   11.225749] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.225750] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.225750] sgx: [SGX_moniter] moniter thread weak up
+[   11.225751] sgx_ioct: add new page to exist enclave
+[   11.225804] sgx_ioct: add new page to exist enclave
+[   11.225807] sgx_ioct: add new page to exist enclave
+[   11.225809] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.225843] sgx_ioct: add new page to exist enclave
+[   11.225847] sgx_ioct: add new page to exist enclave
+[   11.225850] sgx_ioct: add new page to exist enclave
+[   11.225853] sgx_ioct: add new page to exist enclave
+[   11.225855] sgx_ioct: add new page to exist enclave
+[   11.225857] sgx_ioct: add new page to exist enclave
+[   11.225861] sgx_ioct: add new page to exist enclave
+[   11.225862] sgx_ioct: add new page to exist enclave
+[   11.225869] sgx_ioct: add new page to exist enclave
+[   11.225872] sgx_ioct: add new page to exist enclave
+[   11.225875] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000b6a8c5da
+[   11.225876] sgx_ioct: add new page to exist enclave
+[   11.225879] sgx_ioct: add new page to exist enclave
+[   11.225882] sgx_ioct: add new page to exist enclave
+[   11.225886] sgx_ioct: add new page to exist enclave
+[   11.225888] sgx_ioct: add new page to exist enclave
+[   11.225892] sgx_ioct: add new page to exist enclave
+[   11.225894] sgx_ioct: add new page to exist enclave
+[   11.225896] sgx_ioct: add new page to exist enclave
+[   11.225899] sgx_ioct: add new page to exist enclave
+[   11.225901] sgx_ioct: add new page to exist enclave
+[   11.225903] sgx_ioct: add new page to exist enclave
+[   11.225905] sgx_ioct: add new page to exist enclave
+[   11.225909] sgx_ioct: add new page to exist enclave
+[   11.225911] sgx_ioct: add new page to exist enclave
+[   11.225914] sgx_ioct: add new page to exist enclave
+[   11.225918] sgx_ioct: add new page to exist enclave
+[   11.225920] sgx_ioct: add new page to exist enclave
+[   11.225922] sgx_ioct: add new page to exist enclave
+[   11.225926] sgx_ioct: add new page to exist enclave
+[   11.225929] sgx_ioct: add new page to exist enclave
+[   11.225931] sgx_ioct: add new page to exist enclave
+[   11.225934] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.225936] sgx_ioct: add new page to exist enclave
+[   11.225938] sgx_ioct: add new page to exist enclave
+[   11.225941] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000996c1c2b
+[   11.225989] sgx_ioct: add new page to exist enclave
+[   11.225991] sgx_ioct: add new page to exist enclave
+[   11.225995] sgx_ioct: add new page to exist enclave
+[   11.225997] sgx_ioct: add new page to exist enclave
+[   11.225999] sgx_ioct: add new page to exist enclave
+[   11.226002] sgx_ioct: add new page to exist enclave
+[   11.226005] sgx_ioct: add new page to exist enclave
+[   11.226007] sgx_ioct: add new page to exist enclave
+[   11.226009] sgx_ioct: add new page to exist enclave
+[   11.226012] sgx_ioct: add new page to exist enclave
+[   11.226015] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.226015] sgx_ioct: add new page to exist enclave
+[   11.226017] sgx_ioct: add new page to exist enclave
+[   11.226018] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.226018] sgx: [SGX_moniter] moniter thread weak up
+[   11.226019] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.226020] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.226020] sgx: [SGX_moniter] moniter thread weak up
+[   11.226022] sgx_ioct: add new page to exist enclave
+[   11.226023] sgx_ioct: add new page to exist enclave
+[   11.226025] sgx_ioct: add new page to exist enclave
+[   11.226032] sgx_ioct: add new page to exist enclave
+[   11.226035] sgx_ioct: add new page to exist enclave
+[   11.226039] sgx_ioct: add new page to exist enclave
+[   11.226043] sgx_ioct: add new page to exist enclave
+[   11.226045] sgx_ioct: add new page to exist enclave
+[   11.226048] sgx_ioct: add new page to exist enclave
+[   11.226050] sgx_ioct: add new page to exist enclave
+[   11.226052] sgx_ioct: add new page to exist enclave
+[   11.226054] sgx_ioct: add new page to exist enclave
+[   11.226057] sgx_ioct: add new page to exist enclave
+[   11.226059] sgx_ioct: add new page to exist enclave
+[   11.226061] sgx_ioct: add new page to exist enclave
+[   11.226063] sgx_ioct: add new page to exist enclave
+[   11.226065] sgx_ioct: add new page to exist enclave
+[   11.226067] sgx_ioct: add new page to exist enclave
+[   11.226069] sgx_ioct: add new page to exist enclave
+[   11.226072] sgx_ioct: add new page to exist enclave
+[   11.226073] sgx_ioct: add new page to exist enclave
+[   11.226076] sgx_ioct: add new page to exist enclave
+[   11.226076] sgx_ioct: add new page to exist enclave
+[   11.226100] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.226130] sgx_ioct: add new page to exist enclave
+[   11.226142] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000e4b8127a
+[   11.226196] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.226202] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000002c4c3a56
+[   11.226255] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.226257] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.226257] sgx: [SGX_moniter] moniter thread weak up
+[   11.226257] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.226258] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.226258] sgx: [SGX_moniter] moniter thread weak up
+[   11.226258] sgx_ioct: add new page to exist enclave
+[   11.226311] sgx_ioct: add new page to exist enclave
+[   11.226314] sgx_ioct: add new page to exist enclave
+[   11.226327] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.226380] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000042ad5b1b
+[   11.226436] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.226443] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000082040ef9
+[   11.226497] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.226499] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.226499] sgx: [SGX_moniter] moniter thread weak up
+[   11.226504] sgx_ioct: add new page to exist enclave
+[   11.226512] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.226514] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.226514] sgx: [SGX_moniter] moniter thread weak up
+[   11.226560] sgx_ioct: add new page to exist enclave
+[   11.226564] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.226594] sgx_ioct: add new page to exist enclave
+[   11.226596] sgx_ioct: add new page to exist enclave
+[   11.226598] sgx_ioct: add new page to exist enclave
+[   11.226603] sgx_ioct: add new page to exist enclave
+[   11.226605] sgx_ioct: add new page to exist enclave
+[   11.226608] sgx_ioct: add new page to exist enclave
+[   11.226610] sgx_ioct: add new page to exist enclave
+[   11.226614] sgx_ioct: add new page to exist enclave
+[   11.226616] sgx_ioct: add new page to exist enclave
+[   11.226617] sgx_ioct: add new page to exist enclave
+[   11.226624] sgx_ioct: add new page to exist enclave
+[   11.226627] sgx_ioct: add new page to exist enclave
+[   11.226630] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 000000008e22ea35
+[   11.226631] sgx_ioct: add new page to exist enclave
+[   11.226635] sgx_ioct: add new page to exist enclave
+[   11.226638] sgx_ioct: add new page to exist enclave
+[   11.226642] sgx_ioct: add new page to exist enclave
+[   11.226644] sgx_ioct: add new page to exist enclave
+[   11.226647] sgx_ioct: add new page to exist enclave
+[   11.226650] sgx_ioct: add new page to exist enclave
+[   11.226653] sgx_ioct: add new page to exist enclave
+[   11.226655] sgx_ioct: add new page to exist enclave
+[   11.226657] sgx_ioct: add new page to exist enclave
+[   11.226660] sgx_ioct: add new page to exist enclave
+[   11.226663] sgx_ioct: add new page to exist enclave
+[   11.226665] sgx_ioct: add new page to exist enclave
+[   11.226668] sgx_ioct: add new page to exist enclave
+[   11.226670] sgx_ioct: add new page to exist enclave
+[   11.226672] sgx_ioct: add new page to exist enclave
+[   11.226674] sgx_ioct: add new page to exist enclave
+[   11.226676] sgx_ioct: add new page to exist enclave
+[   11.226679] sgx_ioct: add new page to exist enclave
+[   11.226682] sgx_ioct: add new page to exist enclave
+[   11.226685] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.226685] sgx_ioct: add new page to exist enclave
+[   11.226691] sgx_ioct: add new page to exist enclave
+[   11.226691] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000003b7306ad
+[   11.226695] sgx_ioct: add new page to exist enclave
+[   11.226698] sgx_ioct: add new page to exist enclave
+[   11.226701] sgx_ioct: add new page to exist enclave
+[   11.226705] sgx_ioct: add new page to exist enclave
+[   11.226710] sgx_ioct: add new page to exist enclave
+[   11.226713] sgx_ioct: add new page to exist enclave
+[   11.226715] sgx_ioct: add new page to exist enclave
+[   11.226717] sgx_ioct: add new page to exist enclave
+[   11.226719] sgx_ioct: add new page to exist enclave
+[   11.226721] sgx_ioct: add new page to exist enclave
+[   11.226724] sgx_ioct: add new page to exist enclave
+[   11.226728] sgx_ioct: add new page to exist enclave
+[   11.226731] sgx_ioct: add new page to exist enclave
+[   11.226733] sgx_ioct: add new page to exist enclave
+[   11.226735] sgx_ioct: add new page to exist enclave
+[   11.226738] sgx_ioct: add new page to exist enclave
+[   11.226741] sgx_ioct: add new page to exist enclave
+[   11.226743] sgx_ioct: add new page to exist enclave
+[   11.226744] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.226745] sgx_ioct: add new page to exist enclave
+[   11.226746] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.226747] sgx: [SGX_moniter] moniter thread weak up
+[   11.226747] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.226748] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.226748] sgx: [SGX_moniter] moniter thread weak up
+[   11.226749] sgx_ioct: add new page to exist enclave
+[   11.226749] sgx_ioct: add new page to exist enclave
+[   11.226752] sgx_ioct: add new page to exist enclave
+[   11.226755] sgx_ioct: add new page to exist enclave
+[   11.226762] sgx_ioct: add new page to exist enclave
+[   11.226764] sgx_ioct: add new page to exist enclave
+[   11.226802] sgx_ioct: add new page to exist enclave
+[   11.226807] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.226811] sgx_ioct: add new page to exist enclave
+[   11.226817] sgx_ioct: add new page to exist enclave
+[   11.226820] sgx_ioct: add new page to exist enclave
+[   11.226823] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000939bb809
+[   11.226824] sgx_ioct: add new page to exist enclave
+[   11.226829] sgx_ioct: add new page to exist enclave
+[   11.226833] sgx_ioct: add new page to exist enclave
+[   11.226836] sgx_ioct: add new page to exist enclave
+[   11.226839] sgx_ioct: add new page to exist enclave
+[   11.226844] sgx_ioct: add new page to exist enclave
+[   11.226851] sgx_ioct: add new page to exist enclave
+[   11.226854] sgx_ioct: add new page to exist enclave
+[   11.226856] sgx_ioct: add new page to exist enclave
+[   11.226858] sgx_ioct: add new page to exist enclave
+[   11.226861] sgx_ioct: add new page to exist enclave
+[   11.226863] sgx_ioct: add new page to exist enclave
+[   11.226865] sgx_ioct: add new page to exist enclave
+[   11.226867] sgx_ioct: add new page to exist enclave
+[   11.226869] sgx_ioct: add new page to exist enclave
+[   11.226872] sgx_ioct: add new page to exist enclave
+[   11.226874] sgx_ioct: add new page to exist enclave
+[   11.226877] sgx_ioct: add new page to exist enclave
+[   11.226880] sgx_ioct: add new page to exist enclave
+[   11.226884] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.226885] sgx_ioct: add new page to exist enclave
+[   11.226888] sgx_ioct: add new page to exist enclave
+[   11.226889] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.226890] sgx: [SGX_moniter] moniter thread weak up
+[   11.226891] sgx_ioct: add new page to exist enclave
+[   11.226891] sgx_ioct: add new page to exist enclave
+[   11.226894] sgx_ioct: add new page to exist enclave
+[   11.226947] sgx_ioct: add new page to exist enclave
+[   11.226950] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.226953] sgx_ioct: add new page to exist enclave
+[   11.226960] sgx_ioct: add new page to exist enclave
+[   11.226964] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000c3b87dfa
+[   11.226966] sgx_ioct: add new page to exist enclave
+[   11.226969] sgx_ioct: add new page to exist enclave
+[   11.226973] sgx_ioct: add new page to exist enclave
+[   11.226975] sgx_ioct: add new page to exist enclave
+[   11.226977] sgx_ioct: add new page to exist enclave
+[   11.226979] sgx_ioct: add new page to exist enclave
+[   11.226981] sgx_ioct: add new page to exist enclave
+[   11.226983] sgx_ioct: add new page to exist enclave
+[   11.226986] sgx_ioct: add new page to exist enclave
+[   11.226988] sgx_ioct: add new page to exist enclave
+[   11.226991] sgx_ioct: add new page to exist enclave
+[   11.226993] sgx_ioct: add new page to exist enclave
+[   11.226995] sgx_ioct: add new page to exist enclave
+[   11.226998] sgx_ioct: add new page to exist enclave
+[   11.227001] sgx_ioct: add new page to exist enclave
+[   11.227003] sgx_ioct: add new page to exist enclave
+[   11.227005] sgx_ioct: add new page to exist enclave
+[   11.227007] sgx_ioct: add new page to exist enclave
+[   11.227009] sgx_ioct: add new page to exist enclave
+[   11.227012] sgx_ioct: add new page to exist enclave
+[   11.227014] sgx_ioct: add new page to exist enclave
+[   11.227017] sgx_ioct: add new page to exist enclave
+[   11.227019] sgx_ioct: add new page to exist enclave
+[   11.227023] sgx_ioct: add new page to exist enclave
+[   11.227025] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.227025] sgx_ioct: add new page to exist enclave
+[   11.227027] sgx_ioct: add new page to exist enclave
+[   11.227028] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.227029] sgx: [SGX_moniter] moniter thread weak up
+[   11.227030] sgx_ioct: add new page to exist enclave
+[   11.227031] sgx_ioct: add new page to exist enclave
+[   11.227033] sgx_ioct: add new page to exist enclave
+[   11.227035] sgx_ioct: add new page to exist enclave
+[   11.227037] sgx_ioct: add new page to exist enclave
+[   11.227039] sgx_ioct: add new page to exist enclave
+[   11.227041] sgx_ioct: add new page to exist enclave
+[   11.227043] sgx_ioct: add new page to exist enclave
+[   11.227045] sgx_ioct: add new page to exist enclave
+[   11.227047] sgx_ioct: add new page to exist enclave
+[   11.227049] sgx_ioct: add new page to exist enclave
+[   11.227051] sgx_ioct: add new page to exist enclave
+[   11.227053] sgx_ioct: add new page to exist enclave
+[   11.227055] sgx_ioct: add new page to exist enclave
+[   11.227057] sgx_ioct: add new page to exist enclave
+[   11.227059] sgx_ioct: add new page to exist enclave
+[   11.227062] sgx_ioct: add new page to exist enclave
+[   11.227064] sgx_ioct: add new page to exist enclave
+[   11.227066] sgx_ioct: add new page to exist enclave
+[   11.227069] sgx_ioct: add new page to exist enclave
+[   11.227071] sgx_ioct: add new page to exist enclave
+[   11.227073] sgx_ioct: add new page to exist enclave
+[   11.227074] sgx_ioct: add new page to exist enclave
+[   11.227076] sgx_ioct: add new page to exist enclave
+[   11.227078] sgx_ioct: add new page to exist enclave
+[   11.227080] sgx_ioct: add new page to exist enclave
+[   11.227083] sgx_ioct: add new page to exist enclave
+[   11.227083] sgx_ioct: add new page to exist enclave
+[   11.227086] sgx_ioct: add new page to exist enclave
+[   11.227086] sgx_ioct: add new page to exist enclave
+[   11.227091] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.227091] sgx_ioct: add new page to exist enclave
+[   11.227094] sgx_ioct: add new page to exist enclave
+[   11.227096] sgx_ioct: add new page to exist enclave
+[   11.227098] sgx_ioct: add new page to exist enclave
+[   11.227100] sgx_ioct: add new page to exist enclave
+[   11.227102] sgx_ioct: add new page to exist enclave
+[   11.227104] sgx_ioct: add new page to exist enclave
+[   11.227106] sgx_ioct: add new page to exist enclave
+[   11.227107] sgx_ioct: add new page to exist enclave
+[   11.227109] sgx_ioct: add new page to exist enclave
+[   11.227111] sgx_ioct: add new page to exist enclave
+[   11.227113] sgx_ioct: add new page to exist enclave
+[   11.227115] sgx_ioct: add new page to exist enclave
+[   11.227117] sgx_ioct: add new page to exist enclave
+[   11.227119] sgx_ioct: add new page to exist enclave
+[   11.227122] sgx_ioct: add new page to exist enclave
+[   11.227124] sgx_ioct: add new page to exist enclave
+[   11.227126] sgx_ioct: add new page to exist enclave
+[   11.227128] sgx_ioct: add new page to exist enclave
+[   11.227130] sgx_ioct: add new page to exist enclave
+[   11.227132] sgx_ioct: add new page to exist enclave
+[   11.227134] sgx_ioct: add new page to exist enclave
+[   11.227136] sgx_ioct: add new page to exist enclave
+[   11.227138] sgx_ioct: add new page to exist enclave
+[   11.227140] sgx_ioct: add new page to exist enclave
+[   11.227141] sgx_ioct: add new page to exist enclave
+[   11.227142] sgx_ioct: add new page to exist enclave
+[   11.227149] sgx_ioct: add new page to exist enclave
+[   11.227152] sgx_ioct: add new page to exist enclave
+[   11.227155] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000036f118c5
+[   11.227215] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.227223] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 000000003b1a0626
+[   11.227282] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.227287] sgx_ioct: add new page to exist enclave
+[   11.227287] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.227288] sgx: [SGX_moniter] moniter thread weak up
+[   11.227294] sgx_ioct: add new page to exist enclave
+[   11.227298] sgx_ioct: add new page to exist enclave
+[   11.227301] sgx_ioct: add new page to exist enclave
+[   11.227303] sgx_ioct: add new page to exist enclave
+[   11.227304] sgx_ioct: add new page to exist enclave
+[   11.227307] sgx_ioct: add new page to exist enclave
+[   11.227311] sgx_ioct: add new page to exist enclave
+[   11.227349] sgx_ioct: add new page to exist enclave
+[   11.227352] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.227359] sgx_ioct: add new page to exist enclave
+[   11.227360] sgx_ioct: add new page to exist enclave
+[   11.227362] sgx_ioct: add new page to exist enclave
+[   11.227364] sgx_ioct: add new page to exist enclave
+[   11.227413] sgx_ioct: add new page to exist enclave
+[   11.227427] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000fa143570
+[   11.227485] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.227492] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000005d8352ae
+[   11.227551] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.227555] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.227555] sgx: [SGX_moniter] moniter thread weak up
+[   11.227565] sgx_ioct: add new page to exist enclave
+[   11.227618] sgx_ioct: add new page to exist enclave
+[   11.227622] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.227634] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000012c645e3
+[   11.227693] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.227697] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.227697] sgx: [SGX_moniter] moniter thread weak up
+[   11.227755] sgx_ioct: add new page to exist enclave
+[   11.227756] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.227767] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000060d66edb
+[   11.227825] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.227827] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.227828] sgx: [SGX_moniter] moniter thread weak up
+[   11.227881] sgx_ioct: add new page to exist enclave
+[   11.227883] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.227933] sgx_ioct: add new page to exist enclave
+[   11.227948] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000e8fdf9d3
+[   11.228005] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.228012] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000ba1e5e29
+[   11.228068] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.228073] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.228073] sgx: [SGX_moniter] moniter thread weak up
+[   11.228075] sgx_ioct: add new page to exist enclave
+[   11.228134] sgx_ioct: add new page to exist enclave
+[   11.228136] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.228202] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000098714d69
+[   11.228255] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.228262] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000c5de46ca
+[   11.228321] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.228325] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.228326] sgx: [SGX_moniter] moniter thread weak up
+[   11.228326] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.228327] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.228328] sgx: [SGX_moniter] moniter thread weak up
+[   11.228328] sgx_ioct: add new page to exist enclave
+[   11.228393] sgx_ioct: add new page to exist enclave
+[   11.228396] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.228403] sgx_ioct: add new page to exist enclave
+[   11.228469] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000e599fcc7
+[   11.228544] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.228556] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000d3d65bb2
+[   11.228615] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.228619] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.228620] sgx: [SGX_moniter] moniter thread weak up
+[   11.228620] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.228621] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.228621] sgx_ioct: add new page to exist enclave
+[   11.228622] sgx: [SGX_moniter] moniter thread weak up
+[   11.228684] sgx_ioct: add new page to exist enclave
+[   11.228686] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.228737] sgx_ioct: add new page to exist enclave
+[   11.228750] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000093a3733c
+[   11.228809] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.228816] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000025eb0639
+[   11.228875] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.228877] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.228877] sgx: [SGX_moniter] moniter thread weak up
+[   11.228878] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.228879] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.228879] sgx: [SGX_moniter] moniter thread weak up
+[   11.228880] sgx_ioct: add new page to exist enclave
+[   11.228936] sgx_ioct: add new page to exist enclave
+[   11.228939] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.229004] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000007effa1a1
+[   11.229064] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.229071] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000b4ee1728
+[   11.229130] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.229134] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.229135] sgx: [SGX_moniter] moniter thread weak up
+[   11.229136] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.229137] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.229137] sgx: [SGX_moniter] moniter thread weak up
+[   11.229192] sgx_ioct: add new page to exist enclave
+[   11.229194] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.229244] sgx_ioct: add new page to exist enclave
+[   11.229258] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000cc5285e8
+[   11.229316] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.229326] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000054ac5b49
+[   11.229382] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.229385] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.229385] sgx: [SGX_moniter] moniter thread weak up
+[   11.229385] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.229386] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.229386] sgx: [SGX_moniter] moniter thread weak up
+[   11.229436] sgx_ioct: add new page to exist enclave
+[   11.229437] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.229514] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000008bda59e4
+[   11.229592] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.229612] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 0000000032b66a2c
+[   11.229692] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.229708] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.229709] sgx: [SGX_moniter] moniter thread weak up
+[   11.229710] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.229710] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.229711] sgx: [SGX_moniter] moniter thread weak up
+[   11.229711] sgx_ioct: add new page to exist enclave
+[   11.229794] sgx_ioct: add new page to exist enclave
+[   11.229797] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.229883] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 000000000e1ba0e8
+[   11.229951] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.230101] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000009e0f0eb6
+[   11.230155] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.230162] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.230162] sgx: [SGX_moniter] moniter thread weak up
+[   11.230172] sgx_ioct: add new page to exist enclave
+[   11.230173] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.230174] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.230175] sgx: [SGX_moniter] moniter thread weak up
+[   11.230229] sgx_ioct: add new page to exist enclave
+[   11.230232] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.230246] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000ddf80fd4
+[   11.230307] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.230309] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.230310] sgx: [SGX_moniter] moniter thread weak up
+[   11.230314] sgx_ioct: add new page to exist enclave
+[   11.230386] sgx_ioct: add new page to exist enclave
+[   11.230390] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.230469] sgx_ioct: add new page to exist enclave
+[   11.230498] sgx: [SGX_moniter] temp ewb new page,current page address = 000000002f530496, va = 00000000af4f752a
+[   11.230561] sgx: SGX-HASH(address: 000000002f530496, size: 4096): f47a8ec3e9aff231
+[   11.230568] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000a89a723f
+[   11.230627] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.230629] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.230630] sgx: [SGX_moniter] moniter thread weak up
+[   11.230697] sgx_ioct: add new page to exist enclave
+[   11.230702] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.230778] sgx_ioct: add new page to exist enclave
+[   11.230801] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 000000006fcdc82a
+[   11.230871] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.230879] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000009cde5ed
+[   11.230936] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.230939] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.230940] sgx: [SGX_moniter] moniter thread weak up
+[   11.230941] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.230941] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.230942] sgx: [SGX_moniter] moniter thread weak up
+[   11.230946] sgx_ioct: add new page to exist enclave
+[   11.231000] sgx_ioct: add new page to exist enclave
+[   11.231006] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.231056] sgx_ioct: add new page to exist enclave
+[   11.231073] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000a47fb4a3
+[   11.231138] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.231145] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 000000003443cdb6
+[   11.231206] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.231209] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.231209] sgx: [SGX_moniter] moniter thread weak up
+[   11.231210] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.231211] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.231211] sgx: [SGX_moniter] moniter thread weak up
+[   11.231268] sgx_ioct: add new page to exist enclave
+[   11.231271] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.231323] sgx_ioct: add new page to exist enclave
+[   11.231336] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000055f58fa1
+[   11.231393] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.231399] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000002d8c9973
+[   11.231455] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.231457] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.231457] sgx: [SGX_moniter] moniter thread weak up
+[   11.231458] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.231458] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.231459] sgx: [SGX_moniter] moniter thread weak up
+[   11.231515] sgx_ioct: add new page to exist enclave
+[   11.231517] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.231569] sgx_ioct: add new page to exist enclave
+[   11.231598] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000007bc59f9d
+[   11.231651] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.231658] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000d3733877
+[   11.231707] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.231710] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.231710] sgx: [SGX_moniter] moniter thread weak up
+[   11.231714] sgx_ioct: add new page to exist enclave
+[   11.231765] sgx_ioct: add new page to exist enclave
+[   11.231769] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.231820] sgx_ioct: add new page to exist enclave
+[   11.231834] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 000000008dcf7450
+[   11.231891] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.231898] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000062bea7df
+[   11.231955] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.231957] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.231957] sgx: [SGX_moniter] moniter thread weak up
+[   11.231958] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.231958] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.231959] sgx: [SGX_moniter] moniter thread weak up
+[   11.232014] sgx_ioct: add new page to exist enclave
+[   11.232018] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.232068] sgx_ioct: add new page to exist enclave
+[   11.232084] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000a23e5717
+[   11.232140] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.232147] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000f8aecc59
+[   11.232200] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.232204] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.232205] sgx: [SGX_moniter] moniter thread weak up
+[   11.232206] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.232206] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.232206] sgx: [SGX_moniter] moniter thread weak up
+[   11.232261] sgx_ioct: add new page to exist enclave
+[   11.232262] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.232326] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000e7882649
+[   11.232386] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.232393] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000085e32873
+[   11.232446] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.232453] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.232453] sgx: [SGX_moniter] moniter thread weak up
+[   11.232454] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.232455] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.232455] sgx: [SGX_moniter] moniter thread weak up
+[   11.232510] sgx_ioct: add new page to exist enclave
+[   11.232512] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.232563] sgx_ioct: add new page to exist enclave
+[   11.232576] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000007e15791
+[   11.232650] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.232657] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000ed1fa567
+[   11.232713] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.232716] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.232716] sgx: [SGX_moniter] moniter thread weak up
+[   11.232717] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.232720] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.232722] sgx: [SGX_moniter] moniter thread weak up
+[   11.232773] sgx_ioct: add new page to exist enclave
+[   11.232774] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.232824] sgx_ioct: add new page to exist enclave
+[   11.232837] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 000000008f632987
+[   11.232907] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.232913] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000003e1b3d33
+[   11.232969] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.232971] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.232972] sgx: [SGX_moniter] moniter thread weak up
+[   11.232972] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.232973] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.232973] sgx: [SGX_moniter] moniter thread weak up
+[   11.232975] sgx_ioct: add new page to exist enclave
+[   11.233027] sgx_ioct: add new page to exist enclave
+[   11.233031] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.233081] sgx_ioct: add new page to exist enclave
+[   11.233094] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000082c2cfad
+[   11.233158] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.233165] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000cd0e3e20
+[   11.233228] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.233230] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.233231] sgx: [SGX_moniter] moniter thread weak up
+[   11.233231] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.233232] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.233232] sgx: [SGX_moniter] moniter thread weak up
+[   11.233236] sgx_ioct: add new page to exist enclave
+[   11.233287] sgx_ioct: add new page to exist enclave
+[   11.233290] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.233356] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 000000004ca2e0c8
+[   11.233412] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.233418] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000001f03449b
+[   11.233459] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.233460] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.233461] sgx: [SGX_moniter] moniter thread weak up
+[   11.233465] sgx_ioct: add new page to exist enclave
+[   11.233467] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.233467] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.233468] sgx: [SGX_moniter] moniter thread weak up
+[   11.233518] sgx_ioct: add new page to exist enclave
+[   11.233519] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.233571] sgx_ioct: add new page to exist enclave
+[   11.233600] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000df4f4099
+[   11.233658] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.233665] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000049a39e83
+[   11.233721] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.233724] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.233725] sgx: [SGX_moniter] moniter thread weak up
+[   11.233725] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.233726] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.233727] sgx: [SGX_moniter] moniter thread weak up
+[   11.233728] sgx_ioct: add new page to exist enclave
+[   11.233781] sgx_ioct: add new page to exist enclave
+[   11.233783] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.233835] sgx_ioct: add new page to exist enclave
+[   11.233849] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000092add8ad
+[   11.233909] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.233916] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000f9b2cc45
+[   11.233986] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.233988] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.233989] sgx: [SGX_moniter] moniter thread weak up
+[   11.233989] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.233990] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.233990] sgx: [SGX_moniter] moniter thread weak up
+[   11.234043] sgx_ioct: add new page to exist enclave
+[   11.234044] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.234098] sgx_ioct: add new page to exist enclave
+[   11.234110] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000033e6aec1
+[   11.234169] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.234175] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000f2597e06
+[   11.234232] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.234234] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.234235] sgx: [SGX_moniter] moniter thread weak up
+[   11.234235] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.234236] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.234236] sgx_ioct: add new page to exist enclave
+[   11.234237] sgx: [SGX_moniter] moniter thread weak up
+[   11.234293] sgx_ioct: add new page to exist enclave
+[   11.234294] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.234349] sgx_ioct: add new page to exist enclave
+[   11.234360] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000cbad3db9
+[   11.234418] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.234425] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000e82b8cd7
+[   11.234482] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.234484] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.234484] sgx: [SGX_moniter] moniter thread weak up
+[   11.234485] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.234485] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.234486] sgx: [SGX_moniter] moniter thread weak up
+[   11.234488] sgx_ioct: add new page to exist enclave
+[   11.234557] sgx_ioct: add new page to exist enclave
+[   11.234559] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.234610] sgx_ioct: add new page to exist enclave
+[   11.234621] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 0000000061312176
+[   11.234677] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.234683] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000497f3f11
+[   11.234739] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.234741] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.234741] sgx: [SGX_moniter] moniter thread weak up
+[   11.234742] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.234742] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.234743] sgx: [SGX_moniter] moniter thread weak up
+[   11.234744] sgx_ioct: add new page to exist enclave
+[   11.234795] sgx_ioct: add new page to exist enclave
+[   11.234797] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.234847] sgx_ioct: add new page to exist enclave
+[   11.234858] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000095fcf802
+[   11.234913] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.234919] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000006447f05e
+[   11.234974] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.234976] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.234976] sgx: [SGX_moniter] moniter thread weak up
+[   11.234977] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.234978] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.234978] sgx_ioct: add new page to exist enclave
+[   11.234978] sgx: [SGX_moniter] moniter thread weak up
+[   11.235029] sgx_ioct: add new page to exist enclave
+[   11.235032] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.235083] sgx_ioct: add new page to exist enclave
+[   11.235095] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000002e79d59c
+[   11.235154] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.235160] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000dbcb9335
+[   11.235219] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.235222] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.235222] sgx: [SGX_moniter] moniter thread weak up
+[   11.235223] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.235224] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.235224] sgx: [SGX_moniter] moniter thread weak up
+[   11.235227] sgx_ioct: add new page to exist enclave
+[   11.235281] sgx_ioct: add new page to exist enclave
+[   11.235286] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.235334] sgx_ioct: add new page to exist enclave
+[   11.235348] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000043399e41
+[   11.235405] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.235412] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000006024d873
+[   11.235469] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.235472] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.235472] sgx: [SGX_moniter] moniter thread weak up
+[   11.235473] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.235474] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.235474] sgx: [SGX_moniter] moniter thread weak up
+[   11.235475] sgx_ioct: add new page to exist enclave
+[   11.235526] sgx_ioct: add new page to exist enclave
+[   11.235530] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.235579] sgx_ioct: add new page to exist enclave
+[   11.235594] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000071ac6d9
+[   11.235649] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.235656] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 000000001bbb4dce
+[   11.235713] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.235715] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.235715] sgx: [SGX_moniter] moniter thread weak up
+[   11.235716] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.235717] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.235717] sgx: [SGX_moniter] moniter thread weak up
+[   11.235718] sgx_ioct: add new page to exist enclave
+[   11.235770] sgx_ioct: add new page to exist enclave
+[   11.235774] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.235823] sgx_ioct: add new page to exist enclave
+[   11.235836] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 0000000037ff1dcb
+[   11.235886] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.235892] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000154f77a3
+[   11.235941] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.235943] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.235944] sgx: [SGX_moniter] moniter thread weak up
+[   11.235944] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.235945] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.235945] sgx: [SGX_moniter] moniter thread weak up
+[   11.235947] sgx_ioct: add new page to exist enclave
+[   11.236000] sgx_ioct: add new page to exist enclave
+[   11.236003] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.236053] sgx_ioct: add new page to exist enclave
+[   11.236067] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 00000000a0a07c70
+[   11.236123] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.236131] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 000000004a59070c
+[   11.236191] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.236194] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.236195] sgx: [SGX_moniter] moniter thread weak up
+[   11.236195] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.236196] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.236197] sgx: [SGX_moniter] moniter thread weak up
+[   11.236199] sgx_ioct: add new page to exist enclave
+[   11.236251] sgx_ioct: add new page to exist enclave
+[   11.236254] sgx: [SGX_moniter] In loop, current free page number = 23930, total page number = 23936
+[   11.236305] sgx_ioct: add new page to exist enclave
+[   11.236317] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000069a9e37, va = 00000000b9f82591
+[   11.236375] sgx: SGX-HASH(address: 00000000069a9e37, size: 4096): f47a8ec3e9aff231
+[   11.236382] sgx: [SGX_moniter] temp ewb new page,current page address = 00000000ff741e03, va = 000000005e24bdac
+[   11.236436] sgx: SGX-HASH(address: 00000000ff741e03, size: 4096): f47a8ec3e9aff231
+[   11.236439] sgx: [SGX_moniter] In loop, current counter = 23932,
+[   11.236439] sgx: [SGX_moniter] moniter thread weak up
+[   11.236440] sgx: [SGX_moniter] In loop, current free page number = 23931, total page number = 23936
+[   11.236440] sgx: [SGX_moniter] In loop, current counter = 23931,
+[   11.236440] sgx: [SGX_moniter] moniter thread weak up
+[   11.236443] sgx_ioct: add new page to exist enclave
+[   11.236496] sgx_ioct: add new page to exist enclave
+[   11.236499] sgx_ioct: add new page to exist enclave
+[   11.236501] sgx_ioct: add new page to exist enclave
+[   11.236505] sgx_ioct: add new page to exist enclave
+[   11.236508] sgx_ioct: add new page to exist enclave
+[   11.236511] sgx_ioct: add new page to exist enclave
+[   11.236513] sgx_ioct: add new page to exist enclave
+[   11.236515] sgx_ioct: add new page to exist enclave
+[   11.236520] sgx_ioct: add new page to exist enclave
+[   11.236523] sgx_ioct: add new page to exist enclave
+[   11.236526] sgx_ioct: add new page to exist enclave
+[   11.236528] sgx_ioct: add new page to exist enclave
+[   11.236531] sgx_ioct: add new page to exist enclave
+[   11.236590] sgx_ioct: add new page to exist enclave
+[   11.236595] sgx_ioct: add new page to exist enclave
+[   11.236604] sgx_ioct: add new page to exist enclave
+[   11.236608] sgx_ioct: add new page to exist enclave
+[   11.236610] sgx_ioct: add new page to exist enclave
+[   11.236615] sgx_ioct: add new page to exist enclave
+[   11.236618] sgx_ioct: add new page to exist enclave
+[   11.236622] sgx_ioct: add new page to exist enclave
+[   11.236624] sgx_ioct: add new page to exist enclave
+[   11.236627] sgx_ioct: add new page to exist enclave
+[   11.236630] sgx_ioct: add new page to exist enclave
+[   11.236632] sgx_ioct: add new page to exist enclave
+[   11.236636] sgx_ioct: add new page to exist enclave
+[   11.236639] sgx_ioct: add new page to exist enclave
+[   11.236641] sgx_ioct: add new page to exist enclave
+[   11.236645] sgx_ioct: add new page to exist enclave
+[   11.236648] sgx_ioct: add new page to exist enclave
+[   11.236651] sgx_ioct: add new page to exist enclave
+[   11.236657] sgx_ioct: add new page to exist enclave
+[   11.236661] sgx_ioct: add new page to exist enclave
+[   11.236668] sgx_ioct: add new page to exist enclave
+[   11.236674] sgx_ioct: add new page to exist enclave
+[   11.236676] sgx_ioct: add new page to exist enclave
+[   11.236679] sgx_ioct: add new page to exist enclave
+[   11.236681] sgx_ioct: add new page to exist enclave
+[   11.236684] sgx_ioct: add new page to exist enclave
+[   11.236686] sgx_ioct: add new page to exist enclave
+[   11.236689] sgx_ioct: add new page to exist enclave
+[   11.236692] sgx_ioct: add new page to exist enclave
+[   11.236695] sgx_ioct: add new page to exist enclave
+[   11.236698] sgx_ioct: add new page to exist enclave
+[   11.236701] sgx_ioct: add new page to exist enclave
+[   11.236704] sgx_ioct: add new page to exist enclave
+[   11.236708] sgx_ioct: add new page to exist enclave
+[   11.236711] sgx_ioct: add new page to exist enclave
+[   11.236714] sgx_ioct: add new page to exist enclave
+[   11.236718] sgx_ioct: add new page to exist enclave
+[   11.236721] sgx_ioct: add new page to exist enclave
+[   11.236723] sgx_ioct: add new page to exist enclave
+[   11.236725] sgx_ioct: add new page to exist enclave
+[   11.236728] sgx_ioct: add new page to exist enclave
+[   11.236730] sgx_ioct: add new page to exist enclave
+[   11.236733] sgx_ioct: add new page to exist enclave
+[   11.236735] sgx_ioct: add new page to exist enclave
+[   11.236737] sgx_ioct: add new page to exist enclave
+[   11.236741] sgx_ioct: add new page to exist enclave
+[   11.236743] sgx_ioct: add new page to exist enclave
+[   11.236746] sgx_ioct: add new page to exist enclave
+[   11.236748] sgx_ioct: add new page to exist enclave
+[   11.236751] sgx_ioct: add new page to exist enclave
+[   11.236754] sgx_ioct: add new page to exist enclave
+[   11.236761] sgx_ioct: add new page to exist enclave
+[   11.236763] sgx_ioct: add new page to exist enclave
+[   11.236766] sgx_ioct: add new page to exist enclave
+[   11.236770] sgx_ioct: add new page to exist enclave
+[   11.236772] sgx_ioct: add new page to exist enclave
+[   11.236776] sgx_ioct: add new page to exist enclave
+[   11.236784] sgx_ioct: add new page to exist enclave
+[   11.236786] sgx_ioct: add new page to exist enclave
+[   11.236789] sgx_ioct: add new page to exist enclave
+[   11.236791] sgx_ioct: add new page to exist enclave
+[   11.236794] sgx_ioct: add new page to exist enclave
+[   11.236798] sgx_ioct: add new page to exist enclave
+[   11.236801] sgx_ioct: add new page to exist enclave
+[   11.236804] sgx_ioct: add new page to exist enclave
+[   11.236806] sgx_ioct: add new page to exist enclave
+[   11.236811] sgx_ioct: add new page to exist enclave
+[   11.236815] sgx_ioct: add new page to exist enclave
+[   11.236817] sgx_ioct: add new page to exist enclave
+[   11.236820] sgx_ioct: add new page to exist enclave
+[   11.236823] sgx_ioct: add new page to exist enclave
+[   11.236826] sgx_ioct: add new page to exist enclave
+[   11.236828] sgx_ioct: add new page to exist enclave
+[   11.236831] sgx_ioct: add new page to exist enclave
+[   11.236834] sgx_ioct: add new page to exist enclave
+[   11.236838] sgx_ioct: add new page to exist enclave
+[   11.236841] sgx_ioct: add new page to exist enclave
+[   11.236844] sgx_ioct: add new page to exist enclave
+[   11.236847] sgx_ioct: add new page to exist enclave
+[   11.236849] sgx_ioct: add new page to exist enclave
+[   11.236852] sgx_ioct: add new page to exist enclave
+[   11.236856] sgx_ioct: add new page to exist enclave
+[   11.236859] sgx_ioct: add new page to exist enclave
+[   11.236861] sgx_ioct: add new page to exist enclave
+[   11.236864] sgx_ioct: add new page to exist enclave
+[   11.236866] sgx_ioct: add new page to exist enclave
+[   11.236869] sgx_ioct: add new page to exist enclave
+[   11.236874] sgx_ioct: add new page to exist enclave
+[   11.236876] sgx_ioct: add new page to exist enclave
+[   11.236879] sgx_ioct: add new page to exist enclave
+[   11.236882] sgx_ioct: add new page to exist enclave
+[   11.236884] sgx_ioct: add new page to exist enclave
+[   11.236887] sgx_ioct: add new page to exist enclave
+[   11.236889] sgx_ioct: add new page to exist enclave
+[   11.236894] sgx_ioct: add new page to exist enclave
+[   11.236898] sgx_ioct: add new page to exist enclave
+[   11.236905] sgx_ioct: add new page to exist enclave
+[   11.236908] sgx_ioct: add new page to exist enclave
+[   11.236911] sgx_ioct: add new page to exist enclave
+[   11.236913] sgx_ioct: add new page to exist enclave
+[   11.236916] sgx_ioct: add new page to exist enclave
+[   11.236919] sgx_ioct: add new page to exist enclave
+[   11.236921] sgx_ioct: add new page to exist enclave
+[   11.236924] sgx_ioct: add new page to exist enclave
+[   11.236927] sgx_ioct: add new page to exist enclave
+[   11.236930] sgx_ioct: add new page to exist enclave
+[   11.236932] sgx_ioct: add new page to exist enclave
+[   11.236935] sgx_ioct: add new page to exist enclave
+[   11.236938] sgx_ioct: add new page to exist enclave
+[   11.236941] sgx_ioct: add new page to exist enclave
+[   11.236944] sgx_ioct: add new page to exist enclave
+[   11.236948] sgx_ioct: add new page to exist enclave
+[   11.236951] sgx_ioct: add new page to exist enclave
+[   11.236954] sgx_ioct: add new page to exist enclave
+[   11.236957] sgx_ioct: add new page to exist enclave
+[   11.236959] sgx_ioct: add new page to exist enclave
+[   11.236962] sgx_ioct: add new page to exist enclave
+[   11.236965] sgx_ioct: add new page to exist enclave
+[   11.236967] sgx_ioct: add new page to exist enclave
+[   11.236970] sgx_ioct: add new page to exist enclave
+[   11.236973] sgx_ioct: add new page to exist enclave
+[   11.236976] sgx_ioct: add new page to exist enclave
+[   11.236981] sgx_ioct: add new page to exist enclave
+[   11.236983] sgx_ioct: add new page to exist enclave
+[   11.236987] sgx_ioct: add new page to exist enclave
+[   11.236994] sgx_ioct: add new page to exist enclave
+[   11.237002] sgx_ioct: add new page to exist enclave
+[   11.237005] sgx_ioct: add new page to exist enclave

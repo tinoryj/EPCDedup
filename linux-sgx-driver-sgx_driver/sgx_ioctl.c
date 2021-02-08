@@ -185,12 +185,13 @@ static long sgx_ioc_enclave_add_page(struct file *filep, unsigned int cmd,
 	ret = copy_from_user((void *)data, (void __user *)addp->src, PAGE_SIZE);
 	if (ret)
 		goto out;
-	pr_info("sgx: add new page to enclave, address = %p\n", data);	
-	pr_info("sgx: add new page to enclave, hash = \n");
-	unsigned char *hash;
-    hash = kmalloc(256, GFP_KERNEL);
-	do_sha256((unsigned char*)data, PAGE_SIZE, hash);
-	kfree(hash);
+	// TODO: get new page content from user_space
+	// pr_info("sgx: add new page to enclave, address = %p\n", data);	
+	// pr_info("sgx: add new page to enclave, hash = \n");
+	// unsigned char *hash;
+    // hash = kmalloc(256, GFP_KERNEL);
+	// do_sha256((unsigned char*)data, PAGE_SIZE, hash);
+	// kfree(hash);
 	
 	ret = sgx_encl_add_page(encl, addp->addr, data, &secinfo, addp->mrmask);
 	if (ret)
@@ -344,12 +345,13 @@ long sgx_ioc_page_notify_accept(struct file *filep, unsigned int cmd, unsigned l
 			ret = tmp_ret;
 			continue;
 		}else{
-			pr_info("sgx: remove page address = %ld\n", address);
-			pr_info("sgx: remove page hash = %p\n", address);
-			unsigned char *hash;
-    		hash = kmalloc(256, GFP_KERNEL);
-			do_sha256((unsigned char*)address, PAGE_SIZE, hash);
-			kfree(hash);
+			//TODO: remove old page from old enclave
+			// pr_info("sgx: remove page address = %ld\n", address);
+			// pr_info("sgx: remove page hash = %p\n", address);
+			// unsigned char *hash;
+    		// hash = kmalloc(256, GFP_KERNEL);
+			// do_sha256((unsigned char*)address, PAGE_SIZE, hash);
+			// kfree(hash);
 		}
 	}
 
