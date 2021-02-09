@@ -165,8 +165,7 @@ static int sgx_add_to_tgid_ctx(struct sgx_encl *encl)
 
 void sgx_tgid_ctx_release(struct kref *ref)
 {
-	struct sgx_tgid_ctx *pe =
-		container_of(ref, struct sgx_tgid_ctx, refcount);
+	struct sgx_tgid_ctx *pe = container_of(ref, struct sgx_tgid_ctx, refcount);
 	mutex_lock(&sgx_tgid_ctx_mutex);
 	list_del(&pe->list);
 	mutex_unlock(&sgx_tgid_ctx_mutex);

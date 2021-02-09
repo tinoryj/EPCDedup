@@ -565,8 +565,7 @@ static struct sgx_epc_page *sgx_alloc_page_fast(void)
 	spin_lock(&sgx_free_list_lock);
 
 	if (!list_empty(&sgx_free_list)) {
-		entry = list_first_entry(&sgx_free_list, struct sgx_epc_page,
-					 list);
+		entry = list_first_entry(&sgx_free_list, struct sgx_epc_page, list);
 		list_del(&entry->list);
 		sgx_nr_free_pages--;
 		wake_up(&ksgxswapdMoniter_waitq);
