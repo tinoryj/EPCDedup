@@ -473,8 +473,8 @@ static int ksgxswapdMoniter(void  *p)
 		// when need to swap pages, weak up this thread
 		wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop() || counter != sgx_nr_free_pages);
 		pr_info("sgx: [SGX_moniter] In loop, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
-		// user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
-		sgx_swap_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages); // temp swap page for test
+		user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
+		// sgx_swap_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages); // temp swap page for test
 		counter = sgx_nr_free_pages;
 	}
 	pr_info("%s: done\n", __func__);

@@ -225,7 +225,8 @@ static int sgx_dev_init(struct device *parent)
 		pa = ((u64)(ebx & 0xfffff) << 32) + (u64)(eax & 0xfffff000);
 		size = ((u64)(edx & 0xfffff) << 32) + (u64)(ecx & 0xfffff000);
 
-		dev_info(parent, "EPC bank 0x%lx-0x%lx\n", pa, pa + size);
+		dev_info(parent, "EPC bank ID %d of %d \n", i, SGX_MAX_EPC_BANKS);
+		dev_info(parent, "EPC bank 0x%lx-0x%lx, size = %d\n", pa, pa + size, size);
 
 		sgx_epc_banks[i].pa = pa;
 		sgx_epc_banks[i].size = size;
