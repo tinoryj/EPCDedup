@@ -70,6 +70,9 @@ Code &amp; reference repository for EPC memory deduplication
   * Expose problem: application to motivate problem, analysis to introduce page types (access, deduplication ratio)
   * Applications: memcached, sqlite3
 * [2021.2.5]Page permissions issue, direct access leads to errors, need to change EPCM or design a dedicated enclave to manage all pages?
+* [2021.2.19]Virtual address (from `sgx_get_page` function) lead to '0xFFFFFF' pages, which contains error content of each page.
+
+
 ## Base Linux SGX Driver & SDK
 ### Driver Version (Changing to version 2.6) : 
   * Release : 2.11 
@@ -436,7 +439,7 @@ struct sgx_encl {
 * [Sqlite3 manual](https://sqlite.org/cli.html)
 * [Memcached wiki](https://github.com/memcached/memcached/wiki)
 * [Linux Crypto Code Sample](https://github.com/torvalds/linux/blob/master/Documentation/crypto/api-samples.rst)
-
+* [SGX Driver analysis by Ju Chen](https://chenju2k6.github.io/blog/2018/11/driver)
 
 ## Notes for kernel programming
 
