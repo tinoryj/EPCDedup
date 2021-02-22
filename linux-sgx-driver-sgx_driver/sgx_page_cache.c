@@ -278,15 +278,15 @@ static int __sgx_ewb(struct sgx_encl* encl,
     ret = __ewb(&pginfo, epc, (void*)((unsigned long)va + encl_page->va_offset));
     // temp extract page content and va;
     pr_info("sgx: [SGX_moniter] temp ewb new page,current page address = %p, va = %p\n", epc, (void*)((unsigned long)(va + encl_page->va_offset)));
-    unsigned char* content;
-    content = kmalloc(PAGE_SIZE, GFP_KERNEL);
-    memcpy(content, epc, PAGE_SIZE);
+    // unsigned char* content;
+    // content = kmalloc(PAGE_SIZE, GFP_KERNEL);
+    // memcpy(content, epc, PAGE_SIZE);
     unsigned char* hash;
     hash = kmalloc(256, GFP_KERNEL);
     do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
     kfree(hash);
-    pr_info("sgx: [SGX_moniter] SGX-Content(address: %p): %02x%02x%02x%02x%02x%02x%02x%02x\n", epc, content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7]);
-    kfree(content);
+    // pr_info("sgx: [SGX_moniter] SGX-Content(address: %p): %02x%02x%02x%02x%02x%02x%02x%02x\n", epc, content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7]);
+    // kfree(content);
     kunmap_atomic((void*)(unsigned long)(pginfo.pcmd - pcmd_offset));
     kunmap_atomic((void*)(unsigned long)pginfo.srcpge);
 
@@ -451,8 +451,10 @@ static void user_sgx_get_pages(unsigned long nr_to_scan)
         content = kmalloc(PAGE_SIZE, GFP_KERNEL);
         // char* address = (char*)entry->encl_page->addr;
         // memcpy(content, (*(volatile unsigned long  * const)(address)), PAGE_SIZE);
-        memcpy(content, (void*)(unsigned long)entry->encl_page->addr, PAGE_SIZE);
-        pr_info("sgx: [SGX_moniter] SGX-Content(address: %p): %02x%02x%02x%02x%02x%02x%02x%02x\n", entry->encl_page->addr, content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7]);
+        void* epc;
+        epc = sgx_get_page(entry);
+        memcpy(content, (char*)epc, PAGE_SIZE);
+        pr_info("sgx: [SGX_moniter] SGX-Content(address: %p): %02x%02x%02x%02x%02x%02x%02x%02x\n", epc, content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7]);
         kfree(content);
     }
     mutex_unlock(&encl->lock);
@@ -475,8 +477,8 @@ static int ksgxswapdMoniter(void* p)
         // when need to swap pages, weak up this thread
         wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop() || counter != sgx_nr_free_pages);
         pr_info("sgx: [SGX_moniter] In loop, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
-        // user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
-        sgx_swap_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages); // temp swap page for test
+        user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
+        // sgx_swap_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages); // temp swap page for test
         counter = sgx_nr_free_pages;
     }
     pr_info("%s: done\n", __func__);
@@ -659,9 +661,16 @@ void* sgx_get_page(struct sgx_epc_page* entry)
     return kmap_atomic_pfn(PFN_DOWN(entry->pa));
 #else
     int i = ((entry->pa) & ~PAGE_MASK);
-
+    pr_info("sgx: [SGX_moniter] call sgx_get_page, mask = %lu, current page pa = %lu, epc %d va = %lu\n", PAGE_MASK, entry->pa, i, sgx_epc_banks[i].va);
     return (void*)(sgx_epc_banks[i].va + ((entry->pa & PAGE_MASK) - sgx_epc_banks[i].pa));
+
 #endif
+}
+
+void* user_sgx_get_all_pages(int epcBankID)
+{
+    pr_info("sgx: [SGX_moniter] call user_sgx_get_all_pages, mask = %lu, current page pa = %lu, epc %d va = %lu\n", PAGE_MASK, entry->pa, i, sgx_epc_banks[i].va);
+    return (void*)(sgx_epc_banks[i].va + ((entry->pa & PAGE_MASK) - sgx_epc_banks[i].pa));
 }
 
 void sgx_put_page(void* epc_page_vaddr)

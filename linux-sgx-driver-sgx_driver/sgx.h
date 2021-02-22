@@ -142,7 +142,7 @@ static int do_sha256(const unsigned char* data, unsigned int datalen, unsigned c
 #define SGX_VA_SLOT_COUNT 512
 
 struct sgx_epc_page {
-    resource_size_t pa;
+    resource_size_t pa; // resource_size_t: uint32_t or uint64_t depend on system; pa is start address of the resource
     struct list_head list;
     struct sgx_encl_page* encl_page;
 };
