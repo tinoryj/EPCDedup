@@ -222,7 +222,12 @@ static void sgx_isolate_pages(struct sgx_encl* encl,
             break;
 
         entry = list_first_entry(&encl->load_list, struct sgx_epc_page, list);
-
+        pr_info("sgx: [SGX_moniter] trying to isolate the page,current page address = 0x%x, hash = \n", entry->encl_page->addr);
+        void* epc = sgx_get_page(entry);
+        unsigned char* hash;
+        hash = kmalloc(256, GFP_KERNEL);
+        do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
+        kfree(hash);
         if (!sgx_test_and_clear_young(entry->encl_page, encl) && !(entry->encl_page->flags & SGX_ENCL_PAGE_RESERVED)) {
             entry->encl_page->flags |= SGX_ENCL_PAGE_RESERVED;
             list_move_tail(&entry->list, dst);
@@ -272,16 +277,16 @@ static int __sgx_ewb(struct sgx_encl* encl,
     pginfo.secs = 0;
     ret = __ewb(&pginfo, epc, (void*)((unsigned long)va + encl_page->va_offset));
     // temp extract page content and va;
-    // pr_info("sgx: [SGX_moniter] temp ewb new page,current page address = %p, va = %p\n", epc, (void*)((unsigned long)(va + encl_page->va_offset)));
-    // // unsigned char *content;
-    // // content = kmalloc(PAGE_SIZE, GFP_KERNEL);
-    // // memcpy(content, epc, PAGE_SIZE);
-    // unsigned char* hash;
-    // hash = kmalloc(256, GFP_KERNEL);
-    // do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
-    // kfree(hash);
-    // pr_info("sgx: [SGX_moniter] SGX-Content(address: %p): %02x%02x%02x%02x%02x%02x%02x%02x\n", epc, content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7]);
-    // kfree(content);
+    pr_info("sgx: [SGX_moniter] temp ewb new page,current page address = %p, va = %p\n", epc, (void*)((unsigned long)(va + encl_page->va_offset)));
+    unsigned char* content;
+    content = kmalloc(PAGE_SIZE, GFP_KERNEL);
+    memcpy(content, epc, PAGE_SIZE);
+    unsigned char* hash;
+    hash = kmalloc(256, GFP_KERNEL);
+    do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
+    kfree(hash);
+    pr_info("sgx: [SGX_moniter] SGX-Content(address: %p): %02x%02x%02x%02x%02x%02x%02x%02x\n", epc, content[0], content[1], content[2], content[3], content[4], content[5], content[6], content[7]);
+    kfree(content);
     kunmap_atomic((void*)(unsigned long)(pginfo.pcmd - pcmd_offset));
     kunmap_atomic((void*)(unsigned long)pginfo.srcpge);
 

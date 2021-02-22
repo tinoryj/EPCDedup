@@ -60,27 +60,30 @@
 #ifndef __ARCH_INTEL_SGX_H__
 #define __ARCH_INTEL_SGX_H__
 
+#include "sgx_arch.h"
 #include "sgx_asm.h"
+#include "sgx_user.h"
+#include <crypto/hash.h>
 #include <linux/kref.h>
-#include <linux/version.h>
+#include <linux/mm.h>
+#include <linux/mmu_notifier.h>
+#include <linux/radix-tree.h>
 #include <linux/rbtree.h>
 #include <linux/rwsem.h>
 #include <linux/sched.h>
+#include <linux/version.h>
 #include <linux/workqueue.h>
-#include <linux/mmu_notifier.h>
-#include <linux/radix-tree.h>
-#include <linux/mm.h>
-#include "sgx_arch.h"
-#include "sgx_user.h"
-#include <crypto/hash.h>
+
+#define TEST_INFO 1
+
 struct sdesc {
     struct shash_desc shash;
     char ctx[];
 };
 
-static struct sdesc *init_sdesc(struct crypto_shash *alg)
+static struct sdesc* init_sdesc(struct crypto_shash* alg)
 {
-    struct sdesc *sdesc;
+    struct sdesc* sdesc;
     int size;
 
     size = sizeof(struct shash_desc) + crypto_shash_descsize(alg);
@@ -91,11 +94,11 @@ static struct sdesc *init_sdesc(struct crypto_shash *alg)
     return sdesc;
 }
 
-static int calc_hash(struct crypto_shash *alg,
-             const unsigned char *data, unsigned int datalen,
-             unsigned char *digest)
+static int calc_hash(struct crypto_shash* alg,
+    const unsigned char* data, unsigned int datalen,
+    unsigned char* digest)
 {
-    struct sdesc *sdesc;
+    struct sdesc* sdesc;
     int ret;
 
     sdesc = init_sdesc(alg);
@@ -109,14 +112,14 @@ static int calc_hash(struct crypto_shash *alg,
     return ret;
 }
 
-static int do_sha256(const unsigned char *data, unsigned int datalen, unsigned char *out_digest)
+static int do_sha256(const unsigned char* data, unsigned int datalen, unsigned char* out_digest)
 {
-    struct crypto_shash *alg;
-    char *hash_alg_name = "sha256";
+    struct crypto_shash* alg;
+    char* hash_alg_name = "sha256";
     // unsigned int datalen = sizeof(data) - 1; // remove the null byte
 
     alg = crypto_alloc_shash(hash_alg_name, 0, 0);
-    if(IS_ERR(alg)){
+    if (IS_ERR(alg)) {
         pr_info("can't alloc alg %s\n", hash_alg_name);
         return PTR_ERR(alg);
     }
@@ -124,127 +127,126 @@ static int do_sha256(const unsigned char *data, unsigned int datalen, unsigned c
 
     // Very dirty print of 8 first bytes for comparaison with sha256sum
     printk(KERN_INFO "sgx: SGX-HASH(address: %p, size: %i): %02x%02x%02x%02x%02x%02x%02x%02x\n",
-          data, datalen, out_digest[0], out_digest[1], out_digest[2], out_digest[3], out_digest[4], 
-          out_digest[5], out_digest[6], out_digest[7]);
+        data, datalen, out_digest[0], out_digest[1], out_digest[2], out_digest[3], out_digest[4],
+        out_digest[5], out_digest[6], out_digest[7]);
 
     crypto_free_shash(alg);
     return 0;
 }
 
-
-#define SGX_EINIT_SPIN_COUNT	20
-#define SGX_EINIT_SLEEP_COUNT	50
-#define SGX_EINIT_SLEEP_TIME	20
-#define SGX_EDMM_SPIN_COUNT	20
+#define SGX_EINIT_SPIN_COUNT 20
+#define SGX_EINIT_SLEEP_COUNT 50
+#define SGX_EINIT_SLEEP_TIME 20
+#define SGX_EDMM_SPIN_COUNT 20
 
 #define SGX_VA_SLOT_COUNT 512
 
 struct sgx_epc_page {
-	resource_size_t	pa;
-	struct list_head list;
-	struct sgx_encl_page *encl_page;
+    resource_size_t pa;
+    struct list_head list;
+    struct sgx_encl_page* encl_page;
 };
 
 enum sgx_alloc_flags {
-	SGX_ALLOC_ATOMIC	= BIT(0),
+    SGX_ALLOC_ATOMIC = BIT(0),
 };
 
 struct sgx_va_page {
-	struct sgx_epc_page *epc_page;
-	DECLARE_BITMAP(slots, SGX_VA_SLOT_COUNT);
-	struct list_head list;
+    struct sgx_epc_page* epc_page;
+    DECLARE_BITMAP(slots, SGX_VA_SLOT_COUNT);
+    struct list_head list;
 };
 
-static inline unsigned int sgx_alloc_va_slot(struct sgx_va_page *page)
+static inline unsigned int sgx_alloc_va_slot(struct sgx_va_page* page)
 {
-	int slot = find_first_zero_bit(page->slots, SGX_VA_SLOT_COUNT);
+    int slot = find_first_zero_bit(page->slots, SGX_VA_SLOT_COUNT);
 
-	if (slot < SGX_VA_SLOT_COUNT)
-		set_bit(slot, page->slots);
+    if (slot < SGX_VA_SLOT_COUNT)
+        set_bit(slot, page->slots);
 
-	return slot << 3;
+    return slot << 3;
 }
 
-static inline void sgx_free_va_slot(struct sgx_va_page *page,
-				    unsigned int offset)
+static inline void sgx_free_va_slot(struct sgx_va_page* page,
+    unsigned int offset)
 {
-	clear_bit(offset >> 3, page->slots);
+    clear_bit(offset >> 3, page->slots);
 }
 
-static inline bool sgx_va_slots_empty(struct sgx_va_page *page)
+static inline bool sgx_va_slots_empty(struct sgx_va_page* page)
 {
-	int slot = find_first_bit(page->slots, SGX_VA_SLOT_COUNT);
+    int slot = find_first_bit(page->slots, SGX_VA_SLOT_COUNT);
 
-	if (slot == SGX_VA_SLOT_COUNT)
-		return true;
+    if (slot == SGX_VA_SLOT_COUNT)
+        return true;
 
-	return false;
+    return false;
 }
 
 enum sgx_encl_page_flags {
-	SGX_ENCL_PAGE_TCS	= BIT(0),
-	SGX_ENCL_PAGE_RESERVED	= BIT(1),
-	SGX_ENCL_PAGE_TRIM	= BIT(2),
-	SGX_ENCL_PAGE_ADDED	= BIT(3),
+    SGX_ENCL_PAGE_TCS = BIT(0),
+    SGX_ENCL_PAGE_RESERVED = BIT(1),
+    SGX_ENCL_PAGE_TRIM = BIT(2),
+    SGX_ENCL_PAGE_ADDED = BIT(3),
 };
 
 struct sgx_encl_page {
-	unsigned long addr;
-	unsigned int flags;
-	struct sgx_epc_page *epc_page;
-	struct sgx_va_page *va_page;
-	unsigned int va_offset;
+    unsigned long addr;
+    unsigned int flags;
+    struct sgx_epc_page* epc_page;
+    struct sgx_va_page* va_page;
+    unsigned int va_offset;
 };
 
 struct sgx_tgid_ctx {
-	struct pid *tgid;
-	struct kref refcount;
-	struct list_head encl_list;
-	struct list_head list;
+    struct pid* tgid;
+    struct kref refcount;
+    struct list_head encl_list;
+    struct list_head list;
 };
 
 enum sgx_encl_flags {
-	SGX_ENCL_INITIALIZED	= BIT(0),
-	SGX_ENCL_DEBUG		= BIT(1),
-	SGX_ENCL_SECS_EVICTED	= BIT(2),
-	SGX_ENCL_SUSPEND	= BIT(3),
-	SGX_ENCL_DEAD		= BIT(4),
+    SGX_ENCL_INITIALIZED = BIT(0),
+    SGX_ENCL_DEBUG = BIT(1),
+    SGX_ENCL_SECS_EVICTED = BIT(2),
+    SGX_ENCL_SUSPEND = BIT(3),
+    SGX_ENCL_DEAD = BIT(4),
 };
 
 struct sgx_encl {
-	unsigned int flags;
-	uint64_t attributes;
-	uint64_t xfrm;
-	unsigned int secs_child_cnt;
-	struct mutex lock;
-	struct mm_struct *mm;
-	struct file *backing;
-	struct file *pcmd;
-	struct list_head load_list;
-	struct kref refcount;
-	unsigned long base;
-	unsigned long size;
-	unsigned long ssaframesize;
-	struct list_head va_pages;
-	struct radix_tree_root page_tree;
-	struct list_head add_page_reqs;
-	struct work_struct add_page_work;
-	struct sgx_encl_page secs;
-	struct sgx_tgid_ctx *tgid_ctx;
-	struct list_head encl_list;
-	struct mmu_notifier mmu_notifier;
-	unsigned int shadow_epoch;
+    unsigned int flags;
+    uint64_t attributes;
+    uint64_t xfrm;
+    unsigned int secs_child_cnt;
+    struct mutex lock;
+    struct mm_struct* mm;
+    struct file* backing;
+    struct file* pcmd;
+    struct list_head load_list;
+    struct kref refcount;
+    unsigned long base;
+    unsigned long size;
+    unsigned long ssaframesize;
+    struct list_head va_pages;
+    struct radix_tree_root page_tree;
+    struct list_head add_page_reqs;
+    struct work_struct add_page_work;
+    struct sgx_encl_page secs;
+    struct sgx_tgid_ctx* tgid_ctx;
+    struct list_head encl_list;
+    struct mmu_notifier mmu_notifier;
+    unsigned int shadow_epoch;
 };
 
 struct sgx_epc_bank {
-	unsigned long pa;
+    unsigned long pa;
 #ifdef CONFIG_X86_64
-	unsigned long va;
+    unsigned long va;
 #endif
-	unsigned long size;
+    unsigned long size;
 };
 
-extern struct workqueue_struct *sgx_add_page_wq;
+extern struct workqueue_struct* sgx_add_page_wq;
 extern struct sgx_epc_bank sgx_epc_banks[];
 extern int sgx_nr_epc_banks;
 extern u64 sgx_encl_size_max_32;
@@ -256,64 +258,63 @@ extern bool sgx_has_sgx2;
 
 extern const struct vm_operations_struct sgx_vm_ops;
 
-#define sgx_pr_ratelimited(level, encl, fmt, ...)			  \
-	pr_ ## level ## _ratelimited("intel_sgx: [%d:0x%p] " fmt,	  \
-				     pid_nr((encl)->tgid_ctx->tgid),	  \
-				     (void *)(encl)->base, ##__VA_ARGS__)
+#define sgx_pr_ratelimited(level, encl, fmt, ...)         \
+    pr_##level##_ratelimited("intel_sgx: [%d:0x%p] " fmt, \
+        pid_nr((encl)->tgid_ctx->tgid),                   \
+        (void*)(encl)->base, ##__VA_ARGS__)
 
 #define sgx_dbg(encl, fmt, ...) \
-	sgx_pr_ratelimited(debug, encl, fmt, ##__VA_ARGS__)
+    sgx_pr_ratelimited(debug, encl, fmt, ##__VA_ARGS__)
 #define sgx_info(encl, fmt, ...) \
-	sgx_pr_ratelimited(info, encl, fmt, ##__VA_ARGS__)
+    sgx_pr_ratelimited(info, encl, fmt, ##__VA_ARGS__)
 #define sgx_warn(encl, fmt, ...) \
-	sgx_pr_ratelimited(warn, encl, fmt, ##__VA_ARGS__)
+    sgx_pr_ratelimited(warn, encl, fmt, ##__VA_ARGS__)
 #define sgx_err(encl, fmt, ...) \
-	sgx_pr_ratelimited(err, encl, fmt, ##__VA_ARGS__)
+    sgx_pr_ratelimited(err, encl, fmt, ##__VA_ARGS__)
 #define sgx_crit(encl, fmt, ...) \
-	sgx_pr_ratelimited(crit, encl, fmt, ##__VA_ARGS__)
+    sgx_pr_ratelimited(crit, encl, fmt, ##__VA_ARGS__)
 
-int sgx_encl_find(struct mm_struct *mm, unsigned long addr,
-		  struct vm_area_struct **vma);
-void sgx_tgid_ctx_release(struct kref *ref);
-int sgx_encl_create(struct sgx_secs *secs);
-int sgx_encl_add_page(struct sgx_encl *encl, unsigned long addr, void *data,
-		      struct sgx_secinfo *secinfo, unsigned int mrmask);
-int sgx_encl_init(struct sgx_encl *encl, struct sgx_sigstruct *sigstruct,
-		  struct sgx_einittoken *einittoken);
-struct sgx_encl_page *sgx_encl_augment(struct vm_area_struct *vma,
-				       unsigned long addr, bool write);
-void sgx_encl_release(struct kref *ref);
+int sgx_encl_find(struct mm_struct* mm, unsigned long addr,
+    struct vm_area_struct** vma);
+void sgx_tgid_ctx_release(struct kref* ref);
+int sgx_encl_create(struct sgx_secs* secs);
+int sgx_encl_add_page(struct sgx_encl* encl, unsigned long addr, void* data,
+    struct sgx_secinfo* secinfo, unsigned int mrmask);
+int sgx_encl_init(struct sgx_encl* encl, struct sgx_sigstruct* sigstruct,
+    struct sgx_einittoken* einittoken);
+struct sgx_encl_page* sgx_encl_augment(struct vm_area_struct* vma,
+    unsigned long addr, bool write);
+void sgx_encl_release(struct kref* ref);
 
-long sgx_ioctl(struct file *filep, unsigned int cmd, unsigned long arg);
+long sgx_ioctl(struct file* filep, unsigned int cmd, unsigned long arg);
 #ifdef CONFIG_COMPAT
-long sgx_compat_ioctl(struct file *filep, unsigned int cmd, unsigned long arg);
+long sgx_compat_ioctl(struct file* filep, unsigned int cmd, unsigned long arg);
 #endif
 
 /* Utility functions */
-int sgx_test_and_clear_young(struct sgx_encl_page *page, struct sgx_encl *encl);
-struct page *sgx_get_backing(struct sgx_encl *encl,
-			     struct sgx_encl_page *entry,
-			     bool pcmd);
-void sgx_put_backing(struct page *backing, bool write);
-void sgx_insert_pte(struct sgx_encl *encl,
-		    struct sgx_encl_page *encl_page,
-		    struct sgx_epc_page *epc_page,
-		    struct vm_area_struct *vma);
-int sgx_eremove(struct sgx_epc_page *epc_page);
-void sgx_zap_tcs_ptes(struct sgx_encl *encl,
-		      struct vm_area_struct *vma);
-void sgx_invalidate(struct sgx_encl *encl, bool flush_cpus);
-void sgx_flush_cpus(struct sgx_encl *encl);
+int sgx_test_and_clear_young(struct sgx_encl_page* page, struct sgx_encl* encl);
+struct page* sgx_get_backing(struct sgx_encl* encl,
+    struct sgx_encl_page* entry,
+    bool pcmd);
+void sgx_put_backing(struct page* backing, bool write);
+void sgx_insert_pte(struct sgx_encl* encl,
+    struct sgx_encl_page* encl_page,
+    struct sgx_epc_page* epc_page,
+    struct vm_area_struct* vma);
+int sgx_eremove(struct sgx_epc_page* epc_page);
+void sgx_zap_tcs_ptes(struct sgx_encl* encl,
+    struct vm_area_struct* vma);
+void sgx_invalidate(struct sgx_encl* encl, bool flush_cpus);
+void sgx_flush_cpus(struct sgx_encl* encl);
 
 enum sgx_fault_flags {
-	SGX_FAULT_RESERVE	= BIT(0),
+    SGX_FAULT_RESERVE = BIT(0),
 };
 
-struct sgx_encl_page *sgx_fault_page(struct vm_area_struct *vma,
-				     unsigned long addr,
-				     unsigned int flags,
-				     struct vm_fault *vmf);
-
+struct sgx_encl_page* sgx_fault_page(struct vm_area_struct* vma,
+    unsigned long addr,
+    unsigned int flags,
+    struct vm_fault* vmf);
 
 extern struct mutex sgx_tgid_ctx_mutex;
 extern struct list_head sgx_tgid_ctx_list;
@@ -323,17 +324,17 @@ int sgx_add_epc_bank(resource_size_t start, unsigned long size, int bank);
 int sgx_page_cache_init(void);
 int sgx_page_cache_moniter_init(void);
 void sgx_page_cache_teardown(void);
-struct sgx_epc_page *sgx_alloc_page(unsigned int flags);
-void sgx_free_page(struct sgx_epc_page *entry, struct sgx_encl *encl);
-void *sgx_get_page(struct sgx_epc_page *entry);
-void sgx_put_page(void *epc_page_vaddr);
-void sgx_eblock(struct sgx_encl *encl, struct sgx_epc_page *epc_page);
-void sgx_etrack(struct sgx_encl *encl, unsigned int epoch);
-void sgx_ipi_cb(void *info);
-int sgx_eldu(struct sgx_encl *encl, struct sgx_encl_page *encl_page,
-	     struct sgx_epc_page *epc_page, bool is_secs);
-long modify_range(struct sgx_range *rg, unsigned long flags);
-int remove_page(struct sgx_encl *encl, unsigned long address, bool trim);
-int sgx_get_encl(unsigned long addr, struct sgx_encl **encl);
-int sgx_vm_insert_pfn(struct vm_area_struct *vma, unsigned long addr,  resource_size_t pa);
+struct sgx_epc_page* sgx_alloc_page(unsigned int flags);
+void sgx_free_page(struct sgx_epc_page* entry, struct sgx_encl* encl);
+void* sgx_get_page(struct sgx_epc_page* entry);
+void sgx_put_page(void* epc_page_vaddr);
+void sgx_eblock(struct sgx_encl* encl, struct sgx_epc_page* epc_page);
+void sgx_etrack(struct sgx_encl* encl, unsigned int epoch);
+void sgx_ipi_cb(void* info);
+int sgx_eldu(struct sgx_encl* encl, struct sgx_encl_page* encl_page,
+    struct sgx_epc_page* epc_page, bool is_secs);
+long modify_range(struct sgx_range* rg, unsigned long flags);
+int remove_page(struct sgx_encl* encl, unsigned long address, bool trim);
+int sgx_get_encl(unsigned long addr, struct sgx_encl** encl);
+int sgx_vm_insert_pfn(struct vm_area_struct* vma, unsigned long addr, resource_size_t pa);
 #endif /* __ARCH_X86_INTEL_SGX_H__ */
