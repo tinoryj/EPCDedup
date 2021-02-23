@@ -71,7 +71,7 @@ Code &amp; reference repository for EPC memory deduplication
   * Applications: memcached, sqlite3
 * [2021.2.5]Page permissions issue, direct access leads to errors, need to change EPCM or design a dedicated enclave to manage all pages?
 * [2021.2.19]Virtual address (from `sgx_get_page` function) lead to '0xFFFFFF' pages, which contains error content of each page.
-
+* [2021.2.23]Find vaddr and data->addp pair, content correct when copy from user space, going to 0xfffff when extract with sgx_get_page. May not working.
 
 ## Base Linux SGX Driver & SDK
 ### Driver Version (Changing to version 2.6) : 
