@@ -239,6 +239,34 @@ out:
     mutex_unlock(&encl->lock);
 }
 
+static void user_sgx_isolate_pages(struct sgx_encl* encl,
+    struct list_head* dst,
+    unsigned long nr_to_scan)
+{
+    struct sgx_epc_page* entry;
+    int i;
+
+    mutex_lock(&encl->lock);
+
+    if (encl->flags & SGX_ENCL_DEAD)
+        goto out;
+
+    for (i = 0; i < nr_to_scan; i++) {
+        if (list_empty(&encl->load_list))
+            break;
+        entry = list_first_entry(&encl->load_list, struct sgx_epc_page, list);
+        pr_info("sgx: [SGX_moniter] user trying to isolate the page,current page address = 0x%x, hash = \n", entry->encl_page->addr);
+        void* epc = sgx_get_page(entry);
+        unsigned char* hash;
+        hash = kmalloc(256, GFP_KERNEL);
+        do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
+        kfree(hash);
+        list_move_tail(&entry->list, dst);
+    }
+out:
+    mutex_unlock(&encl->lock);
+}
+
 static int __sgx_ewb(struct sgx_encl* encl,
     struct sgx_encl_page* encl_page)
 {
@@ -417,25 +445,24 @@ static int ksgxswapd(void* p)
 
 static void user_sgx_get_pages(unsigned long nr_to_scan)
 {
-    pr_info("sgx: [SGX_moniter] start listing all pages\n");
+    // pr_info("sgx: [SGX_moniter] start listing all pages\n");
     struct sgx_tgid_ctx* ctx;
     struct sgx_encl* encl;
     ctx = sgx_isolate_tgid_ctx(nr_to_scan);
     if (!ctx)
         return;
-    pr_info("sgx: [SGX_moniter] listing all pages, isolate tgid done\n");
+    // pr_info("sgx: [SGX_moniter] listing all pages, isolate tgid done\n");
     encl = sgx_isolate_encl(ctx, nr_to_scan);
     if (!encl)
         return;
-    pr_info("sgx: [SGX_moniter] listing all pages, isolate encl done\n");
+    // pr_info("sgx: [SGX_moniter] listing all pages, isolate encl done\n");
     struct sgx_epc_page* entry;
     struct sgx_epc_page* tmp;
     LIST_HEAD(cluster);
-    sgx_isolate_pages(encl, &cluster, nr_to_scan);
+    user_sgx_isolate_pages(encl, &cluster, nr_to_scan);
     if (list_empty(&cluster))
         return;
-    pr_info("sgx: [SGX_moniter] listing all pages, isolate pages done, page list is not empty\n");
-    entry = list_first_entry(&cluster, struct sgx_epc_page, list);
+    pr_info("sgx: [SGX_moniter] listing %lu pages, isolate pages done, page list is not empty\n", nr_to_scan);
     unsigned char* hash;
     hash = kmalloc(256, GFP_KERNEL);
     // pr_info("sgx: [SGX_moniter] find page list head, current page address = %p\n", entry->encl_page->addr);
@@ -445,7 +472,7 @@ static void user_sgx_get_pages(unsigned long nr_to_scan)
     pr_info("sgx: [SGX_moniter] page list size = %ld, listing all page hash now:\n", nr_to_scan);
     list_for_each_entry_safe(entry, tmp, &cluster, list)
     {
-        pr_info("sgx: [SGX_moniter] find new page, current page address = %p, va offset = %d\n", entry->encl_page->addr, entry->encl_page->va_offset);
+        pr_info("sgx: [SGX_moniter] print new page, address = %p, va = %d\n", entry->encl_page->addr, entry->encl_page->va_offset);
         // do_sha256((unsigned char*)entry->encl_page->addr, PAGE_SIZE, hash);
         unsigned char* content;
         content = kmalloc(PAGE_SIZE, GFP_KERNEL);
@@ -661,16 +688,11 @@ void* sgx_get_page(struct sgx_epc_page* entry)
     return kmap_atomic_pfn(PFN_DOWN(entry->pa));
 #else
     int i = ((entry->pa) & ~PAGE_MASK);
-    pr_info("sgx: [SGX_moniter] call sgx_get_page, mask = %lu, current page pa = %lu, epc %d va = %lu\n", PAGE_MASK, entry->pa, i, sgx_epc_banks[i].va);
+    // pr_info("sgx: [SGX_moniter] call sgx_get_page, mask = %lu, current page pa = %lu, epc %d va = %lu\n", PAGE_MASK, entry->pa, i, sgx_epc_banks[i].va);
+    pr_info("sgx: [SGX_moniter] call sgx_get_page, current page pa = 0x%x\n", entry->pa);
     return (void*)(sgx_epc_banks[i].va + ((entry->pa & PAGE_MASK) - sgx_epc_banks[i].pa));
 
 #endif
-}
-
-void* user_sgx_get_all_pages(int epcBankID)
-{
-    pr_info("sgx: [SGX_moniter] call user_sgx_get_all_pages, mask = %lu, current page pa = %lu, epc %d va = %lu\n", PAGE_MASK, entry->pa, i, sgx_epc_banks[i].va);
-    return (void*)(sgx_epc_banks[i].va + ((entry->pa & PAGE_MASK) - sgx_epc_banks[i].pa));
 }
 
 void sgx_put_page(void* epc_page_vaddr)

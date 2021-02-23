@@ -331,10 +331,11 @@ void sgx_put_page(void* epc_page_vaddr);
 void sgx_eblock(struct sgx_encl* encl, struct sgx_epc_page* epc_page);
 void sgx_etrack(struct sgx_encl* encl, unsigned int epoch);
 void sgx_ipi_cb(void* info);
-int sgx_eldu(struct sgx_encl* encl, struct sgx_encl_page* encl_page,
-    struct sgx_epc_page* epc_page, bool is_secs);
+int sgx_eldu(struct sgx_encl* encl, struct sgx_encl_page* encl_page, struct sgx_epc_page* epc_page, bool is_secs);
 long modify_range(struct sgx_range* rg, unsigned long flags);
 int remove_page(struct sgx_encl* encl, unsigned long address, bool trim);
 int sgx_get_encl(unsigned long addr, struct sgx_encl** encl);
 int sgx_vm_insert_pfn(struct vm_area_struct* vma, unsigned long addr, resource_size_t pa);
+
+// user functions -- tinoryj
 #endif /* __ARCH_X86_INTEL_SGX_H__ */
