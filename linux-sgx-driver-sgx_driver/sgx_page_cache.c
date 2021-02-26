@@ -222,12 +222,12 @@ static void sgx_isolate_pages(struct sgx_encl* encl,
             break;
 
         entry = list_first_entry(&encl->load_list, struct sgx_epc_page, list);
-        pr_info("sgx: [SGX_moniter] trying to isolate the page,current page address = 0x%x, hash = \n", entry->encl_page->addr);
-        void* epc = sgx_get_page(entry);
-        unsigned char* hash;
-        hash = kmalloc(256, GFP_KERNEL);
-        do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
-        kfree(hash);
+        // pr_info("sgx: [SGX_moniter] trying to isolate the page,current page address = 0x%x, hash = \n", entry->encl_page->addr);
+        // void* epc = sgx_get_page(entry);
+        // unsigned char* hash;
+        // hash = kmalloc(256, GFP_KERNEL);
+        // do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
+        // kfree(hash);
         if (!sgx_test_and_clear_young(entry->encl_page, encl) && !(entry->encl_page->flags & SGX_ENCL_PAGE_RESERVED)) {
             entry->encl_page->flags |= SGX_ENCL_PAGE_RESERVED;
             list_move_tail(&entry->list, dst);
@@ -255,12 +255,12 @@ static void user_sgx_isolate_pages(struct sgx_encl* encl,
         if (list_empty(&encl->load_list))
             break;
         entry = list_first_entry(&encl->load_list, struct sgx_epc_page, list);
-        pr_info("sgx: [SGX_moniter] user trying to isolate the page,current page address = 0x%x, hash = \n", entry->encl_page->addr);
-        void* epc = sgx_get_page(entry);
-        unsigned char* hash;
-        hash = kmalloc(256, GFP_KERNEL);
-        do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
-        kfree(hash);
+        // pr_info("sgx: [SGX_moniter] user trying to isolate the page,current page address = 0x%x, hash = \n", entry->encl_page->addr);
+        // void* epc = sgx_get_page(entry);
+        // unsigned char* hash;
+        // hash = kmalloc(256, GFP_KERNEL);
+        // do_sha256((unsigned char*)epc, PAGE_SIZE, hash);
+        // kfree(hash);
         list_move_tail(&entry->list, dst);
     }
 out:
@@ -305,7 +305,7 @@ static int __sgx_ewb(struct sgx_encl* encl,
     pginfo.secs = 0;
     ret = __ewb(&pginfo, epc, (void*)((unsigned long)va + encl_page->va_offset));
     // temp extract page content and va;
-    pr_info("sgx: [SGX_moniter] temp ewb new page,current page address = %p, va = %p\n", epc, (void*)((unsigned long)(va + encl_page->va_offset)));
+    pr_info("sgx: [SGX_moniter] temp ewb new page,current page address = %p, va = %lu, srcpga=%lu, pcmd=%llu\n", epc, (unsigned long)(va + encl_page->va_offset),pginfo.srcpge, pginfo.pcmd);
     // unsigned char* content;
     // content = kmalloc(PAGE_SIZE, GFP_KERNEL);
     // memcpy(content, epc, PAGE_SIZE);
@@ -504,8 +504,8 @@ static int ksgxswapdMoniter(void* p)
         // when need to swap pages, weak up this thread
         wait_event_freezable(ksgxswapdMoniter_waitq, kthread_should_stop() || counter != sgx_nr_free_pages);
         pr_info("sgx: [SGX_moniter] In loop, current free page number = %d, total page number = %d\n", sgx_nr_free_pages, sgx_nr_total_epc_pages);
-        user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
-        // sgx_swap_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages); // temp swap page for test
+        // user_sgx_get_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages);
+        sgx_swap_pages(sgx_nr_total_epc_pages - sgx_nr_free_pages); // temp swap page for test
         counter = sgx_nr_free_pages;
     }
     pr_info("%s: done\n", __func__);
@@ -689,7 +689,7 @@ void* sgx_get_page(struct sgx_epc_page* entry)
 #else
     int i = ((entry->pa) & ~PAGE_MASK);
     // pr_info("sgx: [SGX_moniter] call sgx_get_page, mask = %lu, current page pa = %lu, epc %d va = %lu\n", PAGE_MASK, entry->pa, i, sgx_epc_banks[i].va);
-    pr_info("sgx: [SGX_moniter] call sgx_get_page, current page pa = 0x%x\n", entry->pa);
+    // pr_info("sgx: [SGX_moniter] call sgx_get_page, current page pa = 0x%x\n", entry->pa);
     return (void*)(sgx_epc_banks[i].va + ((entry->pa & PAGE_MASK) - sgx_epc_banks[i].pa));
 
 #endif
