@@ -107,14 +107,14 @@ struct page* sgx_get_backing(struct sgx_encl* encl,
         inode = encl->backing->f_path.dentry->d_inode;
 
     mapping = inode->i_mapping;
-    gfpmask = mapping_gfp_mask(mapping);
+    gfpmask = mapping_gfp_mask(mapping); // http://www.bricktou.com/include/linux/pagemapmapping_gfp_mask_en.html
 
     if (pcmd)
         index = (entry->addr - encl->base) >> (PAGE_SHIFT + 5);
     else
         index = (entry->addr - encl->base) >> PAGE_SHIFT;
 
-    return shmem_read_mapping_page_gfp(mapping, index, gfpmask);
+    return shmem_read_mapping_page_gfp(mapping, index, gfpmask); //alloc swapable page, https://stackoverflow.com/questions/45112292/allocate-swappable-memory-in-linux-kernel
 }
 
 void sgx_put_backing(struct page* backing_page, bool write)
